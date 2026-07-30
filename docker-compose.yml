@@ -2,6 +2,7 @@ services:
   postgres:
     image: postgres:16-alpine
     container_name: smartarchive-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -16,10 +17,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
 
   redis:
     image: redis:7-alpine
     container_name: smartarchive-redis
+    restart: unless-stopped
     ports:
       - "6379:6379"
     healthcheck:
@@ -27,10 +34,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
 
   minio:
     image: minio/minio:latest
     container_name: smartarchive-minio
+    restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
@@ -45,11 +58,17 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
 
   backend:
     build:
       context: ./backend
     container_name: smartarchive-backend
+    restart: unless-stopped
     env_file: .env
     environment:
       POSTGRES_HOST: postgres
@@ -66,12 +85,24 @@ services:
         condition: service_healthy
       minio:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 1G
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
   celery-worker:
     build:
       context: ./backend
     container_name: smartarchive-celery-worker
+    restart: unless-stopped
     env_file: .env
     environment:
       POSTGRES_HOST: postgres
@@ -80,21 +111,90 @@ services:
     volumes:
       - ./backend:/app
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A app.tasks.celery_app inspect ping -d celery@$$HOSTNAME || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     command: celery -A app.tasks.celery_app worker --beat --loglevel=info
 
   frontend:
     build:
       context: ./frontend
     container_name: smartarchive-frontend
+    restart: unless-stopped
     env_file: .env
     ports:
       - "5173:5173"
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:5173 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     command: npm run dev -- --host 0.0.0.0
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: smartarchive-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      backend:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: smartarchive-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+      - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infrastructure/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
 
 volumes:
   postgres-data:
   minio-data:
+  prometheus-data:
+  grafana-data:

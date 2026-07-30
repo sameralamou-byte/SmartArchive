@@ -18,6 +18,33 @@ Enterprise AI Document Intelligence Platform — Milestone 1 (Foundation).
 - Frontend skeleton: React + TypeScript + Vite + TailwindCSS + Zustand + TanStack Query + React Router — pages and routing only
 - GitHub Actions CI: lint (ruff, eslint) + test (pytest) + build
 
+## Milestone 1.5 — Production hardening
+
+Invisible to end users, but what makes the foundation production-grade:
+
+- **Test coverage**: unit tests (authorize gate, upload validation, storage
+  service — all mocked, no infra needed) plus integration tests (auth flow,
+  PostgreSQL RLS cross-tenant isolation — gated on `TEST_DATABASE_URL`, see
+  `backend/app/tests/conftest.py`). 80% coverage of core logic is the
+  target; see `backend/pyproject.toml` for the honest current scope.
+- **Security audit**: security headers middleware (HSTS, CSP, X-Frame-Options,
+  etc.), Redis-backed rate limiting (tighter on `/auth/*`), explicit CORS
+  allowlist (no more `*`), file upload validation (size limit + magic-number
+  MIME sniffing, not just trusting `Content-Type`), and an antivirus scan
+  hook stubbed for a Stage 2 ClamAV/cloud-AV integration.
+- **Docker health**: every service has a healthcheck, `restart: unless-stopped`,
+  resource limits, and explicit `depends_on` health-gated ordering.
+- **Observability**: Prometheus metrics at `/metrics`, a provisioned Grafana
+  dashboard (request rate, error rate, p95 latency), and request/correlation
+  ID propagation through every log line and response header.
+- **Backup strategy**: `infrastructure/backup/` — Postgres and MinIO
+  backup/restore scripts, plus `restore_test.sh`, which actually restores a
+  backup and verifies row counts rather than just checking the backup
+  command exited 0.
+- **ADRs**: `documentation/adr/` — five records (async architecture,
+  multi-tenancy, storage, authorization, event bus), each with the
+  alternatives that were considered and rejected, not just the decision.
+
 ## Explicitly NOT included (Stage 2+)
 
 OCR, AI classification/extraction, Voice Assistant, Semantic Search, Workflow Automation,
@@ -28,11 +55,27 @@ ERP/CRM connectors (SAP/Odoo/Salesforce/Dynamics), AI Copilot.
 ```bash
 cp .env.example .env
 docker compose up --build
+docker compose exec backend alembic upgrade head
 ```
 
 - Backend: http://localhost:8000/docs
 - Frontend: http://localhost:5173
 - MinIO console: http://localhost:9001
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3000 (admin/admin — change in production)
+
+## Running tests
+
+```bash
+# Unit tests only (no infra required)
+cd backend && pytest -q
+
+# Full suite including integration tests (needs Postgres reachable)
+export TEST_DATABASE_URL=postgresql+asyncpg://smartarchive:smartarchive_dev_password@localhost:5432/smartarchive_test
+createdb smartarchive_test   # once, against the running postgres container/host
+alembic upgrade head          # applied to the test database
+pytest -q
+```
 
 ## Repository structure
 

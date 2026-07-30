@@ -7,3 +7,16 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+addopts = "--cov=app --cov-report=term-missing --cov-report=xml"
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/tests/*", "app/main.py"]
+
+[tool.coverage.report]
+# 80% is Milestone 1.5's coverage target for core logic (models, security,
+# services, repositories). This is not yet enforced as a hard CI gate
+# (`fail_under`) because Phase 1 code includes plumbing (schemas, router
+# wiring) that inflates the denominator without needing dedicated tests.
+# Revisit once Stage 2 features add real business logic to measure against.
+show_missing = true

@@ -37,6 +37,15 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 15
     jwt_refresh_token_expire_days: int = 7
 
+    # CORS -- Milestone 1.5: explicit allowlist instead of "*".
+    # Comma-separated in the env var, e.g. "http://localhost:5173,https://app.smartarchive.io"
+    cors_allowed_origins: str = "http://localhost:5173"
+
+    @property
+    def cors_origins_list(self) -> list[str]:
+        return [origin.strip() for origin in self.cors_allowed_origins.split(",") if origin.strip()]
+
+
     @property
     def database_url(self) -> str:
         return (
