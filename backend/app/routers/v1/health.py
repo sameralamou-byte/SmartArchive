@@ -3,11 +3,10 @@
 /ready    -- readiness: can we reach Postgres, Redis, MinIO
 /live     -- liveness probe for orchestrators
 """
-from fastapi import APIRouter, Response, status
+from fastapi import APIRouter, Depends, Response, status
 from redis.asyncio import Redis
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from fastapi import Depends
 
 from app.core.config import settings
 from app.core.database import get_db

@@ -6,6 +6,15 @@ extend-exclude = ["alembic/versions"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's own documented pattern is `param: X = Depends(...)` -- a function
+# call as a default argument. B008 flags function-calls-as-defaults as a
+# general Python anti-pattern (mutable default trap), which is correct
+# everywhere except here: FastAPI evaluates these per-request, not once at
+# import time. Telling bugbear these specific calls are safe keeps B008
+# active for genuine mutable-default bugs elsewhere.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends", "fastapi.Query", "fastapi.Path", "fastapi.Body"]
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 addopts = "--cov=app --cov-report=term-missing --cov-report=xml"
