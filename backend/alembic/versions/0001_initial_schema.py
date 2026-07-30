@@ -19,14 +19,31 @@ depends_on: Sequence[str] | None = None
 def upgrade() -> None:
     op.execute('CREATE EXTENSION IF NOT EXISTS "pgcrypto"')
 
-    deployment_mode = pg.ENUM("integrated", "standalone", "hybrid", name="deployment_mode")
-    document_status = pg.ENUM("uploaded", "processing", "ready", "failed", name="document_status")
-    ocr_job_status = pg.ENUM("queued", "running", "completed", "failed", name="ocr_job_status")
-    ai_job_status = pg.ENUM("queued", "running", "completed", "failed", name="ai_job_status")
-    ai_job_type = pg.ENUM(
-        "classification", "extraction", "summarization", "embedding", name="ai_job_type"
+    # create_type=False on every enum below: we create these types explicitly
+    # in the loop right after (with checkfirst=True). Without create_type=False,
+    # SQLAlchemy *also* tries to auto-create each enum a second time as part
+    # of its owning table's CREATE TABLE DDL -- that second attempt doesn't
+    # check for existence the same way, so it fails with
+    # "type ... already exists" even though the first creation succeeded.
+    deployment_mode = pg.ENUM(
+        "integrated", "standalone", "hybrid", name="deployment_mode", create_type=False
     )
-    notification_channel = pg.ENUM("in_app", "email", "push", name="notification_channel")
+    document_status = pg.ENUM(
+        "uploaded", "processing", "ready", "failed", name="document_status", create_type=False
+    )
+    ocr_job_status = pg.ENUM(
+        "queued", "running", "completed", "failed", name="ocr_job_status", create_type=False
+    )
+    ai_job_status = pg.ENUM(
+        "queued", "running", "completed", "failed", name="ai_job_status", create_type=False
+    )
+    ai_job_type = pg.ENUM(
+        "classification", "extraction", "summarization", "embedding",
+        name="ai_job_type", create_type=False,
+    )
+    notification_channel = pg.ENUM(
+        "in_app", "email", "push", name="notification_channel", create_type=False
+    )
 
     bind = op.get_bind()
     for enum_type in (
