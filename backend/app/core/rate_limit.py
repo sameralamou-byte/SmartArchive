@@ -6,6 +6,7 @@ it's enough to stop credential-stuffing and abusive polling without adding
 a heavyweight dependency. Swap for slowapi's full strategy set or a proper
 token bucket if traffic patterns demand it later.
 """
+import asyncio
 from collections.abc import Awaitable, Callable
 
 from fastapi import Request, Response, status
@@ -24,12 +25,24 @@ RATE_LIMITS: dict[str, tuple[int, int]] = {
 DEFAULT_LIMIT: tuple[int, int] = (120, 60)
 
 _redis: Redis | None = None
+_redis_loop: asyncio.AbstractEventLoop | None = None
 
 
 def _get_redis() -> Redis:
-    global _redis
-    if _redis is None:
+    """
+    Cache the Redis client per-event-loop, not just once ever. In production
+    (a single uvicorn process with one persistent loop) this is a plain
+    singleton, same as before. But a client created on one loop breaks if
+    reused after that loop closes -- which happens under pytest, where each
+    test can run on its own loop even with the same asyncio_mode config.
+    Detecting the loop change here fixes it in the code itself rather than
+    depending on getting test-runner configuration exactly right.
+    """
+    global _redis, _redis_loop
+    current_loop = asyncio.get_running_loop()
+    if _redis is None or _redis_loop is not current_loop:
         _redis = Redis.from_url(settings.redis_url)
+        _redis_loop = current_loop
     return _redis
 
 
