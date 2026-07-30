@@ -1,7 +1,10 @@
 [tool.ruff]
 line-length = 110
 target-version = "py313"
-extend-exclude = ["alembic/versions"]
+# Alembic's env.py and script template are standard framework boilerplate,
+# not hand-styled application code -- same reasoning as excluding the
+# generated migration files themselves.
+extend-exclude = ["alembic"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
