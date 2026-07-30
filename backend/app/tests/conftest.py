@@ -10,8 +10,8 @@ from app.main import app
 # a reachable test database is configured. They are skipped -- not failed --
 # otherwise, so `pytest` still passes in a laptop/CI environment that hasn't
 # started the Docker Compose stack. Point this at a disposable database,
-# never at a database with real data:
-#   export TEST_DATABASE_URL=postgresql+asyncpg://smartarchive:smartarchive_dev_password@localhost:5432/smartarchive_test
+# never at a database with real data (replace PASSWORD with your actual one):
+#   export TEST_DATABASE_URL=postgresql+asyncpg://smartarchive:PASSWORD@localhost:5432/smartarchive_test
 TEST_DATABASE_URL = os.environ.get("TEST_DATABASE_URL")
 
 

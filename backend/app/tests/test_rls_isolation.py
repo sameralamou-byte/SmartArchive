@@ -48,7 +48,8 @@ async def test_rls_blocks_cross_tenant_document_reads(integration_engine):
         await setup_session.execute(
             text(
                 "INSERT INTO documents "
-                "(id, organization_id, title, original_filename, mime_type, size_bytes, storage_key, owner_id) "
+                "(id, organization_id, title, original_filename, mime_type, "
+                "size_bytes, storage_key, owner_id) "
                 "VALUES (:id, :org_id, 'Doc A', 'a.pdf', 'application/pdf', 10, 'key/a.pdf', :owner_id)"
             ),
             {"id": str(doc_a), "org_id": str(org_a), "owner_id": str(user_a)},

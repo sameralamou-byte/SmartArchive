@@ -1,6 +1,5 @@
 """Shared FastAPI dependencies: current session, current user, tenant context."""
 import uuid
-from collections.abc import AsyncGenerator
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer

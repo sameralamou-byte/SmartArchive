@@ -4,7 +4,7 @@ against a real Postgres database (with migrations applied). Skipped unless
 TEST_DATABASE_URL is set; see conftest.py.
 
 Run locally:
-  export TEST_DATABASE_URL=postgresql+asyncpg://smartarchive:smartarchive_dev_password@localhost:5432/smartarchive_test
+  export TEST_DATABASE_URL=postgresql+asyncpg://smartarchive:PASSWORD@localhost:5432/smartarchive_test
   createdb smartarchive_test   # once
   alembic upgrade head          # against the test database
   pytest app/tests/test_auth_api.py
