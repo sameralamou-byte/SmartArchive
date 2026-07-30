@@ -25,7 +25,20 @@ from app.services.storage_service import StorageService
 
 router = APIRouter(prefix="/files", tags=["files"])
 
-_storage = StorageService()
+# Lazy singleton -- deliberately NOT instantiated at import time. StorageService()
+# connects to MinIO in __init__ (bucket existence check), so creating it at
+# module load meant importing this file -- and therefore importing app.main,
+# and therefore collecting ANY test at all, even ones unrelated to files --
+# required a live MinIO connection. That's fragile in general (app startup
+# order shouldn't matter) and broke CI specifically (no MinIO service there).
+_storage_instance: StorageService | None = None
+
+
+def get_storage_service() -> StorageService:
+    global _storage_instance
+    if _storage_instance is None:
+        _storage_instance = StorageService()
+    return _storage_instance
 
 
 @router.post("", response_model=DocumentRead, status_code=status.HTTP_201_CREATED)
@@ -48,8 +61,8 @@ async def upload_file(
     if not antivirus_scan_hook(data):
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "File failed antivirus scan")
 
-    storage_key = _storage.build_storage_key(current_user.organization_id, file.filename)
-    _storage.upload(storage_key, data, result.detected_mime_type)
+    storage_key = get_storage_service().build_storage_key(current_user.organization_id, file.filename)
+    get_storage_service().upload(storage_key, data, result.detected_mime_type)
 
     document = Document(
         title=file.filename,
@@ -104,7 +117,7 @@ async def get_download_url(
     if document is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Document not found")
 
-    return {"url": _storage.presigned_download_url(document.storage_key)}
+    return {"url": get_storage_service().presigned_download_url(document.storage_key)}
 
 
 @router.delete("/{document_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -126,7 +139,7 @@ async def delete_file(
     if document is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Document not found")
 
-    _storage.delete(document.storage_key)
+    get_storage_service().delete(document.storage_key)
     await session.delete(document)
     session.add(
         AuditLog(
