@@ -20,6 +20,13 @@ extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends", "fastapi.
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+# One event loop for the whole test session, not one per test function.
+# Production runs on a single persistent event loop (uvicorn's), and
+# module-level async singletons (e.g. the rate limiter's Redis client in
+# app/core/rate_limit.py) are written for that model. A fresh loop per test
+# would bind such a singleton to a loop that's closed by the next test,
+# causing "Future attached to a different loop" errors.
+asyncio_default_fixture_loop_scope = "session"
 addopts = "--cov=app --cov-report=term-missing --cov-report=xml"
 
 [tool.coverage.run]
