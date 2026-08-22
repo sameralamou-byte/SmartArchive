@@ -1,0 +1,14 @@
+Fonts in this directory are self-hosted per the Weave Visual Foundation §C
+typography decision (see documentation/... design foundation artifact).
+
+- Cairo — Mohamed Gaber, designed for Google Fonts. SIL Open Font License 1.1.
+- IBM Plex Sans — IBM Corporation / Bold Monday. SIL Open Font License 1.1.
+- IBM Plex Sans Arabic — IBM Corporation / Zeynep Akay. SIL Open Font License 1.1.
+
+Full OFL 1.1 license text: https://openfontlicense.org
+Files fetched from Google Fonts (fonts.googleapis.com / fonts.gstatic.com),
+weights 400 and 700 only, and re-hosted here so the product has no runtime
+dependency on a third-party font CDN.
+
+Before production release: vendor the complete OFL 1.1 license text into this
+directory per-family (each family's own OFL.txt), not just this pointer note.

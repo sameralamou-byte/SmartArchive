@@ -1,0 +1,200 @@
+/**
+ * Weave design tokens — the single source of truth for color, type, radius,
+ * spacing and motion across SmartArchive Home and Enterprise.
+ *
+ * Source of truth: the approved "SmartArchive — Weave Visual Foundation"
+ * (Founder-approved, all 5 amendments incorporated). Do not hand-edit a
+ * component to work around a token value — fix the token, here, once.
+ *
+ * Color values already reflect the WCAG 2.1 AA contrast pass from that
+ * approval round (copper/gold/warning/critical/muted were all adjusted from
+ * their original "concept board" hexes — see the Foundation §B for the
+ * before/after and the computed ratios).
+ */
+
+:root {
+  /* ---- surfaces & text (light) ---- */
+  --surface-page: #EDF3F1;
+  --surface-card: #F7FAF9;
+  --surface-recessed: #E1EBE8;
+  --text-primary: #10262A;
+  --text-secondary: #2C4A4E;
+  --text-muted: #567473;
+  --text-disabled: #9CB4B1;
+  --border: #D2E0DD;
+
+  /* ---- accent (rose-copper) ---- */
+  /* --accent is the AA-verified text/link/button-fill shade (>=4.5:1).
+     --accent-graphic is the original brighter hero hue — decorative/large-scale
+     use only (thread lines, illustration, the mark) — never text. */
+  --accent: #A94A4A;
+  --accent-hover: #903F3F;
+  --accent-tint: #F6DEDB;
+  --accent-graphic: #C15B5B;
+  --on-accent: #F7FAF9; /* text color to put ON a --accent fill */
+
+  /* ---- accent-2 (thread-gold) — decorative / tint / AI-marker border only, never text ---- */
+  --accent-2: #E3A857;
+  --accent-2-hover: #C98D3E;
+  --accent-2-tint: #FBEAD0;
+
+  /* ---- semantic (deliberately separate from the brand accent) ---- */
+  --success: #3F7A5D;
+  --success-bg: #E1EFE7;
+  --warning: #935921;
+  --warning-bg: #F3E3CE;
+  --critical: #A8352D;
+  --critical-bg: #F5DEDB;
+  --info: #2E6670;
+  --info-bg: #DDEBEC;
+
+  --shadow-rgb: 16, 38, 42;
+
+  /* ---- typography ---- */
+  --font-display: 'Cairo', 'Segoe UI Semibold', Tahoma, 'Geeza Pro', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'IBM Plex Sans', 'Segoe UI', Tahoma, 'Geeza Pro', sans-serif;
+  --font-mono: 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+  --text-display-xl: 2.5rem;
+  --text-display-l: 2rem;
+  --text-heading-1: 1.5rem;
+  --text-heading-2: 1.25rem;
+  --text-heading-3: 1.0625rem;
+  --text-body-l: 1rem;
+  --text-body-m: 0.875rem;
+  --text-caption: 0.75rem;
+  --text-overline: 0.6875rem;
+  --text-data: 0.8125rem;
+
+  /* ---- radius: containers get a structured corner, actions get a full pill ---- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* ---- spacing (4px base unit) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- motion ---- */
+  --motion-fast: 150ms ease-out;
+  --motion-base: 220ms ease-out;
+  --motion-panel: 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-thread: 1.4s linear;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-page: #0F3D3E;
+    --surface-card: #164244;
+    --surface-recessed: #0C3334;
+    --text-primary: #EAF3F1;
+    --text-secondary: #BFDAD6;
+    --text-muted: #86ABA6;
+    --text-disabled: #4F7370;
+    --border: rgba(255, 255, 255, 0.12);
+
+    --accent: #EF7E7E;
+    --accent-hover: #FE8686;
+    --accent-tint: rgba(193, 91, 91, 0.24);
+    --accent-graphic: #D97272;
+    --on-accent: #10262A; /* dark ink — dark-mode accent is lifted/light-toned, needs the OPPOSITE text color from light mode */
+
+    --accent-2: #EFC078;
+    --accent-2-hover: #F5D097;
+    --accent-2-tint: rgba(227, 168, 87, 0.2);
+
+    --success: #6FB08E;
+    --success-bg: rgba(79, 140, 110, 0.2);
+    --warning: #E0A15A;
+    --warning-bg: rgba(192, 120, 48, 0.22);
+    --critical: #FD7567;
+    --critical-bg: rgba(178, 59, 50, 0.22);
+    --info: #6FB6BE;
+    --info-bg: rgba(60, 122, 130, 0.22);
+
+    --shadow-rgb: 0, 0, 0;
+  }
+}
+
+/* Explicit theme toggle overrides — wins over the media query in both directions. */
+:root[data-theme='dark'] {
+  --surface-page: #0F3D3E;
+  --surface-card: #164244;
+  --surface-recessed: #0C3334;
+  --text-primary: #EAF3F1;
+  --text-secondary: #BFDAD6;
+  --text-muted: #86ABA6;
+  --text-disabled: #4F7370;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #EF7E7E;
+  --accent-hover: #FE8686;
+  --accent-tint: rgba(193, 91, 91, 0.24);
+  --accent-graphic: #D97272;
+  --on-accent: #10262A;
+  --accent-2: #EFC078;
+  --accent-2-hover: #F5D097;
+  --accent-2-tint: rgba(227, 168, 87, 0.2);
+  --success: #6FB08E;
+  --success-bg: rgba(79, 140, 110, 0.2);
+  --warning: #E0A15A;
+  --warning-bg: rgba(192, 120, 48, 0.22);
+  --critical: #FD7567;
+  --critical-bg: rgba(178, 59, 50, 0.22);
+  --info: #6FB6BE;
+  --info-bg: rgba(60, 122, 130, 0.22);
+  --shadow-rgb: 0, 0, 0;
+}
+
+:root[data-theme='light'] {
+  --surface-page: #EDF3F1;
+  --surface-card: #F7FAF9;
+  --surface-recessed: #E1EBE8;
+  --text-primary: #10262A;
+  --text-secondary: #2C4A4E;
+  --text-muted: #567473;
+  --text-disabled: #9CB4B1;
+  --border: #D2E0DD;
+  --accent: #A94A4A;
+  --accent-hover: #903F3F;
+  --accent-tint: #F6DEDB;
+  --accent-graphic: #C15B5B;
+  --on-accent: #F7FAF9;
+  --accent-2: #E3A857;
+  --accent-2-hover: #C98D3E;
+  --accent-2-tint: #FBEAD0;
+  --success: #3F7A5D;
+  --success-bg: #E1EFE7;
+  --warning: #935921;
+  --warning-bg: #F3E3CE;
+  --critical: #A8352D;
+  --critical-bg: #F5DEDB;
+  --info: #2E6670;
+  --info-bg: #DDEBEC;
+  --shadow-rgb: 16, 38, 42;
+}
+
+/*
+ * RTL (Weave Foundation §C amendment): Arabic renders 1.05-1.1x the Latin
+ * type-scale step at equivalent line-height — Arabic letterforms read smaller
+ * than Latin at the same nominal size. Approximated here as a single root
+ * font-size bump so it applies proportionally to every rem-based size at
+ * once, rather than hand-scaling each token twice.
+ */
+html[dir='rtl'] {
+  font-size: 107%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-panel: 0ms;
+  }
+}

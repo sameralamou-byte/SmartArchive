@@ -1,3 +1,49 @@
+@import "./styles/fonts.css";
+@import "./styles/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface-page text-text-primary;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: var(--text-primary);
+    color: var(--surface-card);
+  }
+}
+
+/* ThreadIndicator keyframes (Weave §M) — gated behind Tailwind's motion-safe:
+   variant at the call site, so prefers-reduced-motion users never see these. */
+@keyframes thread-dash {
+  to {
+    stroke-dashoffset: -60;
+  }
+}
+
+@keyframes thread-settle {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
