@@ -1,22 +1,30 @@
 import { create } from "zustand";
 
+import { useSessionDocumentsStore } from "./sessionDocuments";
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  full_name: string;
+  is_active: boolean;
+  email_verified: boolean;
+}
+
 interface AuthState {
   accessToken: string | null;
-  refreshToken: string | null;
-  setTokens: (accessToken: string, refreshToken: string) => void;
+  user: AuthUser | null;
+  setAccessToken: (accessToken: string) => void;
+  setUser: (user: AuthUser) => void;
   clear: () => void;
 }
 
-/**
- * Phase 1: in-memory only (per the widget/design-system rule against
- * localStorage in generated artifacts, and to keep token handling simple
- * until the real auth flow is built out). A production build should
- * persist the refresh token in an httpOnly cookie set by the backend,
- * not in browser storage read by JS.
- */
 export const useAuthStore = create<AuthState>((set) => ({
   accessToken: null,
-  refreshToken: null,
-  setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken }),
-  clear: () => set({ accessToken: null, refreshToken: null }),
+  user: null,
+  setAccessToken: (accessToken) => set({ accessToken }),
+  setUser: (user) => set({ user }),
+  clear: () => {
+    useSessionDocumentsStore.getState().clear();
+    set({ accessToken: null, user: null });
+  },
 }));
