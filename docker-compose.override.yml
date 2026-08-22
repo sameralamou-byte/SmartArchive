@@ -1,0 +1,15 @@
+# Local host-port remap only. AI-COS already binds 5432, 6379, and 8000.
+# `!override` replaces the base ports list (Compose otherwise concatenates).
+services:
+  postgres:
+    ports: !override
+      - "5433:5432"
+  redis:
+    ports: !override
+      - "6380:6379"
+  backend:
+    ports: !override
+      - "8001:8000"
+  frontend:
+    ports: !override
+      - "5174:5173"

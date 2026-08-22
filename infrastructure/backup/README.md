@@ -1,5 +1,9 @@
 # Backup & restore — Milestone 1.5
 
+See [../DR_RUNBOOK.md](../DR_RUNBOOK.md) for the RTO/RPO targets and drill
+cadence these scripts exist to satisfy — this README covers the mechanics,
+that document covers the policy.
+
 Run these from the repository root (they assume `docker compose` is up and
 `.env` is present).
 
