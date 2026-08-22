@@ -6,10 +6,12 @@ Milestone 1.5: production-hardening middleware stack added below (security
 headers, rate limiting, metrics) — still no OCR/AI/connectors. See README
 and documentation/adr/ for the reasoning behind each addition.
 """
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from app.core.config import settings
+from app.core.exceptions import EmailNotVerifiedError
 from app.core.logging import configure_logging, logging_middleware
 from app.core.metrics import metrics_endpoint, metrics_middleware
 from app.core.rate_limit import rate_limit_middleware
@@ -45,6 +47,14 @@ app.middleware("http")(metrics_middleware)
 app.middleware("http")(logging_middleware)
 
 app.include_router(api_router, prefix="/api/v1")
+
+
+@app.exception_handler(EmailNotVerifiedError)
+async def email_not_verified_handler(_request: Request, exc: EmailNotVerifiedError) -> JSONResponse:
+    return JSONResponse(
+        status_code=403,
+        content={"detail": exc.message, "code": "email_not_verified"},
+    )
 
 
 @app.get("/metrics", include_in_schema=False)

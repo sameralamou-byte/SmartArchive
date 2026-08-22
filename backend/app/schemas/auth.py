@@ -11,14 +11,42 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
-    organization_slug: str
+    remember_me: bool = False
+    organization_slug: str | None = None
 
 
 class TokenResponse(BaseModel):
     access_token: str
-    refresh_token: str
     token_type: str = "bearer"
 
 
-class RefreshRequest(BaseModel):
-    refresh_token: str
+class VerifyEmailRequest(BaseModel):
+    token: str
+
+
+class ResendVerificationRequest(BaseModel):
+    email: EmailStr
+
+
+class VerifyEmailResponse(BaseModel):
+    email_verified: bool
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    password: str
+    password_confirm: str
+
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+    new_password_confirm: str
+
+
+class MessageResponse(BaseModel):
+    detail: str

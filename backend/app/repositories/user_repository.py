@@ -17,6 +17,15 @@ class UserRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
+    async def get_by_account_and_organization(
+        self, account_id: uuid.UUID, organization_id: uuid.UUID
+    ) -> User | None:
+        stmt = select(User).where(
+            User.account_id == account_id, User.organization_id == organization_id
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
     async def get_by_id(self, user_id: uuid.UUID) -> User | None:
         stmt = select(User).where(User.id == user_id)
         result = await self.session.execute(stmt)

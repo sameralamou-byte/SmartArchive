@@ -22,6 +22,7 @@ def make_user(*, is_superuser=False, role_id=None) -> User:
         is_active=True,
         is_superuser=is_superuser,
         role_id=role_id,
+        account_id=uuid.uuid4(),
     )
 
 

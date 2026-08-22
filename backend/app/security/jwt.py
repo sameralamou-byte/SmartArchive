@@ -25,7 +25,10 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 
 def create_token(
-    subject: uuid.UUID, organization_id: uuid.UUID, token_type: TokenType
+    subject: uuid.UUID,
+    organization_id: uuid.UUID,
+    token_type: TokenType,
+    account_id: uuid.UUID,
 ) -> str:
     now = datetime.now(UTC)
     if token_type == TokenType.access:
@@ -36,6 +39,7 @@ def create_token(
     payload = {
         "sub": str(subject),
         "org_id": str(organization_id),
+        "account_id": str(account_id),
         "type": token_type.value,
         "iat": now,
         "exp": expire,

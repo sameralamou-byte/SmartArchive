@@ -4,6 +4,7 @@
 /live     -- liveness probe for orchestrators
 """
 from fastapi import APIRouter, Depends, Response, status
+from minio import Minio
 from redis.asyncio import Redis
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -26,7 +27,7 @@ async def live() -> dict:
 
 @router.get("/ready")
 async def ready(response: Response, session: AsyncSession = Depends(get_db)) -> dict:
-    checks = {"database": False, "redis": False}
+    checks = {"database": False, "redis": False, "minio": False}
 
     try:
         await session.execute(text("SELECT 1"))
@@ -39,6 +40,18 @@ async def ready(response: Response, session: AsyncSession = Depends(get_db)) -> 
         await redis_client.ping()
         await redis_client.aclose()
         checks["redis"] = True
+    except Exception:
+        pass
+
+    try:
+        minio_client = Minio(
+            settings.minio_endpoint,
+            access_key=settings.minio_root_user,
+            secret_key=settings.minio_root_password,
+            secure=settings.minio_use_ssl,
+        )
+        minio_client.bucket_exists(settings.minio_bucket)
+        checks["minio"] = True
     except Exception:
         pass
 

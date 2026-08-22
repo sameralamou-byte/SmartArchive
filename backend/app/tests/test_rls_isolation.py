@@ -32,8 +32,10 @@ async def test_rls_blocks_cross_tenant_document_reads(integration_engine):
 
     org_a = uuid.uuid4()
     org_b = uuid.uuid4()
+    account_a = uuid.uuid4()
     user_a = uuid.uuid4()
     doc_a = uuid.uuid4()
+    email_a = f"a-{org_a.hex[:8]}@example.com"
 
     async with session_factory() as setup_session:
         # Ensure a restricted, non-superuser role exists to actually test
@@ -77,10 +79,22 @@ async def test_rls_blocks_cross_tenant_document_reads(integration_engine):
         )
         await setup_session.execute(
             text(
-                "INSERT INTO users (id, organization_id, email, hashed_password, full_name) "
-                "VALUES (:id, :org_id, :email, 'x', 'A User')"
+                "INSERT INTO accounts (id, email, is_active, personal_organization_id) "
+                "VALUES (:id, :email, true, :org_id)"
             ),
-            {"id": str(user_a), "org_id": str(org_a), "email": "a@example.com"},
+            {"id": str(account_a), "email": email_a, "org_id": str(org_a)},
+        )
+        await setup_session.execute(
+            text(
+                "INSERT INTO users (id, organization_id, email, hashed_password, full_name, account_id) "
+                "VALUES (:id, :org_id, :email, 'x', 'A User', :account_id)"
+            ),
+            {
+                "id": str(user_a),
+                "org_id": str(org_a),
+                "email": email_a,
+                "account_id": str(account_a),
+            },
         )
         await setup_session.execute(
             text(

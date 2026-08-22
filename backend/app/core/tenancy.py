@@ -7,7 +7,7 @@ enforces isolation on every query -- not the application code.
 
 This module sets the current tenant (`organization_id`) as a Postgres
 session variable (`app.current_org_id`) at the start of every request, which
-the RLS policies (see database/init/002_rls_policies.sql) read via
+the RLS policies (see backend/alembic/versions/0001_initial_schema.py) read via
 `current_setting('app.current_org_id')`.
 """
 from contextvars import ContextVar

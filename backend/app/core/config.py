@@ -39,7 +39,20 @@ class Settings(BaseSettings):
 
     # CORS -- Milestone 1.5: explicit allowlist instead of "*".
     # Comma-separated in the env var, e.g. "http://localhost:5173,https://app.smartarchive.io"
-    cors_allowed_origins: str = "http://localhost:5173"
+    cors_allowed_origins: str = "http://localhost:5173,http://localhost:5174"
+
+    # SA-AUTH-001 email verification (EMAIL_DELIVERY_MODE: log | smtp | memory)
+    public_app_origin: str = "http://localhost:5174"
+    email_from: str = "smartarchive@localhost"
+    email_delivery_mode: str = "log"
+    email_verification_secret: str = "change_email_verification_secret"
+    password_reset_secret: str = "change_password_reset_secret"
+    session_refresh_secret: str = "change_session_refresh_secret"
+    smtp_host: str = "localhost"
+    smtp_port: int = 587
+    smtp_user: str = ""
+    smtp_password: str = ""
+    smtp_use_tls: bool = True
 
     @property
     def cors_origins_list(self) -> list[str]:

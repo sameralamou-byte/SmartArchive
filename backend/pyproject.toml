@@ -34,9 +34,17 @@ source = ["app"]
 omit = ["app/tests/*", "app/main.py"]
 
 [tool.coverage.report]
-# 80% is Milestone 1.5's coverage target for core logic (models, security,
-# services, repositories). This is not yet enforced as a hard CI gate
-# (`fail_under`) because Phase 1 code includes plumbing (schemas, router
-# wiring) that inflates the denominator without needing dedicated tests.
-# Revisit once Stage 2 features add real business logic to measure against.
+# 80% remains Milestone 1.5's target for core logic (models, security,
+# services, repositories). `fail_under` below is a real, measured floor, not
+# the 80% target itself: a local run with pytest -q (no live Postgres/Redis,
+# so the @requires_test_db integration tests -- RLS isolation, parts of the
+# auth-API test -- are skipped, matching what `TEST_DATABASE_URL` being unset
+# does in conftest.py) measured 73% total on 2026-07-30. 70 is set here as a
+# small safety margin under that measurement, not a rounded-up aspiration.
+# CI's `backend` job runs against real Postgres/Redis services, so the
+# integration tests DO execute there and should push coverage on files.py,
+# auth.py, health.py, and auth_service.py meaningfully higher than this local
+# run saw -- re-measure from an actual CI run and raise this number toward 80
+# once that figure is known, rather than trusting this estimate indefinitely.
+fail_under = 70
 show_missing = true

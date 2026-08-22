@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import Boolean, ForeignKey, String
+from sqlalchemy import Boolean, ForeignKey, ForeignKeyConstraint, String, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -19,5 +19,16 @@ class User(UUIDPKMixin, TimestampMixin, TenantMixin, Base):
     role_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("roles.id", ondelete="SET NULL"), nullable=True
     )
+    account_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("accounts.id", ondelete="RESTRICT"), nullable=False, index=True
+    )
 
-    __table_args__ = ({"comment": "Unique email is enforced per-organization, not globally."},)
+    __table_args__ = (
+        UniqueConstraint("account_id", name="uq_users_account_id"),
+        ForeignKeyConstraint(
+            ["account_id", "organization_id"],
+            ["accounts.id", "accounts.personal_organization_id"],
+            name="fk_users_account_personal_tenant",
+        ),
+        {"comment": "Unique email is enforced per-organization, not globally."},
+    )

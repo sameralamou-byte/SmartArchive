@@ -2,6 +2,10 @@
 Import every model so Alembic's autogenerate (and Base.metadata) sees the
 full schema. Do not remove imports even if they look unused.
 """
+from app.models.account import Account  # noqa: F401
+from app.models.account_email_verification_token import AccountEmailVerificationToken  # noqa: F401
+from app.models.account_password_reset_token import AccountPasswordResetToken  # noqa: F401
+from app.models.account_session import AccountSession  # noqa: F401
 from app.models.ai_job import AIJob  # noqa: F401
 from app.models.audit_log import AuditLog  # noqa: F401
 from app.models.category import Category  # noqa: F401
@@ -14,4 +18,5 @@ from app.models.organization import Organization  # noqa: F401
 from app.models.permission import Permission, RolePermission  # noqa: F401
 from app.models.role import Role  # noqa: F401
 from app.models.tag import DocumentTag, Tag  # noqa: F401
+from app.models.trial_history import TrialHistory  # noqa: F401
 from app.models.user import User  # noqa: F401
