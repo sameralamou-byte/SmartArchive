@@ -6,7 +6,7 @@
 | Version | 1.0 |
 | Owner | Architecture team — SmartArchive AI Platform |
 | Status | Locked |
-| Dependencies | SAC-ARCH-000 v2.1.0 |
+| Dependencies | SA-ARCH-000 v1.0 (supersedes the never-recovered SAC-ARCH-000 v2.1.0 originally cited here — see SA-AUDIT-002 §15 and SA-ROADMAP-001 Gate 0) |
 
 ## 1. Multi-tenancy
 Shared database, `organization_id` on every tenant-owned table, isolation enforced

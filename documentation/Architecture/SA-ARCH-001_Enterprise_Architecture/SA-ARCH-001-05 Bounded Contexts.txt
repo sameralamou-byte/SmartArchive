@@ -1,0 +1,139 @@
+﻿Next Document
+SA-ARCH-001-05 – System Context Diagram
+This is one of the most important documents in the repository.
+It answers one question:
+How does SmartArchive interact with the outside world?
+What this document will contain
+1. Executive Summary
+Purpose of the Context Diagram.
+2. System Scope
+Explain what is inside SmartArchive and what is external.
+3. Actors
+Examples:
+• Home User 
+• Business User 
+• Enterprise Administrator 
+• AI Administrator 
+• System Administrator 
+• Auditor 
+• External API Consumer 
+4. External Systems
+This is where SmartArchive starts to look like an enterprise platform.
+Examples:
+Identity
+• Microsoft Entra ID 
+• Google Identity 
+• Okta 
+• Auth0 
+Storage
+• Amazon S3 
+• Azure Blob Storage 
+• Google Cloud Storage 
+• Local NAS 
+• SharePoint 
+AI
+• OpenAI 
+• Claude 
+• Gemini 
+• Azure OpenAI 
+• Local LLM 
+OCR
+• Tesseract OCR 
+• Azure Document Intelligence 
+• Google Vision 
+• AWS Textract 
+ERP
+• SAP 
+• Oracle ERP 
+• Odoo 
+• Microsoft Dynamics 
+• NetSuite 
+CRM
+• Salesforce 
+• HubSpot 
+• Zoho CRM 
+Email
+• Microsoft 365 
+• Gmail 
+• SMTP 
+Collaboration
+• Microsoft Teams 
+• Slack 
+• Zoom 
+Notifications
+• SMS Gateway 
+• WhatsApp Business 
+• Push Notifications 
+5. Main Context Diagram
+This is the centerpiece of the document.:
+                    Users
+                      │
+       ┌──────────────┼──────────────┐
+       │              │              │
+ Home User      Business User   Enterprise Admin
+                      │
+                      ▼
+            +----------------------+
+            |     SmartArchive     |
+            | Enterprise Platform  |
+            +----------------------+
+      ┌──────────┼──────────┬──────────┐
+      │          │          │          │
+      ▼          ▼          ▼          ▼
+ Identity      AI        Storage      ERP
+ Providers   Providers   Providers   Systems
+      │          │          │          │
+      ▼          ▼          ▼          ▼
+ Notifications CRM      Email      Analytics
+
+6. Interfaces
+A table listing every external interface.
+SystemProtocolPurposeOpenAIREST APIAI ProcessingClaudeREST APIAI AssistantSAPOData / RESTERP IntegrationMicrosoft GraphREST APIEmail & FilesAzure BlobHTTPSStorageSharePointGraph APIDocument StorageSalesforceREST APICRMHubSpotREST APICRMWhatsApp BusinessREST APINotifications7. Security Boundaries
+Show:
+• Internal Network 
+• Internet 
+• Cloud Services 
+• Enterprise Network 
+• Zero Trust Boundary 
+8. Trust Zones
++----------------------+
+| Public               |
++----------------------+
+          │
++----------------------+
+| DMZ                  |
++----------------------+
+          │
++----------------------+
+| Application Layer    |
++----------------------+
+          │
++----------------------+
+| Data Layer           |
++----------------------+
+          │
++----------------------+
+| AI Layer             |
++----------------------+
+
+9. External Dependencies
+List everything SmartArchive depends on.
+10. Assumptions
+Examples:
+• Internet connectivity 
+• OAuth2 providers available 
+• AI services reachable 
+• Storage available 
+
+
+11. Constraints
+Examples:
+• GDPR 
+• ISO 27001 
+• Customer-owned storage 
+• API rate limits 
+
+12. Related Documents
+Reference the previous architecture documents.
+
+

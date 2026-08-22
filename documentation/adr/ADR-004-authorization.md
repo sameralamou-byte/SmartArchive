@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | Accepted |
+| Status | Locked (relabeled from "Accepted" per SA-ARCH-999 §2) |
 | Date | 2026-07-30 |
 | Related | SA-ARCH-001 |
 
