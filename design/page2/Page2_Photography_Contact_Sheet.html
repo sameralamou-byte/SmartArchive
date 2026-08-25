@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartArchive — Page 2 Photography Contact Sheet (Founder Review)</title>
+  <style>
+    :root {
+      --surface-page: #EDF3F1;
+      --surface-card: #F7FAF9;
+      --surface-recessed: #E1EBE8;
+      --text-primary: #10262A;
+      --text-secondary: #2C4A4E;
+      --text-muted: #567473;
+      --border: #D2E0DD;
+      --accent: #A94A4A;
+      --accent-2: #E3A857;
+      --accent-2-tint: #FBEAD0;
+      --info: #2E6670;
+      --info-bg: #DDEBEC;
+      --esa-surface: #123B3A;
+      --pass-bg: #E4F2EA;
+      --pass: #1F6B45;
+      --flag-bg: #FBE8E4;
+      --flag: #8B2E2E;
+      --font-display: "Cairo", "Segoe UI Semibold", Tahoma, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; color: var(--esa-surface); }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin: 2.25rem 0 0.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .pill {
+      display: inline-block;
+      margin: 0 0 1.25rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-2-tint);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .note {
+      background: var(--info-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+    }
+    .note strong { color: var(--info); }
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: var(--surface-recessed);
+    }
+    .card-body { padding: 0.9rem 1rem 1.1rem; }
+    .slot {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      margin: 0 0 0.25rem;
+      color: var(--esa-surface);
+    }
+    .meta {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .meta code {
+      font-size: 0.82rem;
+      background: var(--surface-recessed);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+    .ref-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0 1.75rem;
+    }
+    .slot-block {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .slot-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .verdict {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .verdict.pass { background: var(--pass-bg); color: var(--pass); }
+    .verdict.flag { background: var(--flag-bg); color: var(--flag); }
+    .checks {
+      margin: 0.75rem 0 0;
+      padding-left: 1.15rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .checks li { margin: 0.3rem 0; }
+    .label {
+      margin: 0 0 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    @media (max-width: 720px) {
+      .ref-row, .pair { grid-template-columns: 1fr; }
+    }
+    ul.compact { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+    ul.compact li { margin: 0.35rem 0; }
+    .review-box {
+      background: var(--surface-card);
+      border: 2px solid var(--accent-2);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .review-box h2 { border: 0; padding: 0; margin: 0 0 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Page 2 — Photography Contact Sheet</h1>
+    <p class="pill">Test-crop verification · full frame + target-ratio crop · not live on Page 2</p>
+    <p>
+      Five staged assets in <code>design/page2/production/</code>. Content already approved
+      (identity, fictional text, no baked UI). This sheet verifies whether each source
+      survives crop to the Section 3 master ratios in
+      <a href="Page2_Photography_Production_Plan.html">Page2_Photography_Production_Plan.html</a>.
+      Cropped previews: <code>design/page2/production/crops/</code>.
+    </p>
+
+    <div class="note">
+      <strong>Gate</strong>
+      <p style="margin:0.4rem 0 0">
+        Founder: APPROVE SET / REJECT [slot] / REGENERATE [slot] only after reviewing
+        the actual crops below. No Page 2 React/CSS until that decision.
+      </p>
+    </div>
+
+    <h2>Identity reference (Page 1 hero — fixed)</h2>
+    <div class="ref-row">
+      <div class="card">
+        <img src="../../frontend/public/assets/page1/page1_hero_human_document.png" alt="Page 1 hero reference" />
+        <div class="card-body">
+          <p class="slot">Canon reference</p>
+          <p class="meta"><code>page1_hero_human_document.png</code></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="production/page2_closer_look.png" alt="§2 full frame" />
+        <div class="card-body">
+          <p class="slot">§2 full frame (source)</p>
+          <p class="meta"><code>page2_closer_look.png</code> · 1024×1536 (2:3)</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Test crops — full frame vs target ratio</h2>
+
+    <!-- §2 -->
+    <div class="slot-block">
+      <div class="slot-head">
+        <div>
+          <p class="slot" style="margin:0">§2 — Closer look</p>
+          <p class="meta"><code>page2_closer_look.png</code> · source 2:3 → target <strong>4:5</strong> · focal 45% / 30%</p>
+        </div>
+        <span class="verdict pass">PASS</span>
+      </div>
+      <div class="pair">
+        <div>
+          <p class="label">Full frame</p>
+          <div class="card"><img src="production/page2_closer_look.png" alt="§2 full frame" /></div>
+        </div>
+        <div>
+          <p class="label">Target crop 4:5 (1024×1280)</p>
+          <div class="card"><img src="production/crops/page2_closer_look_crop.png" alt="§2 4:5 crop" /></div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li>Face / hands: Face and chin-hand fully in frame; document-grip hand visible at lower left — not lost.</li>
+        <li>Document: Letter body stays in frame; soft-focus text intact.</li>
+        <li>Dead margin: None unintentional — tight editorial crop.</li>
+        <li>Focal note: Still matches plan (“document + hands slightly left; top third for face/shoulder”). No rewrite needed.</li>
+      </ul>
+    </div>
+
+    <!-- §3 -->
+    <div class="slot-block">
+      <div class="slot-head">
+        <div>
+          <p class="slot" style="margin:0">§3 — Quiet offer</p>
+          <p class="meta"><code>page2_quiet_offer.png</code> · source 3:2 → target <strong>21:9</strong> · focal 45% / 55% (largest gap)</p>
+        </div>
+        <span class="verdict pass">PASS</span>
+      </div>
+      <div class="pair">
+        <div>
+          <p class="label">Full frame</p>
+          <div class="card"><img src="production/page2_quiet_offer.png" alt="§3 full frame" /></div>
+        </div>
+        <div>
+          <p class="label">Target crop 21:9 (1536×658)</p>
+          <div class="card"><img src="production/crops/page2_quiet_offer_crop.png" alt="§3 21:9 crop" /></div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li>Face / hands: Face fully in frame with headroom; chin-hand and paper-hand both visible after aggressive vertical trim.</li>
+        <li>Document: Sheet stays lower-center and fully in frame.</li>
+        <li>Dead margin: Side props (mug / lamp) read as intentional cinematic width, not empty waste.</li>
+        <li>Focal note: Plan said “person soft left or mid” — on this source the person reads mid/slightly right; document lower-center holds. Optional note tweak only if founder wants wording updated; crop itself does not fail.</li>
+      </ul>
+    </div>
+
+    <!-- §4 -->
+    <div class="slot-block">
+      <div class="slot-head">
+        <div>
+          <p class="slot" style="margin:0">§4 — Situations tabletop</p>
+          <p class="meta"><code>page2_situations_tabletop.png</code> · source 3:2 → target <strong>16:9</strong> · focal center</p>
+        </div>
+        <span class="verdict pass">PASS</span>
+      </div>
+      <div class="pair">
+        <div>
+          <p class="label">Full frame</p>
+          <div class="card"><img src="production/page2_situations_tabletop.png" alt="§4 full frame" /></div>
+        </div>
+        <div>
+          <p class="label">Target crop 16:9 (1536×864)</p>
+          <div class="card"><img src="production/crops/page2_situations_tabletop_crop.png" alt="§4 16:9 crop" /></div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li>Face / hands: N/A (still life) — envelopes cluster stays centered.</li>
+        <li>Document: Open letter + envelopes remain in frame; soft return-address areas preserved.</li>
+        <li>Dead margin: Soft wood margins remain for overlay card — matches plan.</li>
+        <li>Focal note: “Envelopes centered; leave soft margins” still accurate.</li>
+      </ul>
+    </div>
+
+    <!-- §6 -->
+    <div class="slot-block">
+      <div class="slot-head">
+        <div>
+          <p class="slot" style="margin:0">§6 — Preparation</p>
+          <p class="meta"><code>page2_preparation.png</code> · source 3:2 → target <strong>4:3</strong> · focal 40% / 50%</p>
+        </div>
+        <span class="verdict pass">PASS</span>
+      </div>
+      <div class="pair">
+        <div>
+          <p class="label">Full frame</p>
+          <div class="card"><img src="production/page2_preparation.png" alt="§6 full frame" /></div>
+        </div>
+        <div>
+          <p class="label">Target crop 4:3 (1365×1024)</p>
+          <div class="card"><img src="production/crops/page2_preparation_crop.png" alt="§6 4:3 crop" /></div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li>Face / hands: Hands + green sleeve fully in frame; pen tip on checklist retained.</li>
+        <li>Document: Checklist and form both stay in frame after mild L/R trim.</li>
+        <li>Dead margin: None unintentional.</li>
+        <li>Focal note: “Checklist/form center; sleeve at start edge” still holds.</li>
+      </ul>
+    </div>
+
+    <!-- §7 -->
+    <div class="slot-block">
+      <div class="slot-head">
+        <div>
+          <p class="slot" style="margin:0">§7 — Reminder</p>
+          <p class="meta"><code>page2_reminder.png</code> · source 3:2 → target <strong>4:3</strong> · focal center</p>
+        </div>
+        <span class="verdict pass">PASS</span>
+      </div>
+      <div class="pair">
+        <div>
+          <p class="label">Full frame</p>
+          <div class="card"><img src="production/page2_reminder.png" alt="§7 full frame" /></div>
+        </div>
+        <div>
+          <p class="label">Target crop 4:3 (1365×1024)</p>
+          <div class="card"><img src="production/crops/page2_reminder_crop.png" alt="§7 4:3 crop" /></div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li>Face / hands: Hands + sweater cuffs fully in frame.</li>
+        <li>Document / date text: “31 October” and “Example Administration” fully legible and centered — not cut.</li>
+        <li>Dead margin: Desk props trim slightly at sides; center subject stays intentional.</li>
+        <li>Focal note: “Date cue center; hands lower third” still accurate.</li>
+      </ul>
+    </div>
+
+    <div class="review-box">
+      <h2>Crop verification summary</h2>
+      <ul class="compact">
+        <li>§2 closer look (4:5) — <strong>PASS</strong></li>
+        <li>§3 quiet offer (21:9) — <strong>PASS</strong> (largest ratio gap; face + document survive)</li>
+        <li>§4 situations tabletop (16:9) — <strong>PASS</strong></li>
+        <li>§6 preparation (4:3) — <strong>PASS</strong></li>
+        <li>§7 reminder (4:3) — <strong>PASS</strong></li>
+      </ul>
+      <p style="margin:1rem 0 0;color:var(--text-secondary)">
+        No slot flagged for regeneration on crop survival. Resolution vs Part 3 min/prefer
+        remains a separate (already-noted) question — this gate is crop composition only.
+      </p>
+      <p style="margin:0.75rem 0 0;color:var(--text-secondary)">
+        Reply: <strong>APPROVE SET</strong> · <strong>REJECT [slot]</strong> · or <strong>REGENERATE [slot]</strong> with notes.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

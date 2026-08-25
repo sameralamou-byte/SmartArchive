@@ -48,6 +48,13 @@ app.middleware("http")(logging_middleware)
 
 app.include_router(api_router, prefix="/api/v1")
 
+if settings.ocr_enqueue_on_upload:
+    from app.events.bus import event_bus
+    from app.events.document_events import DOCUMENT_UPLOADED
+    from app.events.ocr_handlers import enqueue_ocr_on_upload
+
+    event_bus.subscribe(DOCUMENT_UPLOADED, enqueue_ocr_on_upload)
+
 
 @app.exception_handler(EmailNotVerifiedError)
 async def email_not_verified_handler(_request: Request, exc: EmailNotVerifiedError) -> JSONResponse:

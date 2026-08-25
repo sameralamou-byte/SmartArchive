@@ -1,9 +1,7 @@
 """
 Celery application. Wired to Redis as both broker and result backend.
 
-Phase 1 only proves the pipeline works end to end (Docker networking,
-Redis, worker process, beat scheduler) via a trivial heartbeat task —
-see app/tasks/heartbeat.py. OCR/AI task queues are Stage 2.
+Heartbeat remains. OCR jobs are processed by app.tasks.ocr_tasks.
 """
 from celery import Celery
 
@@ -13,7 +11,7 @@ celery_app = Celery(
     "smartarchive",
     broker=settings.redis_url,
     backend=settings.redis_url,
-    include=["app.tasks.heartbeat"],
+    include=["app.tasks.heartbeat", "app.tasks.ocr_tasks"],
 )
 
 celery_app.conf.update(

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartArchive — Page 3 Photography Production Plan</title>
+  <style>
+    :root {
+      --surface-page: #EDF3F1;
+      --surface-card: #F7FAF9;
+      --surface-recessed: #E1EBE8;
+      --text-primary: #10262A;
+      --text-secondary: #2C4A4E;
+      --text-muted: #567473;
+      --border: #D2E0DD;
+      --accent: #A94A4A;
+      --accent-2: #E3A857;
+      --accent-2-tint: #FBEAD0;
+      --info: #2E6670;
+      --esa-surface: #123B3A;
+      --esa-midnight: #0A2422;
+      --font-display: "Cairo", "Segoe UI Semibold", Tahoma, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; color: var(--esa-surface); }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.5rem 0 0.75rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+    }
+    h3 { font-size: 1.05rem; margin: 1.35rem 0 0.45rem; }
+    p, li { font-size: 0.9rem; color: var(--text-secondary); }
+    .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-2-tint);
+      color: #935921;
+    }
+    .callout, .freeze, .note {
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+      background: var(--surface-card);
+    }
+    .callout { border-left: 3px solid var(--accent-2); }
+    .freeze { border-left: 3px solid var(--accent); background: #F5DEDB; }
+    .note { border-left: 3px solid var(--info); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      margin: 0.75rem 0 1.25rem;
+      background: var(--surface-card);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--surface-recessed); font-weight: 700; color: var(--text-primary); }
+    code { font-size: 0.8em; background: var(--surface-recessed); padding: 0.05rem 0.3rem; }
+    ul.compact { padding-left: 1.15rem; }
+    .toc a { color: var(--info); }
+    strong { color: var(--text-primary); }
+    .wire {
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      padding: 1rem;
+      margin: 0.75rem 0 1.25rem;
+    }
+    .wire .band {
+      background: var(--surface-recessed);
+      border: 1px dashed var(--border);
+      padding: 0.85rem;
+      text-align: center;
+    }
+    .wire .photo {
+      background: linear-gradient(135deg, #c8b8a0 0%, #8a7a68 45%, #5c4e42 100%);
+      min-height: 160px;
+      margin: 0.65rem auto;
+      max-width: 92%;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.5rem 0.65rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .wire .cream {
+      background: var(--surface-page);
+      padding: 0.85rem 0.5rem 0.25rem;
+      text-align: center;
+    }
+    .decide {
+      margin: 0.75rem auto 0;
+      max-width: 22rem;
+      border: 2px solid var(--accent-2);
+      background: var(--accent-2);
+      color: var(--esa-midnight);
+      padding: 0.85rem 1rem;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .dark-close {
+      background: var(--esa-midnight);
+      color: #EAF6F4;
+      padding: 1.25rem 1rem;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    .dark-close h4 {
+      margin: 0 0 0.35rem;
+      font-family: var(--font-display);
+      color: #EAF6F4;
+      font-size: 1.05rem;
+    }
+    .dark-close .sub { color: rgba(234,246,244,0.65); font-size: 0.85rem; margin: 0 0 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="meta">SmartArchive · Planning deliverable · 2026-08-23 · No React implementation</p>
+    <h1>Page 3 — Photography Production Plan</h1>
+    <p class="pill">Closes notes from APPROVED WITH NOTES direction · Founder review before assets / code</p>
+
+    <div class="freeze">
+      <strong>Frozen until this plan is approved and assets clear Founder gate</strong>
+      <p style="margin:0.4rem 0 0">
+        Do <strong>not</strong> modify <code>WebsiteSecurity.tsx</code>, Page 3 CSS, copy/locales, routes, assets, Page 1, or Page 2.<br />
+        Direction authority:
+        <code>design/page3/Page3_Visual_Strategy_and_Photography_Direction.html</code>
+        (<strong>APPROVED WITH NOTES</strong>).<br />
+        This plan is the production contract only — method, one photo, crops, and locked non-photo section specs.
+      </p>
+    </div>
+
+    <div class="callout">
+      <strong>Founder notes locked into this plan (do not re-open as options)</strong>
+      <ul class="compact" style="margin:0.4rem 0 0">
+        <li><strong>§3 Control:</strong> Gold decision block only — <em>no</em> confirmation photo.</li>
+        <li><strong>§7 + §8:</strong> Merge into <em>one</em> dark closing moment (not two stacked bands).</li>
+        <li><strong>Hero:</strong> Photo-dominant <em>band</em> — not full-bleed cinematic security imagery; cream/space around the photo so Page 3 stays connected to Pages 1–2.</li>
+        <li><strong>Hard message rule:</strong> Human and concrete — “Your documents. Protected by design.” Show what protection means to the user. No locks, shields, encryption diagrams, or infrastructure as the primary story.</li>
+        <li><strong>Photography density:</strong> One photographic asset only (hero). All other sections = type / SVG / gold decision.</li>
+      </ul>
+    </div>
+
+    <p class="toc"><strong>Contents:</strong>
+      <a href="#matrix">1. Final section / asset matrix</a> ·
+      <a href="#method">2. AI generation method</a> ·
+      <a href="#hero">3. Hero photo requirements</a> ·
+      <a href="#crops">4. Aspect / resolution / crop tests</a> ·
+      <a href="#s3">5. §3 gold-decision spec</a> ·
+      <a href="#close">6. Merged §7+§8 closing spec</a> ·
+      <a href="#reject">7. Consistency / rejection rules</a> ·
+      <a href="#interim">8. Interim + sequence</a> ·
+      <a href="#gate">9. Approval gate</a>
+    </p>
+
+    <!-- ========== 1 MATRIX ========== -->
+    <h2 id="matrix">1. Final approved section / asset matrix</h2>
+    <p>Direction: <strong>Protected continuity</strong>. One photo. No Page 2 multi-slot photo essay.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Job</th>
+          <th>Visual mode</th>
+          <th>Asset / filename</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>§1 Hero</td>
+          <td>Private-archive arrival + promise</td>
+          <td><strong>Photo-dominant band</strong> (only photo)</td>
+          <td><code>page3_hero_private_archive.png</code><br />under <code>frontend/public/assets/page3/</code> at implementation only</td>
+        </tr>
+        <tr>
+          <td>§2 Privacy</td>
+          <td>Your data is yours</td>
+          <td>Type only — no photo, no shield as primary</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>§3 Control</td>
+          <td>You decide what happens</td>
+          <td>Type + <strong>gold decision block</strong></td>
+          <td>— (no photo)</td>
+        </tr>
+        <tr>
+          <td>§4 Storage</td>
+          <td>Kept separate, kept safe</td>
+          <td>Illustrative SVG isolation</td>
+          <td>Inline SVG (no PNG)</td>
+        </tr>
+        <tr>
+          <td>§5 Transparency</td>
+          <td>You can always see the source</td>
+          <td>Illustrative type/SVG source demo + Demo label</td>
+          <td>Inline</td>
+        </tr>
+        <tr>
+          <td>§6 Lifecycle</td>
+          <td>Nothing disappears without you knowing</td>
+          <td>Illustrative Weave SVG + Concept label</td>
+          <td>Inline</td>
+        </tr>
+        <tr>
+          <td>§7–§8 Merged close</td>
+          <td>Responsibility + foundation CTA as one moment</td>
+          <td>One petrol dark band — type + coral CTA</td>
+          <td>— (no photo)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Filename convention</strong>
+      <p style="margin:0.4rem 0 0">
+        Pattern: <code>page3_{slot}.png</code> · only photographic slot:
+        <code>page3_hero_private_archive.png</code>.
+        Do not reuse Page 1/2 marketing PNGs. Do not invent <code>page3_privacy_*</code> / <code>page3_control_*</code> photos.
+      </p>
+    </div>
+
+    <!-- ========== 2 METHOD ========== -->
+    <h2 id="method">2. AI generation method</h2>
+    <p>
+      Same method as approved Page 2 production plan
+      (<code>design/page2/Page2_Photography_Production_Plan.html</code>) — <strong>do not re-litigate</strong>.
+    </p>
+
+    <h3>Decision</h3>
+    <p><strong>AI image generation with locked reference workflow</strong> — one tool/model family for this single asset. Not stock. Not a physical shoot for v1.</p>
+
+    <h3>Exact workflow (one shot)</h3>
+    <ol>
+      <li><strong>Reference (fixed):</strong> Attach / img2img against
+        <code>frontend/public/assets/page1/page1_hero_human_document.png</code>
+        as identity + wardrobe + desk + light reference.</li>
+      <li><strong>Tool:</strong> Cursor <code>GenerateImage</code> <em>or</em> the same ChatGPT/Image family used for Page 1/2 stills — pick <strong>one</strong>; do not mix Midjourney/other for Page 3.</li>
+      <li><strong>Shared prompt stem:</strong>
+        <em>Same adult man as reference: short dark hair, light stubble, dark forest-green crew sweater, calm focused expression, warm home desk, wood table, soft lamp, soft-bokeh books and plant, warm natural side light, cream–petrol–gold props. Photoreal editorial, shallow depth of field. Quiet stewardship mood — private archive, not deadline urgency. Fictional documents only — Example Administration / Amt für Beispiele / Example City. No real government seals, no readable personal data, no UI chrome, no app screens, no logos, no holograms, no robots, no padlocks, no shields, no server racks, no cyber grids.</em><br />
+        <strong>Negative prompt:</strong>
+        <em>No real government, authority, or institution names as legible text — fictional only (Example Administration / Amt für Beispiele / Example City). If any generated text is legible enough to read a name, it must be one of the approved fictional names, not a real one. No locks, shield icons, encryption diagrams, biometric scanners, neon cyber aesthetics, stock “IT security” poses.</em></li>
+      <li><strong>Per-shot delta:</strong> Hero framing line in §3 below only.</li>
+      <li><strong>Consistency check:</strong> Side-by-side with Page 1 hero — same person, sweater color family, desk wood tone, warm key light direction. Reject if face/wardrobe drifts.</li>
+      <li><strong>Export:</strong> PNG, sRGB, no baked text overlays, no SmartArchive UI. At or above Part 4 minimum resolution.</li>
+      <li><strong>Stage first:</strong> Save to <code>design/page3/production/</code> for contact sheet + crop verification. Copy to <code>frontend/public/assets/page3/</code> only during one-pass implementation after Founder asset approval.</li>
+    </ol>
+
+    <div class="note">
+      <strong>If AI consistency fails after 2–3 regenerations</strong>
+      <p style="margin:0.4rem 0 0">Escalate to a short controlled photoshoot (same wardrobe + desk). Do not fall back to stock faces. Do not reopen the protagonist bible.</p>
+    </div>
+
+    <!-- ========== 3 HERO ========== -->
+    <h2 id="hero">3. Hero photo requirements + photo-dominant-band specification</h2>
+
+    <h3>Shot brief — <code>page3_hero_private_archive.png</code></h3>
+    <ul class="compact">
+      <li><strong>In frame:</strong> Same locked protagonist (or matching hands + sweater cuff) with personal documents at the warm home desk. Wider/calmer than Page 2 closer look — ownership and quiet stewardship, not “deadline detected.”</li>
+      <li><strong>Must communicate:</strong> These are <em>your</em> documents in a private domestic archive — protection as lived continuity, not infrastructure.</li>
+      <li><strong>Must not show:</strong> Locks, shields, vault doors, server rooms, biometric eyes, certificate walls, cinematic “security campaign” scale, baked product UI.</li>
+      <li><strong>Document text:</strong> Soft-focus / illegible preferred; if legible, only approved fictional names.</li>
+    </ul>
+
+    <h3>Photo-dominant band (layout contract for later implementation)</h3>
+    <div class="wire">
+      <div class="band">
+        <p class="meta" style="margin:0;text-transform:uppercase">§1 · Photo-dominant band (not full-bleed)</p>
+        <div class="photo">page3_hero_private_archive · inset in cream band</div>
+        <div class="cream">
+          <p class="meta" style="margin:0">Security &amp; trust · muted petrol — never coral</p>
+          <p style="font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--esa-surface);margin:0.25rem 0">
+            Your documents. Protected by design.
+          </p>
+          <p style="margin:0;font-size:0.85rem;max-width:34rem;margin-inline:auto">
+            Privacy, control, and transparency aren't features you turn on later — they're how SmartArchive is built from the start.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="compact">
+      <li><strong>Not full-bleed:</strong> Photo sits inside a controlled horizontal band with visible cream/page surface (and section padding) around or below it — same family as Pages 1–2 cream world.</li>
+      <li><strong>Dominant:</strong> Photo is the largest visual object in the first viewport; type supports it and must not overpower the brand/product promise.</li>
+      <li><strong>No overlays on the photo:</strong> No floating badges, lock stickers, or promo chips on the image plane. Demo private-tag (if used) lives in the cream type zone, secondary only.</li>
+      <li><strong>Retire current hero UI card:</strong> The small bordered document card with “A” avatar / coral accents is not the hero visual in the redesign (implementation later — not now).</li>
+    </ul>
+
+    <!-- ========== 4 CROPS ========== -->
+    <h2 id="crops">4. Aspect ratios, minimum resolutions, crop tests</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Intended container</th>
+          <th>Desktop display (approx.)</th>
+          <th>Mobile display (approx.)</th>
+          <th>Master aspect · min source px</th>
+          <th>Focal / object-position</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>page3_hero_private_archive.png</code></td>
+          <td>Photo-dominant band inside ~<code>max-w-6xl</code> content; inset margins (not viewport-edge full-bleed); height ~240–320px desktop, ~180–220px mobile</td>
+          <td>~1100×280–320 (≈ <strong>16:9</strong> to <strong>21:9</strong>)</td>
+          <td>~340×200</td>
+          <td><strong>16:9 landscape master</strong><br />Min: <strong>1920×1080</strong><br />Prefer: 2560×1440<br />(Also crop-test at 21:9 for taller band rejection)</td>
+          <td>Person/document mid-frame; keep face/hands fully in band; avoid critical detail at extreme left/right (band side padding). Suggested CSS: <code>object-position: 45% 40%</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Resolution rule</strong>
+      <p style="margin:0.4rem 0 0">
+        Minimum source ≥ <strong>2×</strong> largest CSS display dimension on each axis (retina). Never ship a ~530px-wide master.
+        Reject exports that require upscaling to Prefer size.
+      </p>
+    </div>
+
+    <h3>Crop verification (required before Founder asset approval)</h3>
+    <ol>
+      <li>Generate the full-frame export into <code>design/page3/production/</code>.</li>
+      <li>Produce actual cropped previews at <strong>16:9</strong> and <strong>21:9</strong> using the focal guidance above; stage under <code>design/page3/production/crops/</code>.</li>
+      <li>Present full frame + crops on one contact sheet (same pattern as Page 2).</li>
+      <li>Per crop, confirm explicitly:
+        <ul class="compact">
+          <li>Face/hands fully in frame?</li>
+          <li>Documents read as personal archive (not cyber stock)?</li>
+          <li>No dead unintentional margin?</li>
+          <li>Still fits photo-dominant <em>band</em> (not needing full-bleed to look intentional)?</li>
+        </ul>
+      </li>
+      <li>If crop fails: FLAG FOR REGEN at a wider native ratio — do not invent extra photo slots.</li>
+    </ol>
+
+    <!-- ========== 5 §3 ========== -->
+    <h2 id="s3">5. §3 gold-decision specification (no photo)</h2>
+    <div class="wire">
+      <p style="text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--esa-surface);margin:0">
+        You decide what happens.
+      </p>
+      <p style="text-align:center;max-width:32rem;margin:0.5rem auto 0;font-size:0.85rem">
+        SmartArchive can suggest a reminder, an explanation, or a next step — but nothing is stored, shared, or sent without your confirmation.
+      </p>
+      <div class="decide">You review. You decide. You send.</div>
+    </div>
+    <ul class="compact">
+      <li><strong>Primary visual:</strong> Gold (<code>--accent-2</code>) decision block — filled gold panel with petrol/midnight text, matching Page 2 “Your decision” authority.</li>
+      <li><strong>Copy keys:</strong> Keep existing <code>page3.control.*</code> + reuse <code>page2.advice.decide</code> (or equivalent already on page) — no copy redesign in this plan.</li>
+      <li><strong>Forbidden:</strong> Confirmation photo, second illustration, shield icon row, coral styling on the decision block.</li>
+      <li><strong>Job:</strong> Communicate control clearly and quietly — user remains in charge.</li>
+    </ul>
+
+    <!-- ========== 6 CLOSE ========== -->
+    <h2 id="close">6. Merged §7+§8 closing specification</h2>
+    <p>Story beat at the bottom: <strong>Security foundation → transparency/control already told above → one confident closing statement.</strong></p>
+
+    <div class="dark-close">
+      <h4>SmartArchive assists. You decide. You remain responsible.</h4>
+      <p class="sub">SmartArchive explains, organizes, and suggests — but every important action still needs you.</p>
+      <div style="height:1px;background:rgba(255,255,255,0.12);margin:1rem auto;max-width:12rem"></div>
+      <h4 style="font-size:1rem">Security isn't an afterthought. It's the foundation.</h4>
+      <p class="sub" style="margin-bottom:0.85rem">Your documents. Protected by design.</p>
+      <p style="margin:0;font-size:0.8rem">
+        <span style="display:inline-block;background:var(--accent);color:#fff;padding:0.45rem 0.9rem;border-radius:999px;font-weight:700">Start for Free</span>
+        <span style="display:inline-block;margin-left:0.5rem;border:1px solid rgba(255,255,255,0.4);padding:0.45rem 0.9rem;border-radius:999px;font-weight:700">Back to Home</span>
+      </p>
+    </div>
+
+    <ul class="compact">
+      <li><strong>One petrol dark band</strong> — not two consecutive midnights. Responsibility meaning + foundation CTA live in the same close.</li>
+      <li><strong>No photo</strong> in the close. No person-icon stack competing with the statement.</li>
+      <li><strong>Coral</strong> only on Start for Free. Secondary Back uses outline on dark.</li>
+      <li><strong>Copy:</strong> Preserve existing <code>page3.responsibility.*</code> and <code>page3.cta.*</code> keys; merge is a layout/structure decision, not a rewrite (unless Founder opens a copy pass later).</li>
+    </ul>
+
+    <!-- ========== 7 REJECT ========== -->
+    <h2 id="reject">7. Consistency / rejection rules</h2>
+    <ul class="compact">
+      <li>Reject if face/sweater/desk/light drifts from Page 1 hero reference.</li>
+      <li>Reject if locks, shields, servers, cyber neon, or “security campaign” cinematic scale dominate.</li>
+      <li>Reject if real authority/institution names or seals appear as legible text.</li>
+      <li>Reject if baked SmartArchive UI / app chrome appears.</li>
+      <li>Reject if the crop only works as full-bleed edge-to-edge (violates photo-dominant <em>band</em> note).</li>
+      <li>Reject if a second photographic slot is proposed “to balance the page” — density is locked to one.</li>
+      <li>Reject §3 or close treatments that reintroduce a second dark band or a confirmation photo.</li>
+    </ul>
+
+    <!-- ========== 8 INTERIM ========== -->
+    <h2 id="interim">8. Interim rule + production sequence</h2>
+    <div class="callout">
+      <strong>Until assets are Founder-approved — leave live <code>/security</code> unchanged</strong>
+      <p style="margin:0.4rem 0 0">
+        No placeholder photo swaps, no React/CSS edits, no Docker asset wiring.
+        Live reviews of current Page 3 remain structure/copy only — not photography quality.
+      </p>
+    </div>
+
+    <p><strong>Repeat the successful Page 2 sequence (locked):</strong></p>
+    <ol>
+      <li>Direction approved with notes ← <em>done</em></li>
+      <li>This production plan → Founder APPROVE</li>
+      <li>Generate the one hero asset</li>
+      <li>Contact sheet (full + crops)</li>
+      <li>Crop verification PASS/FLAG</li>
+      <li>Founder asset approval</li>
+      <li>One-pass Page 3 implementation (hero band + type/SVG sections + merged close) → tests → live verification</li>
+    </ol>
+    <p>No return to bug-by-bug loops.</p>
+
+    <!-- ========== 9 GATE ========== -->
+    <h2 id="gate">9. Approval gate</h2>
+    <p>Reply with one of:</p>
+    <ul class="compact">
+      <li><strong>APPROVE</strong> — generate <code>page3_hero_private_archive.png</code> per this plan; present contact sheet + crops; then (only after asset approval) one-pass implementation.</li>
+      <li><strong>APPROVE WITH NOTES</strong> — deltas only (crop number, band height, prompt word). No new options set.</li>
+      <li><strong>REJECT</strong> — state which part fails (method, hero band, §3 gold, merged close, or crop table).</li>
+    </ul>
+
+    <div class="freeze">
+      <strong>Until APPROVE / APPROVE WITH NOTES</strong>
+      <p style="margin:0.4rem 0 0">
+        No asset generation required yet if you want a plan-only review first — or proceed on APPROVE.
+        No <code>WebsiteSecurity.tsx</code> edits. No Page 1/2 changes.
+      </p>
+    </div>
+
+    <p class="meta" style="margin-top:2.5rem">
+      Deliverable path: <code>design/page3/Page3_Photography_Production_Plan.html</code><br />
+      Companion: <code>design/page3/Page3_Visual_Strategy_and_Photography_Direction.html</code> (APPROVED WITH NOTES)
+    </p>
+  </div>
+</body>
+</html>

@@ -1,8 +1,9 @@
 import enum
 import uuid
+from typing import Any
 
-from sqlalchemy import Enum, ForeignKey, Text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import Enum, Float, ForeignKey, String, Text
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -17,7 +18,7 @@ class JobStatus(str, enum.Enum):
 
 
 class OCRJob(UUIDPKMixin, TimestampMixin, TenantMixin, Base):
-    """Table only in Phase 1 — no OCR engine is wired up yet (Stage 2)."""
+    """OCR job row. Engine wiring lives in app.ocr / app.services.ocr_service."""
 
     __tablename__ = "ocr_jobs"
 
@@ -28,3 +29,10 @@ class OCRJob(UUIDPKMixin, TimestampMixin, TenantMixin, Base):
         Enum(JobStatus, name="ocr_job_status"), nullable=False, default=JobStatus.queued
     )
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    extracted_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    detected_language: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    mean_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    pages_json: Mapped[list[dict[str, Any]] | None] = mapped_column(JSONB, nullable=True)
+    engine_name: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    engine_version: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    paddle_lang_used: Mapped[str | None] = mapped_column(String(32), nullable=True)

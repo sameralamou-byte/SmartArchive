@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartArchive — Page 3 Visual Strategy + Photography Direction</title>
+  <style>
+    /* Weave tokens — mirrored from frontend/src/styles/tokens.css (light). No new system. */
+    :root {
+      --surface-page: #EDF3F1;
+      --surface-card: #F7FAF9;
+      --surface-recessed: #E1EBE8;
+      --text-primary: #10262A;
+      --text-secondary: #2C4A4E;
+      --text-muted: #567473;
+      --border: #D2E0DD;
+      --accent: #A94A4A;
+      --accent-2: #E3A857;
+      --accent-2-tint: #FBEAD0;
+      --info: #2E6670;
+      --info-bg: #DDEBEC;
+      --concept: #6E5FA8;
+      --concept-bg: #EAE6F7;
+      --esa-midnight: #0A2422;
+      --esa-surface: #123B3A;
+      --esa-teal: #2DD4C8;
+      --esa-text: #EAF6F4;
+      --esa-text-muted: rgba(234, 246, 244, 0.65);
+      --font-display: "Cairo", "Segoe UI Semibold", Tahoma, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; color: var(--esa-surface); }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.75rem 0 0.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--esa-surface);
+    }
+    h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+    p, li { font-size: 0.9rem; color: var(--text-secondary); }
+    .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-2-tint);
+      color: #935921;
+    }
+    .callout {
+      background: var(--surface-card);
+      border-left: 3px solid var(--accent-2);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    .diverge {
+      background: var(--surface-card);
+      border-left: 3px solid var(--info);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    .freeze {
+      background: #F5DEDB;
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    .audit-bad {
+      background: var(--surface-card);
+      border-left: 3px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 0.6rem 0;
+    }
+    .audit-ok {
+      background: var(--surface-card);
+      border-left: 3px solid var(--esa-teal);
+      padding: 0.85rem 1rem;
+      margin: 0.6rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin: 0.75rem 0 1.25rem;
+      background: var(--surface-card);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--surface-recessed); color: var(--text-primary); font-weight: 700; }
+    ul.compact { margin: 0.4rem 0 0; padding-left: 1.15rem; }
+    ul.compact li { margin: 0.3rem 0; }
+    .toc a { color: var(--info); }
+    code {
+      font-size: 0.78rem;
+      background: var(--surface-recessed);
+      padding: 0.05rem 0.3rem;
+      border-radius: 3px;
+    }
+    .sim {
+      margin: 1.25rem 0 2rem;
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      overflow: hidden;
+    }
+    .sim-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0.55rem 0.85rem;
+      background: var(--surface-recessed);
+      border-bottom: 1px solid var(--border);
+    }
+    .sim-body { padding: 1.25rem 1rem; }
+    .photo-slot {
+      background: linear-gradient(135deg, #c8b8a0 0%, #8a7a68 40%, #5c4e42 100%);
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem;
+    }
+    .photo-slot.wide { min-height: 220px; }
+    .photo-slot.portrait { min-height: 260px; aspect-ratio: 4/5; max-width: 280px; }
+    .svg-slot {
+      background: var(--surface-recessed);
+      border: 1px dashed var(--border);
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .dark-band {
+      background: var(--esa-midnight);
+      color: var(--esa-text);
+      padding: 1.5rem 1.1rem;
+    }
+    .dark-band h4 {
+      font-family: var(--font-display);
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+      color: var(--esa-text);
+    }
+    .dark-band .sub { color: var(--esa-text-muted); font-size: 0.85rem; margin: 0 0 1rem; }
+    .gold { color: var(--accent-2); font-weight: 700; }
+    .tag-demo {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #935921;
+      background: var(--accent-2-tint);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+    }
+    .tag-concept {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--concept);
+      background: var(--concept-bg);
+      border: 1px dashed var(--concept);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .decide {
+      margin-top: 1rem;
+      border: 2px solid var(--accent-2);
+      background: var(--accent-2);
+      color: var(--esa-midnight);
+      padding: 1rem 1.1rem;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .weave-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+    .weave-node {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--esa-teal);
+    }
+    .weave-edge {
+      width: 28px; height: 2px;
+      background: var(--esa-teal);
+      opacity: 0.55;
+    }
+    .weave-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--esa-surface);
+      max-width: 4.5rem;
+      text-align: center;
+    }
+    .iso-boxes {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 0.75rem;
+    }
+    .iso-box {
+      width: 72px; height: 56px;
+      border: 2px solid var(--esa-surface);
+      background: var(--surface-card);
+      position: relative;
+    }
+    .iso-box.yours {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px var(--accent-2-tint);
+    }
+    .iso-box span {
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      text-align: center;
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .source-demo {
+      border: 1px solid var(--border);
+      background: var(--surface-page);
+      padding: 0.85rem 1rem;
+      margin-top: 0.75rem;
+    }
+    .source-demo .line {
+      height: 8px; background: var(--border); border-radius: 2px; margin: 0.35rem 0;
+      max-width: 90%;
+    }
+    .source-demo .mark {
+      display: inline-block;
+      background: var(--accent-2-tint);
+      color: var(--accent-2);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.35rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="meta">SmartArchive · Design decision artifact · Planning only</p>
+    <h1>Page 3 — Visual Strategy + Photography Direction</h1>
+    <p class="pill">Route <code>/security</code> · Planning only · No React/CSS until Founder gate</p>
+    <p>
+      Same controlled process as Page 2: one coherent direction, Founder reviews once,
+      then production. This file is the decision artifact — not the live site.
+    </p>
+
+    <div class="freeze">
+      <strong style="color:var(--text-primary)">Hard freeze until approval</strong>
+      <p style="margin:0.4rem 0 0">
+        Do <strong>not</strong> modify <code>WebsiteSecurity.tsx</code>, Page 3 CSS, copy/locales,
+        routes, assets, Page 1, or Page 2. Do not implement anything. Stop at the Founder approval gate below.
+      </p>
+    </div>
+
+    <p class="toc"><strong>Contents:</strong>
+      <a href="#audit">1. Current audit</a> ·
+      <a href="#direction">2. One direction</a> ·
+      <a href="#narrative">3. Narrative</a> ·
+      <a href="#sections">4. Section strategy</a> ·
+      <a href="#modes">5. Photo vs SVG</a> ·
+      <a href="#relation">6. Relation to Page 1 + 2</a> ·
+      <a href="#color">7. Color / tokens</a> ·
+      <a href="#photo">8. Photography bible</a> ·
+      <a href="#slots">9. Asset / slot matrix</a> ·
+      <a href="#sim">10. Static simulations</a> ·
+      <a href="#gate">11. Approval gate</a>
+    </p>
+
+    <!-- ========== 1 AUDIT ========== -->
+    <h2 id="audit">1. Current Page 3 audit</h2>
+    <p>
+      Live source: <code>frontend/src/pages/WebsiteSecurity.tsx</code> ·
+      Route: <code>/security</code> · Live URL: <code>http://127.0.0.1:5174/security</code><br />
+      File header still marks the page “FROZEN 2026-08-23”; Founder has now moved it into the redesign track.
+      Copy keys (<code>page3.*</code>) are established and must be preserved unless Founder explicitly opens a copy pass later.
+    </p>
+
+    <h3>What exists today (section map)</h3>
+    <table>
+      <thead>
+        <tr><th>Block</th><th>Surface</th><th>Primary visual</th><th>Honesty</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hero</td>
+          <td>Light page</td>
+          <td>Split: headline left · small UI “document card” right (icon + “A” badge + shield line)</td>
+          <td>Demo label under card</td>
+        </tr>
+        <tr>
+          <td>Privacy</td>
+          <td>Recessed sage</td>
+          <td>Centered shield icon + title + body</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Control</td>
+          <td>Light</td>
+          <td>Centered title + body + gold tint quote (“You review. You decide. You send.”)</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Storage</td>
+          <td>Recessed</td>
+          <td>Centered title + body only</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Transparency</td>
+          <td>Light</td>
+          <td>Centered title + body + teal “Original document linked” line</td>
+          <td>Demo label</td>
+        </tr>
+        <tr>
+          <td>Lifecycle</td>
+          <td>Recessed</td>
+          <td>4 dashed concept dots + arrows (Uploaded → … → Kept or removed)</td>
+          <td>Concept visualization</td>
+        </tr>
+        <tr>
+          <td>Responsibility</td>
+          <td>Petrol dark</td>
+          <td>Person icon + title + body</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>CTA</td>
+          <td>Second dark band</td>
+          <td>Two-line headline + Start / Back buttons</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>What works (keep)</h3>
+    <div class="audit-ok">
+      <ul class="compact">
+        <li><strong>Product claim discipline:</strong> No invented certifications, encryption specs, or statistics — matches Page 1 “Protected with best practices” honesty.</li>
+        <li><strong>User-control spine:</strong> Control + responsibility sections already end in human agency, same north star as Page 2’s “Your decision.”</li>
+        <li><strong>Honesty tags:</strong> Demo / Concept labels are present where demos or future lifecycle story appear.</li>
+        <li><strong>Token reuse:</strong> Petrol dark bands, gold decision tint, concept purple for lifecycle — Weave palette, no third design system.</li>
+        <li><strong>Copy substance:</strong> Privacy / control / storage / transparency / lifecycle / responsibility titles and bodies are clear and founder-usable as locked wording for this direction pass.</li>
+      </ul>
+    </div>
+
+    <h3>What fails the Page 1–2 quality bar (must change in redesign)</h3>
+    <div class="audit-bad">
+      <ul class="compact">
+        <li><strong>Generic trust-page shape:</strong> Stacked centered text + icon blocks read as a SaaS security brochure, not the same editorial document world as approved Page 1 / Page 2.</li>
+        <li><strong>Almost no photographic continuity:</strong> Hero is a small bordered UI card. The page never lands in the private-archive world Pages 1–2 established — so it fails brand continuity even though a full photo essay would also be wrong for this page’s job.</li>
+        <li><strong>Hero “A” badge + coral eyebrow:</strong> Eyebrow uses <code>text-accent</code> (coral) for “Security &amp; Trust.” Coral is CTA-only on Pages 1–2. The avatar “A” pill also uses coral tint — looks like a product avatar, not trust storytelling.</li>
+        <li><strong>Shield-as-default iconography:</strong> Privacy opens with a shield icon. That pulls the page toward generic security wallpaper instead of document-life continuity.</li>
+        <li><strong>Two dark bands stacked:</strong> Responsibility and CTA are both petrol/dark with little compositional difference — fatigue + weak close.</li>
+        <li><strong>Lifecycle is thin:</strong> Four dashed dots are honest as Concept, but visually underweight next to Page 2’s Weave story language.</li>
+        <li><strong>No section rhythm:</strong> Alternating recessed/light text slabs feel interchangeable. Nothing forces a different visual moment per job.</li>
+        <li><strong>Not brand-first in the first viewport:</strong> Split headline + inset card does not match the full-bleed / dominant visual bar set by Page 1 hero photography.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <strong style="color:var(--text-primary)">Audit verdict</strong>
+      <p style="margin:0.4rem 0 0">
+        Page 3’s <em>words</em> are largely right. Its <em>visual system</em> is not yet in the same family as approved Page 1 and Page 2.
+        The failure mode is “generic trust brochure,” not “missing a five-photo essay.” Redesign must raise continuity and rhythm
+        without turning a principles page into another document-story page.
+      </p>
+    </div>
+
+    <!-- ========== 2 DIRECTION ========== -->
+    <h2 id="direction">2. One coherent visual direction</h2>
+
+    <h3>Open question — answered (do not skip)</h3>
+    <div class="diverge">
+      <strong style="color:var(--text-primary)">Should Page 3 use real photography at all?</strong>
+      <p style="margin:0.4rem 0 0">
+        <strong>Call: Yes — but only once.</strong> One dedicated hero photograph anchors Page 3 in the same private-archive world as Pages 1–2.
+        <strong>Everything after the hero is type / SVG / gold decision language — no second or third photo.</strong>
+      </p>
+      <ul class="compact">
+        <li><strong>Why not photography-heavy (Page 2 formula):</strong> Page 2’s job is continuous attention to a document (closer look → quiet help → prep → reminder).
+          Page 3’s job is principles: ownership, isolation, source-trace, responsibility. Stacking desk photos on every claim becomes marketing theater and
+          competes with Page 2’s narrative.</li>
+        <li><strong>Why not zero photography:</strong> Current Page 3 already tried type+icon and reads as a SaaS security brochure.
+          Page 1’s trust band is deliberately quiet and type-led <em>as a section</em>; a full <code>/security</code> page with no photographic anchor
+          fails the brand-continuity test against the approved public site.</li>
+        <li><strong>Why hero-only is enough:</strong> One private-archive still buys product continuity; structural claims (isolation, source link, lifecycle)
+          stay honest as SVG/type — matching claim type to visual mode.</li>
+      </ul>
+    </div>
+
+    <h3>Product sentence (locked for this page)</h3>
+    <p>
+      Page 3 is the quiet afterword to understanding:
+      <strong>the same documents, the same person, the same desk — protected because control stays with you.</strong>
+      Trust is not a padlock catalogue. Trust is continuity of ownership, visibility, and decision.
+    </p>
+
+    <h3>Direction name</h3>
+    <p>
+      <strong>“Protected continuity.”</strong>
+      One editorial trust page: <em>one</em> photographic arrival into the private archive, then calm principle sections in type/SVG —
+      same Weave tokens and honesty system as Pages 1–2, deliberately fewer photos than Page 2. No feature grid. No certification theater.
+    </p>
+
+    <h3>Hard visual rules (stop a new loop)</h3>
+    <ul class="compact">
+      <li>No 2×2 / 2×3 shield or lock <strong>feature catalogue</strong>.</li>
+      <li>No mixing <strong>real photography</strong> and <strong>illustrative SVG</strong> as co-equal primary visuals inside one section.</li>
+      <li><strong>At most one photographic primary on the whole page</strong> (hero). Do not default to a Page 2 multi-slot photo pass.</li>
+      <li>No inventing a second protagonist if photography is used. Same adult / desk / light as Page 1 hero + Page 2 bible.</li>
+      <li>No real government seals or legible real authority/institution names in any document imagery — fictional only (Example Administration / Amt für Beispiele / Example City).</li>
+      <li>Gold (<code>--accent-2</code>) = ownership, decisions, “what is protected that matters.” Coral (<code>--accent</code>) = CTA buttons only — never section eyebrows, never “private” labels, never trust badges.</li>
+      <li>Preserve Demo / Concept / Illustrative labeling exactly as established (same keys / same per-element logic).</li>
+      <li>Preserve non-specific security claim discipline — no fake ISO badges, encryption bit-depths, or uptime percentages. No padlock / shield-check / hacker / matrix clichés.</li>
+      <li>Each section = one job, one headline, one supporting sentence, one primary visual idea.</li>
+      <li>Do not duplicate Page 1’s quiet four-point trust row as the whole of Page 3 — expand the promise; don’t re-paste the homepage band.</li>
+    </ul>
+
+    <!-- ========== 3 NARRATIVE ========== -->
+    <h2 id="narrative">3. Narrative — top to bottom</h2>
+    <ol>
+      <li><strong>Arrive in the private archive</strong> — same world as Pages 1–2; documents are personal, not a marketing vault.</li>
+      <li><strong>Ownership</strong> — what you upload stays yours; SmartArchive uses it to help you, not to sell you.</li>
+      <li><strong>Control</strong> — suggestions exist; nothing important proceeds without you.</li>
+      <li><strong>Separation</strong> — your archive is isolated; not a shared pile.</li>
+      <li><strong>Traceability</strong> — every explanation can return to the source document.</li>
+      <li><strong>Lifecycle visibility</strong> — upload → understand → store → keep or remove, always visible to you (Concept honesty).</li>
+      <li><strong>Responsibility</strong> — SmartArchive assists; you decide; you remain responsible.</li>
+      <li><strong>Close</strong> — security is foundation, then CTA.</li>
+    </ol>
+    <p>Emotional arc: calm → ownership → agency → isolation clarity → checkability → continuity → adult responsibility → quiet confidence.</p>
+
+    <!-- ========== 4 SECTIONS ========== -->
+    <h2 id="sections">4. Section-by-section visual strategy</h2>
+    <table>
+      <thead>
+        <tr><th>Section</th><th>Job</th><th>Surface</th><th>Visual mode (proposal)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>§1 Hero</td>
+          <td>Brand + promise: protected by design</td>
+          <td>Light underfold after photo plane</td>
+          <td><strong>Real photo primary (only photo on the page)</strong> — full-bleed or edge-dominant private desk archive. Headline + one sub under/after the plane. Optional Demo private-tag chip is secondary — never a competing hero card.</td>
+        </tr>
+        <tr>
+          <td>§2 Privacy</td>
+          <td>Your data is yours</td>
+          <td>Recessed sage</td>
+          <td><strong>Type only</strong> — centered title + body. No shield icon as primary. No photo (ownership is a principle, not a second still life).</td>
+        </tr>
+        <tr>
+          <td>§3 Control</td>
+          <td>You decide what happens</td>
+          <td>Light</td>
+          <td><strong>Type + gold decision block</strong> (“You review. You decide. You send.”). No photo.</td>
+        </tr>
+        <tr>
+          <td>§4 Storage</td>
+          <td>Kept separate, kept safe</td>
+          <td>Recessed</td>
+          <td><strong>Illustrative SVG only</strong> — isolation of “your archive” among quiet empty neighbors. No server-rack stock. No photo.</td>
+        </tr>
+        <tr>
+          <td>§5 Transparency</td>
+          <td>You can always see the source</td>
+          <td>Light</td>
+          <td><strong>Illustrative type/SVG demo</strong> — explanation line with gold mark + teal “source linked” cue. Demo label. No photo.</td>
+        </tr>
+        <tr>
+          <td>§6 Lifecycle</td>
+          <td>Nothing disappears without you knowing</td>
+          <td>Soft petrol tint / recessed</td>
+          <td><strong>Illustrative Weave SVG</strong> horizontal on desktop, vertical on mobile. Concept tag. No photo.</td>
+        </tr>
+        <tr>
+          <td>§7 Responsibility</td>
+          <td>Assist / decide / remain responsible</td>
+          <td>Petrol dark</td>
+          <td><strong>Type-led dark band</strong>. No photo. Person mark optional as accent, not a card grid.</td>
+        </tr>
+        <tr>
+          <td>§8 CTA</td>
+          <td>Foundation close</td>
+          <td>Petrol dark (or slightly lifted petrol)</td>
+          <td>Headline pair + coral primary CTA + secondary back. No photo. §7 = meaning; §8 = short action strip (or merge — see gate).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong style="color:var(--text-primary)">§7 + §8 dark-band rule</strong>
+      <p style="margin:0.4rem 0 0">
+        Default proposal: keep both sections but make §7 the meaning close and §8 a short action strip (less vertical padding, no icon stack).
+        Alternate (Founder may choose at gate): merge responsibility sentence into the CTA band as one dark close — fewer stacked midnights.
+      </p>
+    </div>
+
+    <!-- ========== 5 MODES ========== -->
+    <h2 id="modes">5. Photography vs. SVG / illustration decisions</h2>
+    <table>
+      <thead>
+        <tr><th>Mode</th><th>Where</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Real photography</td>
+          <td><strong>§1 Hero only</strong></td>
+          <td>Product continuity with Pages 1–2 private-archive world. One still is enough; more photos would imitate Page 2’s document-story job.</td>
+        </tr>
+        <tr>
+          <td>Illustrative type / SVG</td>
+          <td>§2 Privacy, §3 Control, §4 Storage, §5 Transparency, §6 Lifecycle, §7–§8</td>
+          <td>Principles and structural claims (ownership, isolation, source-trace, lifecycle) stay honest and calm as type/SVG — same discipline as Page 2’s non-photo sections.</td>
+        </tr>
+        <tr>
+          <td>Forbidden as primary</td>
+          <td>Everywhere</td>
+          <td>Padlocks, shield-with-checkmark stacks, server corridors, biometric eyes, neon cyber grids, certificate badge walls, hooded-hacker / matrix clichés.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ========== 6 RELATION ========== -->
+    <h2 id="relation">6. Relationship to approved Page 1 + Page 2</h2>
+    <table>
+      <thead>
+        <tr><th>Page</th><th>Job in the public story</th><th>What Page 3 must inherit</th><th>What Page 3 must not copy</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Page 1 <code>/</code></td>
+          <td>Promise + human document world (FROZEN)</td>
+          <td>Protagonist bible (for the one hero photo), Weave tokens, coral=CTA only, claim discipline (“Protected with best practices”)</td>
+          <td>The homepage <code>#trust</code> band itself (quiet shield + four muted titles) as the whole of Page 3; Page 1 section structure; baked UI stills reused as “proof”</td>
+        </tr>
+        <tr>
+          <td>Page 2 <code>/how-it-works</code></td>
+          <td>Understanding → quiet help → user decision (approved)</td>
+          <td>Photo-vs-SVG discipline; gold=matters; Demo/Concept honesty; Weave language for lifecycle</td>
+          <td>Multi-photo production formula; capability funnel; situations tabs; translation stages — those are Page 2 jobs</td>
+        </tr>
+        <tr>
+          <td>Page 3 <code>/security</code></td>
+          <td>Trust as ownership + control + visibility</td>
+          <td>Same world via <em>one</em> photographic arrival; calmer tempo; majority type/SVG</td>
+          <td>Re-litigating Page 2 intelligence demos; inventing a third visual economy; cybersecurity cliché sets</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="diverge">
+      <strong style="color:var(--text-primary)">Where Page 3 deliberately diverges — and why</strong>
+      <ul class="compact">
+        <li><strong>From Page 2:</strong> Far fewer photographs. Page 2 is a document story; Page 3 is a principles page. Same tokens, different density.</li>
+        <li><strong>From Page 1 trust band:</strong> Expand into full sections with SVG demos (isolation, source-link, Weave lifecycle) instead of one muted four-point row — without contradicting that band’s calm honesty.</li>
+      </ul>
+    </div>
+
+    <div class="diverge">
+      <strong style="color:var(--text-primary)">Continuity test</strong>
+      <p style="margin:0.4rem 0 0">
+        If you remove the nav wordmark, Page 3’s first viewport must still read as SmartArchive’s document world —
+        same person/desk language as Pages 1–2 — not as a generic “Security” microsite. After the hero, the page should feel calmer and more typographic than Page 2.
+      </p>
+    </div>
+
+    <!-- ========== 7 COLOR ========== -->
+    <h2 id="color">7. Color / token rules</h2>
+    <ul class="compact">
+      <li><strong>Gold <code>--accent-2</code>:</strong> ownership signals, decision blocks, “what matters” marks, private-to-you emphasis. Not decorative chrome.</li>
+      <li><strong>Coral <code>--accent</code>:</strong> Start for Free / primary actions only. Fix current hero eyebrow (<code>text-accent</code>) in implementation — planning calls it out now.</li>
+      <li><strong>Petrol / teal:</strong> understanding, Weave edges, source-link cues, dark responsibility band.</li>
+      <li><strong>Concept purple:</strong> lifecycle Concept visualization only — dashed honesty, not “premium security purple.”</li>
+      <li><strong>Surfaces:</strong> page cream, recessed sage, card white — same Weave tokens. <strong>No new tokens.</strong></li>
+      <li><strong>No glow, no multi-layer neon shadows, no purple-on-white security theme.</strong></li>
+    </ul>
+
+    <!-- ========== 8 PHOTO BIBLE ========== -->
+    <h2 id="photo">8. Photography bible (because one photo is used)</h2>
+    <p>
+      Photography is used <strong>only for §1 Hero</strong>. Method inherits
+      <code>design/page2/Page2_Photography_Production_Plan.html</code> — do not re-litigate AI method, locked reference, or negative-prompt rules.
+      Do not open a multi-slot Page 3 photo production pass unless Founder rejects the hero-only call.
+    </p>
+
+    <div class="callout">
+      <strong style="color:var(--text-primary)">Locked subject</strong>
+      <p style="margin:0.4rem 0 0">
+        Same adult as Page 1 hero (<code>page1_hero_human_document.png</code>) and approved Page 2 set:
+        short dark hair, light stubble, dark forest-green crew sweater, calm focused expression, warm home desk.<br />
+        Hands-only acceptable if the crop still reads as the same person/desk/light.<br />
+        <strong>Never:</strong> a second face; stock “IT security” models; reuse of Page 1/2 stills with baked UI chrome as the Page 3 hero.
+      </p>
+    </div>
+
+    <h3>Setting / mood / documents</h3>
+    <ul class="compact">
+      <li><strong>Setting:</strong> Warm home desk — wood, soft lamp, plant/books soft-bokeh. Not data center, not glass office.</li>
+      <li><strong>Mood:</strong> Quiet stewardship — private, attentive; less deadline urgency than Page 2 closer look.</li>
+      <li><strong>Props:</strong> Cream envelopes, fictional letter, notebook, sage mug. Cream–petrol–gold palette.</li>
+      <li><strong>Document text:</strong> Fictional only. Same negative prompt as Page 2 final note:
+        <em>No real government, authority, or institution names as legible text — fictional only (Example Administration / Amt für Beispiele / Example City). If any generated text is legible enough to read a name, it must be one of the approved fictional names, not a real one. No real seals.</em>
+      </li>
+    </ul>
+
+    <h3>Page 3 shot intent (single)</h3>
+    <ul class="compact">
+      <li><strong>Hero only:</strong> Wider private-archive frame — person or hands with personal documents at the desk; calm ownership, not action urgency.</li>
+    </ul>
+
+    <!-- ========== 9 SLOTS ========== -->
+    <h2 id="slots">9. Asset / slot matrix</h2>
+    <p>Only one new photographic asset is proposed. All other section visuals are inline SVG/type (no PNG slots).</p>
+    <table>
+      <thead>
+        <tr><th>Slot ID</th><th>Section</th><th>Mode</th><th>Proposed filename</th><th>Master aspect (intent)</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>page3-hero-private</td>
+          <td>§1</td>
+          <td>Photo</td>
+          <td><code>page3_hero_private_archive.png</code></td>
+          <td>21:9 or 16:9 landscape</td>
+          <td>Only photo on Page 3; no baked UI; approve via contact sheet before implementation</td>
+        </tr>
+        <tr>
+          <td>page3-storage-isolation</td>
+          <td>§4</td>
+          <td>SVG</td>
+          <td>(inline / component)</td>
+          <td>—</td>
+          <td>Illustrative isolation diagram</td>
+        </tr>
+        <tr>
+          <td>page3-transparency-source</td>
+          <td>§5</td>
+          <td>SVG/type</td>
+          <td>(inline)</td>
+          <td>—</td>
+          <td>Source-link demo; Demo label</td>
+        </tr>
+        <tr>
+          <td>page3-lifecycle-weave</td>
+          <td>§6</td>
+          <td>SVG</td>
+          <td>(inline)</td>
+          <td>—</td>
+          <td>Weave nodes; Concept label</td>
+        </tr>
+        <tr>
+          <td>—</td>
+          <td>§2, §3, §7–§8</td>
+          <td>Type only</td>
+          <td>—</td>
+          <td>—</td>
+          <td>No photo assets</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Reuse ban:</strong> Do not ship Page 1 or Page 2 marketing PNGs as the Page 3 hero.
+      New Page 3 hero asset only — same protagonist bible, quieter framing for trust.
+    </p>
+
+    <!-- ========== 10 SIM ========== -->
+    <h2 id="sim">10. Static simulations for Founder review</h2>
+    <p>Wireframe-fidelity mockups. Not the live React page. Labels shown for honesty system only.</p>
+
+    <!-- Hero -->
+    <div class="sim">
+      <div class="sim-label">§1 · Hero · Simulation</div>
+      <div class="sim-body">
+        <div class="photo-slot wide">page3-hero-private · private archive</div>
+        <p class="meta" style="margin-top:0.85rem">Security &amp; trust <span style="color:var(--text-muted)">(eyebrow → petrol/muted in build — not coral)</span></p>
+        <p style="font-family:var(--font-display);font-weight:700;font-size:1.35rem;color:var(--esa-surface);margin:0.25rem 0">
+          Your documents. Protected by design.
+        </p>
+        <p style="margin:0;max-width:34rem">
+          Privacy, control, and transparency aren't features you turn on later — they're how SmartArchive is built from the start.
+        </p>
+        <p style="margin-top:0.65rem"><span class="tag-demo">Illustrative example · Demo data</span>
+          <span style="font-size:0.75rem;color:var(--text-muted);margin-left:0.35rem">optional small private-tag chip — secondary only</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="sim">
+      <div class="sim-label">§2 · Privacy · Simulation (type only — no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--esa-surface);margin:0">
+          Your data is yours.
+        </p>
+        <p style="text-align:center;max-width:32rem;margin:0.5rem auto 0">
+          SmartArchive doesn't sell your documents or your data. What you upload stays yours — SmartArchive only uses it to help you understand and organize it.
+        </p>
+        <p class="meta" style="text-align:center;margin-top:0.85rem">No shield icon · no photo · ownership as plain principle</p>
+      </div>
+    </div>
+
+    <!-- Control -->
+    <div class="sim">
+      <div class="sim-label">§3 · Control · Simulation</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--esa-surface);margin:0">
+          You decide what happens.
+        </p>
+        <p style="text-align:center;max-width:32rem;margin:0.5rem auto 0">
+          SmartArchive can suggest a reminder, an explanation, or a next step — but nothing is stored, shared, or sent without your confirmation.
+        </p>
+        <div class="decide">You review. You decide. You send.</div>
+        <p class="meta" style="text-align:center;margin-top:0.75rem">Gold decision is the visual — no photo</p>
+      </div>
+    </div>
+
+    <!-- Storage -->
+    <div class="sim">
+      <div class="sim-label">§4 · Storage · Simulation (SVG — no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;color:var(--esa-surface);margin:0">
+          Kept separate, kept safe.
+        </p>
+        <p style="text-align:center;max-width:30rem;margin:0.5rem auto 0">
+          Every account's documents are isolated from every other account. Your archive is yours alone.
+        </p>
+        <div class="iso-boxes" aria-hidden>
+          <div class="iso-box"><span>…</span></div>
+          <div class="iso-box yours"><span class="gold">Yours</span></div>
+          <div class="iso-box"><span>…</span></div>
+        </div>
+        <div class="svg-slot" style="margin-top:0.75rem;min-height:48px">Illustrative isolation · not a server diagram</div>
+      </div>
+    </div>
+
+    <!-- Transparency -->
+    <div class="sim">
+      <div class="sim-label">§5 · Transparency · Simulation (type/SVG — no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;color:var(--esa-surface);margin:0">
+          You can always see the source.
+        </p>
+        <p style="text-align:center;max-width:30rem;margin:0.5rem auto 0">
+          Every explanation traces back to the original document, so you can check it yourself, any time.
+        </p>
+        <div class="source-demo">
+          <p class="meta">Explanation</p>
+          <p style="margin:0.35rem 0;font-size:0.85rem">Official request before a deadline. <span class="mark">31 October</span> may matter for your case.</p>
+          <p style="margin:0.5rem 0 0;font-size:0.8rem;font-weight:700;color:var(--info)">↗ Original document linked</p>
+          <p style="margin:0.35rem 0 0"><span class="tag-demo">Illustrative example · Demo data</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lifecycle -->
+    <div class="sim">
+      <div class="sim-label">§6 · Lifecycle · Simulation (Weave SVG — no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;color:var(--esa-surface);margin:0">
+          Nothing disappears without you knowing.
+        </p>
+        <p style="text-align:center;max-width:30rem;margin:0.5rem auto">
+          From the moment a document arrives to the moment you choose to remove it, its story stays visible to you.
+        </p>
+        <p style="text-align:center"><span class="tag-concept">Illustrative example · Concept visualization</span></p>
+        <div class="weave-row">
+          <div class="weave-label">Uploaded</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Understood</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Stored</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Kept or removed — your call</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsibility + CTA -->
+    <div class="sim">
+      <div class="sim-label">§7–§8 · Responsibility + CTA · Simulation</div>
+      <div class="dark-band">
+        <h4>SmartArchive assists. You decide. You remain responsible.</h4>
+        <p class="sub">SmartArchive explains, organizes, and suggests — but every important action still needs you.</p>
+        <div style="height:1px;background:rgba(255,255,255,0.12);margin:1.25rem 0"></div>
+        <h4 style="font-size:1.05rem">Security isn't an afterthought.</h4>
+        <p class="sub" style="margin-bottom:0.85rem">It's the foundation.</p>
+        <p style="margin:0;font-size:0.8rem">
+          <span style="display:inline-block;background:var(--accent);color:#fff;padding:0.45rem 0.9rem;border-radius:999px;font-weight:700">Start for Free</span>
+          <span style="display:inline-block;margin-left:0.5rem;border:1px solid rgba(255,255,255,0.4);padding:0.45rem 0.9rem;border-radius:999px;font-weight:700">Back to Home</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ========== 11 GATE ========== -->
+    <h2 id="gate">11. Founder approval gate</h2>
+    <p>Reply with one of:</p>
+    <ul class="compact">
+      <li><strong>APPROVE DIRECTION</strong> — proceed to Page 3 photography production plan (if photos confirmed), then one-pass implementation.</li>
+      <li><strong>APPROVE WITH NOTES</strong> — list only the deltas; no new options set.</li>
+      <li><strong>REJECT</strong> — state which rule fails (narrative, photography, photo/SVG split, or a specific section).</li>
+    </ul>
+
+    <p class="meta" style="margin-top:1.25rem">Open questions to resolve in notes (not blockers for “approve with notes”)</p>
+    <ul class="compact">
+      <li><strong>Photography density:</strong> Confirm hero-only (proposed), or reject toward zero-photo / more-photo — state which rule fails.</li>
+      <li>§7 + §8: keep two dark bands (tightened) or merge into one close?</li>
+      <li>Hero: full-bleed photo plane vs. photo-dominant band with type below (no sticker overlays on the photo).</li>
+    </ul>
+
+    <div class="freeze">
+      <strong style="color:var(--text-primary)">Until one of the above</strong>
+      <p style="margin:0.4rem 0 0">
+        No edits to <code>WebsiteSecurity.tsx</code>, Page 3 styles, locales, routes, or assets.
+        No Page 1 / Page 2 changes. No implementation. No production asset generation yet.
+      </p>
+    </div>
+
+    <p class="meta" style="margin-top:2.5rem">
+      Deliverable path: <code>design/page3/Page3_Visual_Strategy_and_Photography_Direction.html</code><br />
+      Open locally in a browser for review. Authoritative product URL remains <code>http://127.0.0.1:5174</code> for live WIP only — this file is the decision artifact.
+    </p>
+  </div>
+</body>
+</html>

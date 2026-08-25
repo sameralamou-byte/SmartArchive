@@ -54,6 +54,10 @@ class Settings(BaseSettings):
     smtp_password: str = ""
     smtp_use_tls: bool = True
 
+    # Stage 2 OCR MVP — product languages, not engine quality claims.
+    ocr_supported_languages: str = "ar,en,de,es,fr,ru,uk"
+    ocr_enqueue_on_upload: bool = True
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_allowed_origins.split(",") if origin.strip()]

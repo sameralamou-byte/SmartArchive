@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartArchive — Page 2 Visual Strategy + Photography Direction</title>
+  <style>
+    /* Weave tokens — mirrored from frontend/src/styles/tokens.css (light). No new system. */
+    :root {
+      --surface-page: #EDF3F1;
+      --surface-card: #F7FAF9;
+      --surface-recessed: #E1EBE8;
+      --text-primary: #10262A;
+      --text-secondary: #2C4A4E;
+      --text-muted: #567473;
+      --border: #D2E0DD;
+      --accent: #A94A4A;
+      --accent-2: #E3A857;
+      --accent-2-tint: #FBEAD0;
+      --info: #2E6670;
+      --info-bg: #DDEBEC;
+      --concept: #6E5FA8;
+      --concept-bg: #EAE6F7;
+      --esa-midnight: #0A2422;
+      --esa-surface: #123B3A;
+      --esa-teal: #2DD4C8;
+      --esa-text: #EAF6F4;
+      --esa-text-muted: rgba(234, 246, 244, 0.65);
+      --font-display: "Cairo", "Segoe UI Semibold", Tahoma, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; color: var(--esa-surface); }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.75rem 0 0.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--esa-surface);
+    }
+    h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+    p, li { font-size: 0.9rem; color: var(--text-secondary); }
+    .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-2-tint);
+      color: #935921;
+    }
+    .callout {
+      background: var(--surface-card);
+      border-left: 3px solid var(--accent-2);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    .diverge {
+      background: var(--surface-card);
+      border-left: 3px solid var(--info);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    .freeze {
+      background: #F5DEDB;
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin: 0.75rem 0 1.25rem;
+      background: var(--surface-card);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--surface-recessed); color: var(--text-primary); font-weight: 700; }
+    .sim {
+      margin: 1.25rem 0 2rem;
+      border: 1px solid var(--border);
+      background: var(--surface-card);
+      overflow: hidden;
+    }
+    .sim-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0.55rem 0.85rem;
+      background: var(--surface-recessed);
+      border-bottom: 1px solid var(--border);
+    }
+    .sim-body { padding: 1.25rem 1rem; }
+    .photo-slot {
+      background: linear-gradient(135deg, #c8b8a0 0%, #8a7a68 40%, #5c4e42 100%);
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.85rem;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .photo-slot::after {
+      content: "PHOTO SLOT — static simulation (not live React)";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 36, 34, 0.35);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .svg-slot {
+      background: var(--esa-midnight);
+      min-height: 140px;
+      color: var(--esa-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .whisper-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      justify-content: center;
+      margin-top: 0.85rem;
+      opacity: 0.85;
+    }
+    .whisper {
+      font-size: 0.72rem;
+      text-align: center;
+    }
+    .whisper strong { display: block; color: var(--accent-2); font-size: 0.8rem; }
+    .whisper span { color: var(--esa-text-muted); font-size: 0.65rem; }
+    .funnel {
+      text-align: center;
+      margin-top: 1.25rem;
+      color: var(--esa-text);
+    }
+    .funnel .line { width: 1px; height: 28px; background: var(--esa-teal); margin: 0.5rem auto; opacity: 0.6; }
+    .decide {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: var(--accent-2);
+      color: var(--esa-midnight);
+      padding: 0.85rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .dark-band {
+      background: var(--esa-midnight);
+      padding: 1.5rem 1rem 1.75rem;
+      color: var(--esa-text);
+    }
+    .dark-band h4 { margin: 0 0 0.35rem; font-family: var(--font-display); font-size: 1.15rem; text-align: center; }
+    .dark-band .sub { text-align: center; color: var(--esa-text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .stages {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+    @media (min-width: 720px) {
+      .stages-3 { grid-template-columns: 0.85fr 0.95fr 1.2fr; align-items: stretch; }
+      .stages-h { grid-template-columns: repeat(4, 1fr); }
+      .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; }
+    }
+    .stage {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      background: var(--surface-page);
+    }
+    .stage.emphasis {
+      border-color: var(--accent-2);
+      border-width: 2px;
+      background: var(--accent-2-tint);
+    }
+    .stage .k { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .stage .v { font-family: var(--font-display); font-weight: 700; margin-top: 0.35rem; color: var(--esa-surface); }
+    .gold { color: var(--accent-2) !important; }
+    .teal { color: var(--info) !important; }
+    .tag-demo {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: var(--accent-2-tint);
+      color: #935921;
+    }
+    .tag-concept {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px dashed var(--concept);
+      background: var(--concept-bg);
+      color: var(--concept);
+    }
+    .envelope {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-2);
+      padding: 1rem;
+      box-shadow: 0 1px 0 rgba(16,38,42,0.04);
+    }
+    .ghost {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      background: var(--surface-recessed);
+      border: 1px solid var(--border);
+      opacity: 0.35;
+      transform: rotate(-8deg);
+    }
+    .tabletop {
+      position: relative;
+      background: var(--surface-recessed);
+      padding: 2rem 1rem 1.25rem;
+      min-height: 200px;
+    }
+    .weave-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .weave-node {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--esa-teal);
+      flex-shrink: 0;
+    }
+    .weave-edge {
+      width: 28px;
+      height: 1px;
+      background: var(--esa-teal);
+      opacity: 0.7;
+    }
+    .weave-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--esa-surface);
+      max-width: 4.5rem;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .checklist li { margin: 0.25rem 0; }
+    .checklist li::marker { color: var(--accent-2); }
+    ul.compact { padding-left: 1.15rem; }
+    .decision {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border: 2px solid var(--accent-2);
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--esa-surface);
+    }
+    .toc a { color: var(--info); }
+    code { font-size: 0.8em; background: var(--surface-recessed); padding: 0.05rem 0.3rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="meta">SmartArchive · Planning deliverable · 2026-08-23 · No React implementation</p>
+    <h1>Page 2 — Visual Strategy + Photography Direction</h1>
+    <p class="pill">One direction · Founder review before any §3–§8 code</p>
+
+    <div class="freeze">
+      <strong style="color:var(--text-primary)">Frozen while this is reviewed</strong>
+      <p style="margin:0.4rem 0 0">Page 1 (<code>/</code>) and Page 3 (<code>/security</code>) — do not touch.<br />
+      Page 2 live code (<code>WebsiteIntelligence.tsx</code>, <code>page2Visuals.tsx</code>, <code>page2Shared.tsx</code>) — do not edit for this task.<br />
+      Demo / Concept / Illustrative labeling system — keep as implemented.</p>
+    </div>
+
+    <div class="callout">
+      <strong style="color:var(--text-primary)">Why this document exists</strong>
+      <p style="margin:0.4rem 0 0">Bug-fixing §3–§8 one defect at a time does not converge on a finished page.
+      This is a <em>direction decision</em>: one coherent visual system for §3–§8, plus a locked photography bible,
+      presented as a static simulation for Founder approval <em>before</em> any further React work.</p>
+    </div>
+
+    <p class="toc"><strong>Contents:</strong>
+      <a href="#strategy">1. Visual strategy</a> ·
+      <a href="#diverge">2. Relation to “A Closer Look”</a> ·
+      <a href="#photo">3. Photography bible</a> ·
+      <a href="#slots">4. Slot matrix (Page 1 + Page 2)</a> ·
+      <a href="#sim">5. Static simulations §3–§8</a> ·
+      <a href="#gate">6. Approval gate</a>
+    </p>
+
+    <!-- ========== 1 STRATEGY ========== -->
+    <h2 id="strategy">1. Visual strategy — one direction for §3–§8</h2>
+
+    <h3>Product sentence (unchanged)</h3>
+    <p>Page 2 is one continuous act of attention: a human has a document → SmartArchive looks closer →
+    offers quiet help → the user understands, prepares, remembers, connects → <strong>the user decides</strong>.</p>
+
+    <h3>Page rhythm (locked)</h3>
+    <table>
+      <thead>
+        <tr><th>Section</th><th>Job</th><th>Surface</th><th>Visual mode</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>§1 Hero</td><td>Wide first glance (already kept)</td><td>Light cream</td><td>Approved UI scene — frozen</td></tr>
+        <tr><td>§2 Closer look</td><td>Camera moves in; detect → mean</td><td>Light</td><td>Real photo + Meaning panel</td></tr>
+        <tr><td>§3 Quiet offer</td><td>Help is secondary; decision is primary</td><td>Petrol dark</td><td>Real photo + soft captions (no diamond grid)</td></tr>
+        <tr><td>§4 Situations</td><td>Different mail, same calm help</td><td>Recessed sage</td><td>Editorial envelope / tabletop (photo or staged still)</td></tr>
+        <tr><td>§5 Translation</td><td>Language → meaning (emphasis last)</td><td>Light</td><td>Illustrative type/SVG only — no photo</td></tr>
+        <tr><td>§6 Preparation</td><td>Physical prep → user review</td><td>Recessed</td><td>Real photo of prep materials</td></tr>
+        <tr><td>§7 Reminder</td><td>One important date, calm</td><td>Light</td><td>Real photo (hands + date signal)</td></tr>
+        <tr><td>§8 History</td><td>Weave connected story</td><td>Soft petrol tint</td><td>Illustrative Weave SVG — no photo</td></tr>
+        <tr><td>CTA</td><td>Warm close</td><td>Petrol dark</td><td>No photo</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Hard visual rules (stop the loop)</h3>
+    <ul class="compact">
+      <li>No 2×3 / diamond / chip <strong>feature catalogue</strong> for capabilities.</li>
+      <li>No repeating the full Example Administration letter as a card in every section.</li>
+      <li>No universal grey SceneFrame wrapping every section.</li>
+      <li>No mixing <strong>real photography</strong> and <strong>illustrative SVG</strong> inside the same section’s primary visual.</li>
+      <li>Gold (<code>--accent-2</code>) = what matters (dates, decisions). Teal/petrol = understanding / Weave. Coral (<code>--accent</code>) = CTAs / actions only — never “important date” text.</li>
+      <li>Each section must be a <em>different visual moment</em>, not the same layout with new labels.</li>
+    </ul>
+
+    <h3>§3–§8 as one set (the proposal)</h3>
+    <p><strong>§3 Quiet offer</strong> — One dark petrol band. Primary: a still photograph of the same desk/document world from §2, slightly wider (person or hands reviewing). Assistance options appear as <em>quiet caption labels under the photo</em> (Understand / Translate / … with Demo or Concept tags), never as a geometric diamond or equal cards. Funnel below: SmartArchive can help → User review → large gold “Your decision” block. Ends the help story in control.</p>
+    <p><strong>§4 Situations</strong> — Recessed sage “tabletop.” Ghost envelopes in the background. Primary: one selected envelope/document situation (Immigration etc.). Tabs stay functional but visually secondary (low-contrast pills). Two editorial columns: understands (Demo) / possible help (Concept). Legal line unchanged.</p>
+    <p><strong>§5 Translation ≠ Understanding</strong> — No photography. Three ascending stages of the <em>same</em> fictional sentence: Original → Translation → What it means. Visual weight increases left→right (or top→bottom on mobile). Final stage uses gold border / cream tint. Keep the phrase “Translation ≠ Understanding.”</p>
+    <p><strong>§6 Preparation</strong> — Photograph of physical prep (checklist papers, form, pen — fictional). Beside or below: requirements list → steps → closing line “You review. You decide. You send.” Concept tag stays. No dashboard checklist UI chrome.</p>
+    <p><strong>§7 Reminder</strong> — Photograph of one calm date moment (hands + calendar slip or phone with fictional “31 October / Example Administration”). Gold as the only urgency signal. Sequence: document → date → reminder → user decision. No red alarms.</p>
+    <p><strong>§8 Connected history</strong> — Pure Weave: horizontal node/edge story on desktop (Original → … → Outcome), vertical on mobile. Teal connections. Concept tag. No photo, no card stack.</p>
+
+    <!-- ========== 2 DIVERGE ========== -->
+    <h2 id="diverge">2. Relation to “A Closer Look” (Claude blueprint)</h2>
+    <p>Treated as the starting reference. File was not found as a separate repo document; content recovered from the session blueprint (“A CLOSER LOOK” continuous-attention narrative). Ask Samer if a standalone file should be filed under <code>design/page2/</code>.</p>
+
+    <div class="diverge">
+      <strong style="color:var(--text-primary)">Where this proposal follows the blueprint</strong>
+      <ul class="compact">
+        <li>One narrative, not seven SaaS modules.</li>
+        <li>§3 is a quiet offer ending in user decision — not a feature grid.</li>
+        <li>§4 is editorial situation, not a database table.</li>
+        <li>§5 emphasizes “what it means” over translation.</li>
+        <li>§6 physical preparation + user responsibility.</li>
+        <li>§7 calm single-date reminder; gold, not alarm red.</li>
+        <li>§8 Weave as connected story, horizontal on desktop.</li>
+        <li>Honesty labels and copy keys stay as-is.</li>
+      </ul>
+    </div>
+
+    <div class="diverge">
+      <strong style="color:var(--text-primary)">Where this proposal diverges — and why</strong>
+      <ul class="compact">
+        <li><strong>§3 “whisper diamond” layout rejected.</strong> Absolute-positioned whispers around a teal diamond produced the stray rectangle / overlap loop. Replace with: photo primary + soft caption row under it + funnel. Same meaning, fewer collision surfaces.</li>
+        <li><strong>Photography is mandatory for human sections, forbidden for abstract ones.</strong> The blueprint allowed annotation/typography-only richness; Page 1 proved photography is the quality bar. Explicit photo-vs-SVG split prevents another “swap the photo mid-pass” inconsistency.</li>
+        <li><strong>§2 stays photographic editorial</strong> (current intent) but must use the locked protagonist bible below — not ad-hoc Page 1 asset copies with baked UI.</li>
+        <li><strong>Hero remains the approved UI document scene</strong> (not replaced with photography). Wide glance = UI mock; closer look = photo. That contrast is intentional, not a defect.</li>
+      </ul>
+    </div>
+
+    <!-- ========== 3 PHOTO ========== -->
+    <h2 id="photo">3. Photography bible — one protagonist system</h2>
+
+    <div class="callout">
+      <strong style="color:var(--text-primary)">Locked subject (resolve today’s inconsistency)</strong>
+      <p style="margin:0.4rem 0 0">
+        <strong>Face when shown:</strong> Same adult as Page 1 hero (<code>page1_hero_human_document.png</code>) —
+        short dark hair, light stubble, dark forest-green crew sweater, calm focused expression, home desk.<br />
+        <strong>Hands-only crops:</strong> Must read as the <em>same person</em> (skin tone, wardrobe edge if visible, same desk wood, same warm side light).<br />
+        <strong>Never:</strong> swap to a different face mid-Page-2, or reuse <code>page1_understand_hands_document.png</code> for Page 2 (baked “Understand / Learn how” UI).
+      </p>
+    </div>
+
+    <h3>Setting / wardrobe / mood (apply everywhere a photo is used)</h3>
+    <ul class="compact">
+      <li><strong>Setting:</strong> Warm home desk — wood table, soft lamp, books/plant soft-bokeh. Not office glass, not neon AI lab.</li>
+      <li><strong>Wardrobe:</strong> Forest-green sweater (or matching knit). No logos, no uniforms.</li>
+      <li><strong>Mood:</strong> Calm attention, slight concern — never panic, never “tech bro,” never stock smile.</li>
+      <li><strong>Light:</strong> Warm natural / lamp; cream–petrol–gold palette in props.</li>
+      <li><strong>Documents in frame:</strong> Always fictional — “Example Administration,” “Amt für Beispiele,” “Example City.” No real seals, authorities, case numbers, or identifiable PII. Text on paper may be soft-focus / illegible if needed.</li>
+    </ul>
+
+    <h3>Style split (do not mix inside one section)</h3>
+    <table>
+      <thead><tr><th>Mode</th><th>Used for</th><th>Forbidden for</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Real photography</strong></td>
+          <td>§2 closer look, §3 quiet offer, §4 tabletop/envelope (or staged still), §6 preparation, §7 reminder</td>
+          <td>§5 meaning stages, §8 Weave history, CTA</td>
+        </tr>
+        <tr>
+          <td><strong>Illustrative SVG / type / Weave</strong></td>
+          <td>§5 transformation, §8 connected history, dark-band accents</td>
+          <td>Primary visual of §2–§4 / §6–§7</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ========== 4 SLOTS ========== -->
+    <h2 id="slots">4. Slot matrix — Page 1 (re-check) + Page 2</h2>
+
+    <h3>Page 1 (approved — consistency reference only)</h3>
+    <table>
+      <thead><tr><th>Slot</th><th>Asset</th><th>Mode</th><th>Subject note</th></tr></thead>
+      <tbody>
+        <tr><td><code>hero</code></td><td><code>page1_hero_human_document.png</code></td><td>Photo</td><td><strong>Canon face</strong> — green sweater, desk</td></tr>
+        <tr><td><code>for-your-life</code></td><td><code>page1_for_your_life_document_ecosystem.png</code></td><td>Photo / still life</td><td>Document ecosystem; no conflicting face</td></tr>
+        <tr><td><code>story-understand</code></td><td><code>page1_understand_hands_document.png</code></td><td>Photo + baked Page 1 UI</td><td>Hands; <strong>do not reuse on Page 2</strong></td></tr>
+        <tr><td><code>story-remember</code></td><td><code>page1_remember_phone_deadline.png</code></td><td>Photo + baked Page 1 UI</td><td>Hands + phone; Page 2 needs clean crop if reused</td></tr>
+        <tr><td><code>story-automate</code></td><td><code>page1_automate_invoice_workflow.png</code></td><td>Photo / still</td><td>Invoice workflow; ESA-adjacent</td></tr>
+        <tr><td><code>story-connect</code></td><td><code>page1_connect_weave.png</code></td><td>Illustrative Weave</td><td>Matches §8 language</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Page 2 proposed slots (produce under <code>frontend/public/assets/page2/</code> after approval)</h3>
+    <table>
+      <thead><tr><th>Slot id</th><th>Section</th><th>Mode</th><th>Shot brief</th><th>New asset?</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>page2-hero</code></td>
+          <td>§1</td>
+          <td>UI scene (frozen)</td>
+          <td>Keep approved HeroDocumentAnalysisScene — not a photo slot</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>page2-closer-look</code></td>
+          <td>§2</td>
+          <td>Photo</td>
+          <td>Closer crop: same man OR his hands on the letter; desk continuity with Page 1 hero; no baked UI</td>
+          <td><strong>Yes — dedicated</strong> (retire interim copy of page1 hero)</td>
+        </tr>
+        <tr>
+          <td><code>page2-quiet-offer</code></td>
+          <td>§3</td>
+          <td>Photo</td>
+          <td>Slightly wider desk moment; document protagonist; person soft in frame; dark band overlays captions</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td><code>page2-situations-tabletop</code></td>
+          <td>§4</td>
+          <td>Photo / staged still</td>
+          <td>Several fictional envelopes on wood tabletop; no faces required</td>
+          <td>Yes (or art-direct from props)</td>
+        </tr>
+        <tr>
+          <td><code>page2-translation</code></td>
+          <td>§5</td>
+          <td>SVG / type</td>
+          <td>No photo</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><code>page2-preparation</code></td>
+          <td>§6</td>
+          <td>Photo</td>
+          <td>Checklist papers + fictional form + pen; same desk wood; optional green sweater sleeve</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td><code>page2-reminder</code></td>
+          <td>§7</td>
+          <td>Photo</td>
+          <td>Hands + calendar slip or phone; fictional “31 October · Example Administration”; gold accent only</td>
+          <td>Yes (clean; no Page 1 UI bake-in)</td>
+        </tr>
+        <tr>
+          <td><code>page2-history-weave</code></td>
+          <td>§8</td>
+          <td>SVG Weave</td>
+          <td>Aligned with Page 1 <code>story-connect</code> language</td>
+          <td>Code illustration only</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ========== 5 SIMULATIONS ========== -->
+    <h2 id="sim">5. Static visual simulations (§3–§8)</h2>
+    <p>Wireframe-fidelity mockups for Founder review. Not the live React page. Labels shown for honesty system only.</p>
+
+    <!-- §3 -->
+    <div class="sim">
+      <div class="sim-label">§3 · Quiet offer · Simulation</div>
+      <div class="dark-band">
+        <h4>Would you like help with this?</h4>
+        <p class="sub">SmartArchive assists. The user decides.</p>
+        <div class="photo-slot" style="min-height:200px; border-radius:4px;">page2-quiet-offer</div>
+        <div class="whisper-row">
+          <div class="whisper"><strong>Understand</strong><span>Demo data</span></div>
+          <div class="whisper"><strong style="color:var(--concept)">Translate</strong><span style="color:var(--concept)">Concept</span></div>
+          <div class="whisper"><strong style="color:var(--concept)">Prepare</strong><span style="color:var(--concept)">Concept</span></div>
+          <div class="whisper"><strong style="color:var(--concept)">Respond</strong><span style="color:var(--concept)">Concept</span></div>
+          <div class="whisper"><strong>Remember</strong><span>Demo data</span></div>
+          <div class="whisper"><strong>Store</strong><span>Demo data</span></div>
+        </div>
+        <div class="funnel">
+          <p class="meta" style="color:var(--esa-text-muted);margin:1rem 0 0">SmartArchive can help</p>
+          <div class="line"></div>
+          <p class="meta" style="color:var(--esa-text-muted)">User review</p>
+          <p style="margin:0.35rem 0;font-size:0.85rem;color:var(--esa-text)">You choose what happens next</p>
+          <div class="line" style="background:var(--accent-2)"></div>
+          <div class="decide">Your decision<br /><span style="font-size:0.75rem;font-weight:600">Nothing is sent without your confirmation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §4 -->
+    <div class="sim">
+      <div class="sim-label">§4 · Situations · Simulation</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--esa-surface);margin:0 0 0.75rem">
+          Different documents. Different kinds of help.
+        </p>
+        <p style="text-align:center;font-size:0.7rem;color:var(--text-muted);margin:0 0 1rem">
+          Tabs secondary: Immigration · Tax · Court · School · …
+        </p>
+        <div class="tabletop">
+          <div class="ghost" style="top:1rem;left:1rem"></div>
+          <div class="ghost" style="top:1.5rem;right:2rem;transform:rotate(6deg)"></div>
+          <div class="envelope" style="position:relative;max-width:520px;margin:0 auto">
+            <p class="meta">Document</p>
+            <p style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;margin:0.25rem 0 0.75rem;color:var(--esa-surface)">
+              Residence / immigration correspondence
+            </p>
+            <div class="grid-2">
+              <div>
+                <p class="meta teal">SmartArchive understands</p>
+                <span class="tag-demo">Illustrative example · Demo data</span>
+                <ul class="compact" style="margin-top:0.5rem">
+                  <li>German language</li>
+                  <li>Authority correspondence</li>
+                  <li>Important date</li>
+                  <li>Documents requested</li>
+                </ul>
+              </div>
+              <div>
+                <p class="meta" style="color:var(--concept)">Possible help</p>
+                <span class="tag-concept">Illustrative example · Concept visualization</span>
+                <ul class="compact" style="margin-top:0.5rem">
+                  <li>Translate</li>
+                  <li>Explain</li>
+                  <li>Prepare documents</li>
+                  <li>Set reminder</li>
+                  <li>Prepare response</li>
+                </ul>
+              </div>
+            </div>
+            <p style="font-size:0.72rem;color:#935921;margin:0.75rem 0 0">Illustrative guidance — not legal or tax advice.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §5 -->
+    <div class="sim">
+      <div class="sim-label">§5 · Translation ≠ Understanding · Simulation (no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;color:var(--esa-surface)">
+          Understand it in your language — without losing the original.
+        </p>
+        <p style="text-align:center"><span class="tag-concept">Illustrative example · Concept visualization</span></p>
+        <p style="text-align:center;font-weight:700;color:var(--esa-surface)">Translation ≠ Understanding</p>
+        <div class="stages stages-3">
+          <div class="stage">
+            <div class="k">Original</div>
+            <div class="v" style="font-size:0.8rem;font-weight:500">…Unterlagen bis spätestens 31 October…</div>
+          </div>
+          <div class="stage">
+            <div class="k">Translation</div>
+            <div class="v" style="font-size:0.8rem;font-weight:500">…submit the requested documents by 31 October…</div>
+          </div>
+          <div class="stage emphasis">
+            <div class="k">What it means</div>
+            <div class="v" style="font-size:0.85rem">Official request before a deadline. Missing the date may affect your case.</div>
+            <span class="tag-demo" style="margin-top:0.5rem">SmartArchive insight</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §6 -->
+    <div class="sim">
+      <div class="sim-label">§6 · Preparation · Simulation</div>
+      <div class="sim-body">
+        <div class="grid-2">
+          <div class="photo-slot" style="min-height:220px">page2-preparation</div>
+          <div>
+            <p class="meta">A response may be required by <span class="gold">31 October</span>.</p>
+            <p style="font-family:var(--font-display);font-weight:700;color:var(--esa-surface)">Would you like help preparing?</p>
+            <span class="tag-concept">Illustrative example · Concept visualization</span>
+            <p class="meta" style="margin-top:0.85rem">Required documents</p>
+            <ul class="compact checklist">
+              <li>Fictional form (Example Administration)</li>
+              <li>Supporting letter copy</li>
+            </ul>
+            <p class="meta">Possible next steps</p>
+            <ul class="compact checklist">
+              <li>Review the request</li>
+              <li>Prepare documents</li>
+              <li>Draft a response</li>
+              <li>Set a reminder</li>
+            </ul>
+            <div class="decision">You review. You decide. You send.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §7 -->
+    <div class="sim">
+      <div class="sim-label">§7 · Reminder · Simulation</div>
+      <div class="sim-body">
+        <div class="grid-2">
+          <div class="photo-slot" style="min-height:200px">page2-reminder</div>
+          <div>
+            <p style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--esa-surface);margin:0">
+              Don't miss what comes next.
+            </p>
+            <span class="tag-demo">Illustrative example · Demo data</span>
+            <p class="meta" style="margin-top:1rem">One important date</p>
+            <p class="gold" style="font-family:var(--font-display);font-size:1.75rem;font-weight:700;margin:0.2rem 0">31 October</p>
+            <p class="meta">Reminder · 7 days before</p>
+            <p style="font-size:0.85rem">Reminder scheduling stays user-controlled.</p>
+            <div class="decision" style="font-size:0.95rem">User decision · You review. You decide. You send.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §8 -->
+    <div class="sim">
+      <div class="sim-label">§8 · Connected history · Simulation (Weave SVG — no photo)</div>
+      <div class="sim-body">
+        <p style="text-align:center;font-family:var(--font-display);font-weight:700;color:var(--esa-surface)">
+          Keep the whole story connected.
+        </p>
+        <p style="text-align:center"><span class="tag-concept">Illustrative example · Concept visualization</span></p>
+        <div class="svg-slot" style="min-height:72px;margin:0.75rem 0;border-radius:4px">Illustrative Weave band</div>
+        <div class="weave-row">
+          <div class="weave-label">Original</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Translation</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Explanation</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Prepared</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Drafted</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Approved</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Sent</div><div class="weave-edge"></div><div class="weave-node"></div><div class="weave-edge"></div>
+          <div class="weave-label">Outcome</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 6 GATE ========== -->
+    <h2 id="gate">6. Founder approval gate</h2>
+    <p>Reply with one of:</p>
+    <ul class="compact">
+      <li><strong>APPROVE DIRECTION</strong> — proceed to produce dedicated Page 2 photos, then implement §3–§8 as one pass (not bug-by-bug).</li>
+      <li><strong>APPROVE WITH NOTES</strong> — list only the deltas; no new “options set.”</li>
+      <li><strong>REJECT</strong> — state which rule fails (narrative, photography, or a specific section).</li>
+    </ul>
+    <div class="freeze">
+      <strong style="color:var(--text-primary)">Until one of the above</strong>
+      <p style="margin:0.4rem 0 0">No edits to <code>WebsiteIntelligence.tsx</code>, <code>page2Visuals.tsx</code>, or <code>page2Shared.tsx</code>.
+      No more per-defect Page 2 loops.</p>
+    </div>
+
+    <p class="meta" style="margin-top:2.5rem">
+      Deliverable path: <code>design/page2/Page2_Visual_Strategy_and_Photography_Direction.html</code><br />
+      Open locally in a browser for review. Authoritative product URL remains <code>http://127.0.0.1:5174</code> for live WIP only — this file is the decision artifact.
+    </p>
+  </div>
+</body>
+</html>

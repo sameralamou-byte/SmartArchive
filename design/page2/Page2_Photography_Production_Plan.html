@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SmartArchive — Page 2 Photography Production Plan</title>
+  <style>
+    :root {
+      --surface-page: #EDF3F1;
+      --surface-card: #F7FAF9;
+      --surface-recessed: #E1EBE8;
+      --text-primary: #10262A;
+      --text-secondary: #2C4A4E;
+      --text-muted: #567473;
+      --border: #D2E0DD;
+      --accent: #A94A4A;
+      --accent-2: #E3A857;
+      --accent-2-tint: #FBEAD0;
+      --info: #2E6670;
+      --esa-surface: #123B3A;
+      --esa-midnight: #0A2422;
+      --font-display: "Cairo", "Segoe UI Semibold", Tahoma, sans-serif;
+      --font-body: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background: var(--surface-page);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.25; color: var(--esa-surface); }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.5rem 0 0.75rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border);
+    }
+    h3 { font-size: 1.05rem; margin: 1.35rem 0 0.45rem; }
+    p, li { font-size: 0.9rem; color: var(--text-secondary); }
+    .meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .pill {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--accent-2-tint);
+      color: #935921;
+    }
+    .callout, .freeze, .note {
+      padding: 1rem 1.15rem;
+      margin: 1rem 0;
+      background: var(--surface-card);
+    }
+    .callout { border-left: 3px solid var(--accent-2); }
+    .freeze { border-left: 3px solid var(--accent); background: #F5DEDB; }
+    .note { border-left: 3px solid var(--info); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      margin: 0.75rem 0 1.25rem;
+      background: var(--surface-card);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--surface-recessed); font-weight: 700; color: var(--text-primary); }
+    code { font-size: 0.8em; background: var(--surface-recessed); padding: 0.05rem 0.3rem; }
+    ul.compact { padding-left: 1.15rem; }
+    .toc a { color: var(--info); }
+    strong { color: var(--text-primary); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="meta">SmartArchive · Planning deliverable · 2026-08-23 · No React implementation</p>
+    <h1>Page 2 — Photography Production Plan</h1>
+    <p class="pill">APPROVED (final) · 2026-08-23 · negative-prompt note added</p>
+
+    <div class="freeze">
+      <strong>Frozen</strong>
+      <p style="margin:0.4rem 0 0">
+        <code>WebsiteIntelligence.tsx</code>, <code>page2Visuals.tsx</code>, <code>page2Shared.tsx</code> — do not touch.<br />
+        Direction doc remains authority:
+        <code>design/page2/Page2_Visual_Strategy_and_Photography_Direction.html</code> (APPROVED WITH NOTES).<br />
+        This plan answers <em>how photos get produced</em> only. No live placeholder swaps in this task.
+      </p>
+    </div>
+
+    <div class="callout">
+      <strong>Verified facts (do not re-derive)</strong>
+      <ul class="compact" style="margin:0.4rem 0 0">
+        <li><code>page2_closer_look_desk.png</code> MD5 = <code>page1_hero_human_document.png</code> (<code>E2FFEF62828C91FDAFEEDBC90479ACD4</code>) — interim duplicate, not a dedicated §2 asset. <strong>Retire and replace.</strong></li>
+        <li>Source resolution of that pair: <strong>530×345</strong> — too small to re-crop safely for Page 2 display heights (up to ~500px CSS). New assets must not inherit this constraint.</li>
+        <li><code>page1_remember_phone_deadline.png</code> is 310×180 and has baked Page 1 UI — not usable for §7.</li>
+      </ul>
+    </div>
+
+    <p class="toc"><strong>Contents:</strong>
+      <a href="#method">1. Production method</a> ·
+      <a href="#assets">2. Exact asset list</a> ·
+      <a href="#crops">3. Aspect ratios / crops</a> ·
+      <a href="#interim">4. Interim placeholder rule</a> ·
+      <a href="#gate">5. Approval gate</a>
+    </p>
+
+    <!-- ========== 1 METHOD ========== -->
+    <h2 id="method">1. Production method</h2>
+
+    <h3>Decision: one method for all five assets</h3>
+    <p><strong>AI image generation with a locked reference workflow</strong> — not stock libraries, not a physical photoshoot for v1.</p>
+
+    <h3>Why AI (not stock, not shoot)</h3>
+    <ul class="compact">
+      <li><strong>Protagonist lock:</strong> Stock cannot guarantee the same adult as Page 1 hero (green sweater, face, desk continuity). A photoshoot could, but cost/scheduling blocks the one-pass §3–§8 timeline.</li>
+      <li><strong>Fictional documents:</strong> AI can keep letter text soft-focus / illegible and avoid real seals; stock “official letter” packs often include real-looking authority cues we must reject.</li>
+      <li><strong>Consistency across five frames:</strong> One reference image + fixed prompt block + same tool/model family is the practical way to keep face, wardrobe, wood, and light direction aligned when shots are generated separately.</li>
+      <li><strong>Page 1 already set the bar with AI-assisted editorial stills</strong> in the approved hero look; Page 2 should match that production path, not invent a second visual economy.</li>
+    </ul>
+
+    <h3>Exact workflow (all five shots)</h3>
+    <ol>
+      <li><strong>Reference (fixed):</strong> Always attach / img2img against
+        <code>frontend/public/assets/page1/page1_hero_human_document.png</code>
+        as identity + wardrobe + desk + light reference — even for hands-only and still-life shots (desk wood / mug / lamp continuity).</li>
+      <li><strong>Tool:</strong> Cursor native image generation (<code>GenerateImage</code>) <em>or</em> the same ChatGPT/Image model family already used for Page 1 marketing stills — pick <strong>one</strong> tool for the whole batch and do not mix Midjourney/other for Page 2.</li>
+      <li><strong>Shared prompt stem (paste into every generation):</strong>
+        <em>Same adult man as reference: short dark hair, light stubble, dark forest-green crew sweater, calm focused expression, warm home desk, wood table, soft lamp, soft-bokeh books and plant, warm natural side light, cream–petrol–gold props. Photoreal editorial, shallow depth of field. Fictional documents only — Example Administration / Amt für Beispiele / Example City. No real government seals, no readable personal data, no UI chrome, no app screens, no logos, no holograms, no robots.</em><br />
+        <strong>Negative prompt (all five shots):</strong>
+        <em>No real government, authority, or institution names as legible text — fictional only (Example Administration / Amt für Beispiele / Example City). If any generated text is legible enough to read a name, it must be one of the approved fictional names, not a real one.</em></li>
+      <li><strong>Per-shot delta:</strong> Only the framing line from §2 below (closer crop / quiet offer / tabletop / prep / reminder).</li>
+      <li><strong>Consistency check before file accept:</strong> Side-by-side with Page 1 hero — same person, same sweater color family, same desk wood tone, same light direction (warm key from viewer’s left/upper). Reject and regenerate if face or wardrobe drifts.</li>
+      <li><strong>Export:</strong> PNG, sRGB, no baked text overlays, no SmartArchive UI. Deliver at or above minimum source resolution in Part 3.</li>
+      <li><strong>Name and place:</strong> Exact filenames in Part 2 under <code>frontend/public/assets/page2/</code> — only during the eventual one-pass implementation (not now).</li>
+    </ol>
+
+    <div class="note">
+      <strong>If AI consistency fails after 2–3 regenerations on one slot</strong>
+      <p style="margin:0.4rem 0 0">Escalate that single slot to a short controlled photoshoot (same wardrobe + desk setup), still using the bible. Do not silently fall back to stock faces. Do not reopen the photography bible.</p>
+    </div>
+
+    <!-- ========== 2 ASSETS ========== -->
+    <h2 id="assets">2. Exact asset list</h2>
+    <p>Five production assets. §5 and §8 remain illustrative SVG/type (no photos). Hero §1 stays the approved UI scene (no photo).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Slot / section</th>
+          <th>Filename (under <code>frontend/public/assets/page2/</code>)</th>
+          <th>Shot description · in frame</th>
+          <th>Must stay fictional / soft-focus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>page2-closer-look</strong><br />§2 · replaces interim desk copy</td>
+          <td><code>page2_closer_look.png</code><br /><span class="meta" style="text-transform:none;letter-spacing:0">Retire: <code>page2_closer_look_desk.png</code></span></td>
+          <td>
+            <strong>Closer reading than Hero.</strong> Crop tighter on document + hands (or torso + letter). Same man/desk. Camera feels nearer than Page 1 hero wide shot. Leave right ~35–40% of frame slightly quieter for Meaning-panel overlay on desktop (letter readable area toward start/left). Warm wood, soft lamp bokeh.
+          </td>
+          <td>
+            Letter header may suggest “Example Administration” / “Amt für Beispiele” only if barely legible; prefer soft-focus body text. No seals. No Page 1 UI bake-in. No second face.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>page2-quiet-offer</strong><br />§3</td>
+          <td><code>page2_quiet_offer.png</code></td>
+          <td>
+            <strong>Slightly wider desk moment</strong> than §2. Document still protagonist; person soft in mid-ground or edge. Mood: “help is available, not urgent.” Dark petrol section will sit below captions — photo itself stays warm (not green-cast). Full-bleed landscape under the §3 headline.
+          </td>
+          <td>
+            Same fictional letter world. No capability icons, no six-card grid, no diamond geometry in the photo. No UI chrome.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>page2-situations-tabletop</strong><br />§4 · no face required</td>
+          <td><code>page2_situations_tabletop.png</code></td>
+          <td>
+            <strong>Still life / tabletop only — no face.</strong><br />
+            <strong>Props list (locked):</strong>
+            4–6 cream/off-white envelopes (closed or slightly open); one fictional letter peeking; wood desk continuous with hero desk; soft lamp rim light; optional: cream mug (same family as Page 1 hero mug), small notebook, plant edge in soft bokeh. Envelopes at slight angles (editorial “mail on table”), not a tidy grid.
+          </td>
+          <td>
+            Envelope return addresses / stamps: fictional only (“Example City”, “Example Administration”) or illegible. No country seals, no real postal marks that imply a real authority. No face, no hands required (hands optional at edge only if sweater matches).
+          </td>
+        </tr>
+        <tr>
+          <td><strong>page2-preparation</strong><br />§6</td>
+          <td><code>page2_preparation.png</code></td>
+          <td>
+            <strong>Physical prep materials.</strong> Lined or blank checklist paper, fictional form sheet, black pen, optional green-sweater sleeve at edge (same wardrobe). Wood desk. Feels like preparing a reply — not an enterprise dashboard.
+          </td>
+          <td>
+            Form title soft-focus; no real authority letterhead. Checklist items illegible or clearly placeholder. No UI checkboxes from the product, no browser chrome.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>page2-reminder</strong><br />§7</td>
+          <td><code>page2_reminder.png</code></td>
+          <td>
+            <strong>Calm date moment.</strong> Hands (same person) holding a paper calendar slip <em>or</em> a phone with a minimal notification. Gold/cream accent only — no red alarm. Prefer paper slip over phone if phone risks looking like product UI.
+          </td>
+          <td>
+            If phone: notification text must be fictional (“Example Administration · 31 October”) and <strong>must not</strong> reproduce Page 1 baked chrome (“Remember / Learn how / Electricity Bill” card layout). No SmartArchive app UI, no coral CTA in the image. Soft-focus anything that isn’t the date cue.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ========== 3 CROPS ========== -->
+    <h2 id="crops">3. Aspect ratios / crops</h2>
+    <p>Derived read-only from current / intended containers in <code>page2Visuals.tsx</code> and the approved direction layout (photo left / content right where applicable). Display sizes assume content width ≈ 1152px (<code>max-w-6xl</code>) at desktop.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Live / intended container (read-only)</th>
+          <th>Desktop display (approx.)</th>
+          <th>Mobile display (approx.)</th>
+          <th>Master aspect · min source px</th>
+          <th>Focal / object-position</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>page2_closer_look.png</code></td>
+          <td>§2 left column: <code>min-h-[360|440|500]</code>, <code>object-cover</code>, grid ~1.12fr</td>
+          <td>~640×500 (≈ 32:25)</td>
+          <td>~375×360 (≈ 1:1)</td>
+          <td><strong>4:5 portrait master</strong> (covers both fills)<br />Min: <strong>1600×2000</strong><br />Prefer: 2400×3000</td>
+          <td>Document + hands slightly left of center; keep top third for face/shoulder if present. CSS may use <code>object-position: 45% 30%</code>.</td>
+        </tr>
+        <tr>
+          <td><code>page2_quiet_offer.png</code></td>
+          <td>Approved §3: full-bleed photo above captions inside dark band; target ~<code>max-w-5xl</code> width, ~220–280px tall</td>
+          <td>~1024×280 (≈ 16:4.4 → treat as <strong>21:9</strong> crop)</td>
+          <td>~375×200</td>
+          <td><strong>21:9 landscape master</strong><br />Min: <strong>2520×1080</strong><br />Prefer: 3360×1440</td>
+          <td>Horizon mid; document lower-center; person soft left or mid. Avoid critical detail at extreme edges (section padding).</td>
+        </tr>
+        <tr>
+          <td><code>page2_situations_tabletop.png</code></td>
+          <td>§4 band <code>min-h-[340px]</code> full content width; photo as tabletop atmosphere behind / under envelope card</td>
+          <td>~1024×360</td>
+          <td>~375×280</td>
+          <td><strong>16:9 landscape</strong><br />Min: <strong>1920×1080</strong><br />Prefer: 2560×1440</td>
+          <td>Envelopes centered; leave soft margins so the white situation card can sit on top without covering the only interesting prop.</td>
+        </tr>
+        <tr>
+          <td><code>page2_preparation.png</code></td>
+          <td>Approved §6: photo column beside prep copy (~half of max-w-4xl / max-w-lg row)</td>
+          <td>~480×360</td>
+          <td>~375×260 (stacks above copy)</td>
+          <td><strong>4:3 landscape</strong><br />Min: <strong>1600×1200</strong><br />Prefer: 2400×1800</td>
+          <td>Checklist/form center; pen diagonal; sleeve at start edge optional.</td>
+        </tr>
+        <tr>
+          <td><code>page2_reminder.png</code></td>
+          <td>Approved §7: photo beside date typography (~half of ~max-w-md–lg row)</td>
+          <td>~440×320</td>
+          <td>~375×260</td>
+          <td><strong>4:3 landscape</strong><br />Min: <strong>1600×1200</strong><br />Prefer: 2400×1800</td>
+          <td>Date cue (slip or calm phone) center; hands lower third; no chrome near crop edges.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>Resolution rule</strong>
+      <p style="margin:0.4rem 0 0">
+        Minimum source width/height must be ≥ <strong>2×</strong> the largest CSS display dimension on each axis (retina). Never ship another 530×345 master into Page 2. Reject any export that requires upscaling to meet the “Prefer” size.
+      </p>
+    </div>
+
+    <!-- ========== 4 INTERIM ========== -->
+    <h2 id="interim">4. Interim placeholder rule</h2>
+
+    <div class="callout">
+      <strong>Between now and final asset delivery — leave the live site unchanged</strong>
+      <ul class="compact" style="margin:0.4rem 0 0">
+        <li><strong>§2</strong> — Keep current interim <code>page2_closer_look_desk.png</code> (known Page 1 duplicate). Do <em>not</em> swap to a grey box or a different Page 1 asset. Document this as <strong>known WIP photography debt</strong>, not a new visual bug.</li>
+        <li><strong>§3 / §4 / §6 / §7</strong> — Keep current code-only / non-photo treatments. Do <em>not</em> invent temporary photos or restyle these sections for “preview.”</li>
+        <li><strong>No live code changes</strong> for placeholders as part of this planning task — including no filename swap, no neutral SVG plate, no Docker restart for assets.</li>
+      </ul>
+    </div>
+
+    <p><strong>Review hygiene (stop the “why does this look wrong” loop):</strong></p>
+    <ul class="compact">
+      <li>Founder reviews of live <code>http://127.0.0.1:5174/how-it-works</code> until assets land are <strong>structure/copy/honesty only</strong> — not photography quality.</li>
+      <li>Photography quality is reviewed against <strong>this plan’s exports</strong> (side-by-side contact sheet) before the one-pass implementation wires files.</li>
+      <li>When implementation starts: replace all five in one commit/pass with the filenames above; delete or stop referencing <code>page2_closer_look_desk.png</code>.</li>
+    </ul>
+
+    <!-- ========== 5 GATE ========== -->
+    <h2 id="gate">5. Approval gate</h2>
+    <p>Reply with one of:</p>
+    <ul class="compact">
+      <li><strong>APPROVE</strong> — produce the five AI assets per this plan; then one-pass §3–§8 implementation (build → tests → full visual review → final approval).</li>
+      <li><strong>APPROVE WITH NOTES</strong> — deltas only (tool choice, a crop number, a prop). No new options set.</li>
+      <li><strong>REJECT</strong> — state which part fails (method, asset brief, crop, or interim rule).</li>
+    </ul>
+
+    <div class="freeze">
+      <strong>Until APPROVE / APPROVE WITH NOTES</strong>
+      <p style="margin:0.4rem 0 0">
+        No §3–§8 implementation. No Page 2 React edits. No asset generation required yet — this document is the production contract.
+      </p>
+    </div>
+
+    <p class="meta" style="margin-top:2.5rem">
+      Deliverable path: <code>design/page2/Page2_Photography_Production_Plan.html</code><br />
+      Companion: <code>design/page2/Page2_Visual_Strategy_and_Photography_Direction.html</code>
+    </p>
+  </div>
+</body>
+</html>
