@@ -111,4 +111,30 @@ describe("AppRoutes", () => {
     renderRoute("/dev/home-dashboard");
     expect(await screen.findByText("Family")).toBeInTheDocument();
   });
+
+  it("exposes the Founder visual comparison only on a development route", async () => {
+    renderRoute("/dev/founder-page-review");
+    expect(await screen.findByRole("heading", { name: "Founder visual comparison" })).toBeInTheDocument();
+    expect(screen.getByText("Dev review — not production")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open connected HSA website preview" })).toHaveAttribute(
+      "href",
+      "/dev/founder-page-review/website",
+    );
+  });
+
+  it("exposes the connected HSA website preview only on a development route", async () => {
+    renderRoute("/dev/founder-page-review/website");
+    expect(await screen.findByRole("heading", { name: /Your life/ })).toBeInTheDocument();
+    expect(screen.getByText("Organized.")).toBeInTheDocument();
+  });
+
+  it("does not wire public Page 2 or Page 3 into production routes", () => {
+    renderRoute("/how-it-works");
+    expect(screen.getByText("Page not found.")).toBeInTheDocument();
+  });
+
+  it("does not wire /security as a production Page 3 route", () => {
+    renderRoute("/security");
+    expect(screen.getByText("Page not found.")).toBeInTheDocument();
+  });
 });

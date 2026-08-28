@@ -10,6 +10,16 @@ import RemindersPage from "../pages/app/RemindersPage";
 import SettingsPage from "../pages/app/SettingsPage";
 import UnderstandPage from "../pages/app/UnderstandPage";
 import ComponentShowcase from "../pages/ComponentShowcase";
+import FounderPageReview from "../pages/dev/FounderPageReview";
+import HsaWebsiteLayout from "../pages/dev/hsa-website/HsaWebsiteLayout";
+import HsaWebsiteHome from "../pages/dev/hsa-website/HsaWebsiteHome";
+import {
+  HsaWebsiteAbout,
+  HsaWebsiteForBusiness,
+  HsaWebsiteForHome,
+  HsaWebsiteHowItWorks,
+  HsaWebsiteSecurity,
+} from "../pages/dev/hsa-website/HsaWebsitePages";
 import DocumentUnderstanding from "../pages/DocumentUnderstanding";
 import EnterpriseCommandCenter from "../pages/EnterpriseCommandCenter";
 import HomeDashboard from "../pages/HomeDashboard";
@@ -44,6 +54,15 @@ export default function AppRoutes() {
       <Route path="/dev/home-dashboard" element={<HomeDashboard />} />
       <Route path="/dev/enterprise-command-center" element={<EnterpriseCommandCenter />} />
       <Route path="/dev/hsa-understanding" element={<DocumentUnderstanding />} />
+      <Route path="/dev/founder-page-review/website" element={<HsaWebsiteLayout />}>
+        <Route index element={<HsaWebsiteHome />} />
+        <Route path="how-it-works" element={<HsaWebsiteHowItWorks />} />
+        <Route path="security" element={<HsaWebsiteSecurity />} />
+        <Route path="for-home" element={<HsaWebsiteForHome />} />
+        <Route path="for-business" element={<HsaWebsiteForBusiness />} />
+        <Route path="about" element={<HsaWebsiteAbout />} />
+      </Route>
+      <Route path="/dev/founder-page-review" element={<FounderPageReview />} />
 
       <Route path="/app" element={<RequireAuth />}>
         <Route element={<AppShell />}>

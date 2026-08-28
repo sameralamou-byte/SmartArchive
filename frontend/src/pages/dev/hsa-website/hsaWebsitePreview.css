@@ -1,0 +1,35 @@
+/* Preview-only warm palette. Does not change global Weave tokens. */
+.hsa-website-preview {
+  --surface-page: #f3ebe0;
+  --surface-card: #faf6ef;
+  --surface-recessed: #e8dcc8;
+  --text-primary: #123b3a;
+  --text-secondary: #3d4f45;
+  --text-muted: #6b7268;
+  --text-disabled: #9a9f96;
+  --border: #d9cbb8;
+  --accent: #a94a4a;
+  --accent-hover: #903f3f;
+  --accent-tint: #f6dedb;
+  --accent-graphic: #c15b5b;
+  --on-accent: #f7faf9;
+  --accent-2: #e3a857;
+  --accent-2-hover: #c98d3e;
+  --accent-2-tint: #fbead0;
+  --success: #3f7a5d;
+  --success-bg: #e1efe7;
+  --info: #2e6670;
+  --info-bg: #ddebec;
+  --esa-surface: #123b3a;
+  --esa-midnight: #0a2422;
+  --esa-text: #f4ede3;
+  --esa-text-muted: #c5d4c8;
+  --shadow-rgb: 18, 59, 58;
+  min-height: 100vh;
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+.hsa-website-preview .text-esa-text {
+  color: var(--esa-text);
+}
