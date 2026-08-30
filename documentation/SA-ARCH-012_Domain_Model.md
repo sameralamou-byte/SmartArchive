@@ -3,10 +3,10 @@
 | Field | Value |
 |---|---|
 | Document ID | SA-ARCH-012 |
-| Version | 1.2 |
+| Version | 1.3 |
 | Owner | Architecture team — SmartArchive AI Platform |
-| Status | **Locked** — constitutional document of Architecture Baseline v1.0 (promoted from Approved on second review, per [SA-ARCH-999](SA-ARCH-999_Architecture_Governance.md) §2). Wave B (2026-08-16) is an additive amendment authorized by Founder review of [ADR-009](adr/ADR-009-account-tenant-family-entitlement.md). Founder alignment after Wave B **Approved** ADR-009. Isolation mechanics (ADR-002) are unchanged. |
-| Dependencies | [SA-ARCH-000](SA-ARCH-000_Master_Architecture.md) v1.0, [SA-ARCH-011](SA-ARCH-011_Capability_Map.md), [ADR-009](adr/ADR-009-account-tenant-family-entitlement.md) (**Approved**), [SA-ARCH-014-00](Architecture/SA-ARCH-014_Account_Family_and_Entitlement_Architecture/SA-ARCH-014-00-README.md) (Draft) |
+| Status | **Locked** — constitutional document of Architecture Baseline v1.0 (promoted from Approved on second review, per [SA-ARCH-999](SA-ARCH-999_Architecture_Governance.md) §2). Wave B (2026-08-16) is an additive amendment authorized by Founder review of [ADR-009](adr/ADR-009-account-tenant-family-entitlement.md). Founder alignment after Wave B **Approved** ADR-009. Isolation mechanics (ADR-002) are unchanged. ESA ADR-010–013 synchronization (2026-08-30) is an additive amendment authorized by Founder-approved ADR-010/011/012/013 — see Revision History. |
+| Dependencies | [SA-ARCH-000](SA-ARCH-000_Master_Architecture.md) v1.0, [SA-ARCH-011](SA-ARCH-011_Capability_Map.md), [ADR-009](adr/ADR-009-account-tenant-family-entitlement.md) (**Approved**), [SA-ARCH-014-00](Architecture/SA-ARCH-014_Account_Family_and_Entitlement_Architecture/SA-ARCH-014-00-README.md) (Draft), [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) / [ADR-011](adr/ADR-011-device-and-intake-governance.md) / [ADR-012](adr/ADR-012-ai-permission-inheritance.md) / [ADR-013](adr/ADR-013-integrated-standalone-esa-equal-modes.md) (all **Approved**) |
 | Purpose | The business-domain language every future document, ADR, and conversation about SmartArchive should share — deliberately not an ERD, not a database schema, not an API contract. Those are downstream of this, not the same as it. |
 
 ## How to read this
@@ -21,14 +21,21 @@ Each concept below is defined in business terms first. Where a concept is alread
 
 ## The Domain Chain
 
-Document-centric chain (unchanged in role; Tenant remains the isolation boundary for these concepts):
+Document-centric chain (unchanged in role; Tenant remains the isolation boundary for these concepts). **Updated per ADR-010/011/012/013 (Approved)** to show the new conceptual hierarchy/Intake nodes — every node labeled `— Conceptual` is architecture only, not implemented; this diagram does not assert schema:
 
 ```mermaid
 graph TD
+    Tenant --> OrgStructure["Organizational Structure — Conceptual"]
+    OrgStructure --> Workspace["Workspace — Conceptual"]
     Tenant --> Workspace
-    Workspace --> User
+    Workspace --> RestrictedArea["Restricted Area — Conceptual"]
+    OrgStructure --> RestrictedArea
+    Tenant --> User
     User --> Role
     Tenant --> Document
+    Document -.optional attach.-> OrgStructure
+    Document -.optional attach.-> Workspace
+    Document -.optional attach.-> RestrictedArea
     Document --> Classification
     Document --> Metadata
     Document --> Workflow
@@ -36,6 +43,8 @@ graph TD
     Document --> Knowledge
     Tenant --> Connector
     Connector --> Document
+    Tenant --> IntakeSource["Registered Intake Source — Conceptual"]
+    IntakeSource --> Document
     User --> AISession[AI Session]
     AISession --> Document
     AISession --> Notification
@@ -78,9 +87,17 @@ Wave B note: v1.0 of this document described Tenant as “the organization or cu
 
 **Status: Realized** (isolation as `Organization` + RLS). Personal vs ESA product roles, and Account binding, are **Conceptual** until implementation is authorized.
 
+### Organizational Structure — Legal Entity / Business Unit, Site / Facility / Branch, Department, Team / Function
+**Added per [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) (Approved).** An optional linear chain of organizational-structure nodes beneath a Tenant, describing *what the organization is administratively* — Legal Entity/Business Unit, Site/Facility/Branch, Department, Team/Function. Use of each level is optional; the chain need not be fully populated. Distinct from Workspace (below), which describes *where work/collaboration is scoped*, not organizational structure.
+**Status: Conceptual** — no model exists; introduced by ADR-010, not implemented.
+
 ### Workspace
-A sub-division within a Tenant for organizing work — a department, project, site, or branch. Intended as the natural boundary for department-level permissions and, potentially, for how an industry edition's capabilities get scoped within a larger enterprise customer.
-**Status: Conceptual** — no `Workspace` model exists today. Documents currently attach to a Tenant through `folder`/`category`, not through an intermediate Workspace layer. **This is an open modeling question**, not an oversight: whether Workspace should exist as its own layer (and how it relates to the still-undecided `B-EXT` industry-edition extension model) should be resolved together with that Wave 0 decision, not designed in isolation here.
+**Redefined per [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) (Approved), superseding this section's prior definition.** A variable-depth **operational/collaboration scope** within a Tenant — a project, a cross-functional initiative, a working group. A Workspace is *not* itself an Organizational Structure level (it is not synonymous with Department or Site, as this document previously described it) and is *not* a forced terminal node — it may sit at any depth relative to Organizational Structure nodes, or stand alone.
+**Status: Conceptual** — no `Workspace` model exists today. Documents currently attach to a Tenant through `folder`/`category`, not through an intermediate Workspace layer. (Previously flagged in this document as an open modeling question tied to the `B-EXT` decision — ADR-010 resolves the modeling question itself; implementation remains unauthorized.)
+
+### Restricted Area
+**Added per [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) (Approved).** A distinct **security-restriction** concept, separate from both Organizational Structure and Workspace. A Restricted Area can sit beneath any hierarchy node and overrides inherited access: **parent access ≠ unconditional descendant access.** Access to a Restricted Area is never implied by access to its parent; sibling access is never implied; cross-boundary access is always explicit.
+**Status: Conceptual** — no model exists; introduced by ADR-010, not implemented.
 
 ### User
 An authenticated actor who acts **within a Tenant context**. Distinct from Account (the durable customer identity). Today’s realized `User` row lives in one Organization and is not yet bound to an Account.
@@ -92,11 +109,16 @@ An Account may correspond to a User in its Personal Tenant and, optionally, a Us
 ### Role
 A named bundle of permissions assigned to a User within a Tenant, evaluated through the single `authorize()` gate ([ADR-004](adr/ADR-004-authorization.md)). Roles are **not** subscription tiers. “Family Owner,” “Family Member,” and plan names are **not** Roles and **not** Permission catalogue entries.
 
-**Status: Realized** — `Role`/`RolePermission`/`Permission` models, ADR-004.
+**Scoped Administration — added per [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) (Approved).** An administrative grant scoped to both a hierarchy node (which part of the organization) and a functional area (what kind of administration) — evaluated through the same `authorize()` gate, not a second permission system.
+
+**Status: Realized** — `Role`/`RolePermission`/`Permission` models, ADR-004. Scoped Administration specifically is **Conceptual** — today's admin surfaces (`backend/app/routers/v1/users.py`, partial) are Tenant-wide only, not hierarchy-scoped.
 
 ### Document
 The core artifact of the platform: binary content plus its metadata record. Everything else in the domain model exists to organize, enrich, act on, or reason about Documents.
-**Status: Realized** — `Document` model + MinIO-backed storage (ADR-003), upload/download/delete implemented end to end.
+
+**Hierarchy attachment — added per [ADR-010](adr/ADR-010-esa-organizational-hierarchy-and-boundary-model.md) (Approved).** A Document may optionally attach, in addition to its owning Tenant, to one most-appropriate hierarchy node at any level (Organizational Structure, Workspace, or Restricted Area) — a Document does not attach to multiple hierarchy nodes.
+
+**Status: Realized** — `Document` model + MinIO-backed storage (ADR-003), upload/download/delete implemented end to end. Hierarchy attachment specifically is **Conceptual** — today's Document attaches to Tenant via `folder`/`category` only; no hierarchy-node attachment exists.
 
 ### Classification
 The category or type assigned to a Document (contract, invoice, ID, medical record, etc.) — whether assigned by a human or, eventually, by AI.
@@ -120,11 +142,21 @@ Relationships, entities, and facts extracted across the document corpus — the 
 
 ### Connector
 A named integration with an external system a Tenant already runs (an ERP, CRM, cloud storage, or industry-specific system like an HL7/FHIR feed) — the mechanism behind Integrated Mode (Principle #5).
+
+**Operating-mode neutrality — added per [ADR-013](adr/ADR-013-integrated-standalone-esa-equal-modes.md) (Approved).** A Connector's role and governance are identical regardless of a Tenant's operating configuration: Standalone Mode requires no Connector, Integrated Mode uses one or more, and Hybrid Mode may use Connectors for some organizational areas and not others within one Tenant. Operating-mode configuration does not change Connector's own definition or governance.
+
 **Status: Conceptual** — `deployment_mode` on `Organization` shows structural intent; no `Connector` model or interface exists (Wave 1, `B3`, gated on `B-EXT`/`B9-iface` per [SA-ROADMAP-001](SA-ROADMAP-001_Architecture_Roadmap.md)).
+
+### Registered Intake Source
+**Added per [ADR-011](adr/ADR-011-device-and-intake-governance.md) (Approved).** The broadened concept covering any authenticated origin through which content enters SmartArchive under governance — categories: Device, Network-Share Agent, Email-Document Gateway, Unattended Terminal-Service, Other. Distinguishes **User-Governed intake** (an authenticated person uploading, acting under their own identity) from **Source-Governed intake** (an authenticated Registered Intake Source acting under its own registered identity). An intake source's authorization is evaluated against its requested destination before acceptance — unauthorized intake must not become a downstream bypass, including, per [ADR-012](adr/ADR-012-ai-permission-inheritance.md), an AI-context bypass.
+**Status: Conceptual** — no model exists; introduced by ADR-011, not implemented.
 
 ### AI Session
 A bounded interaction with the AI Gateway — could be a single batch job (an OCR pass, a classification run) or, eventually, a multi-turn conversation (chat, voice) with retained context.
-**Status: Conceptual** — `AIJob`/`OCRJob` models are the closest existing concept, but they model one-shot jobs, not sessions with conversation memory. The distinction matters: a future AI Gateway ADR needs to decide whether "session" is a first-class concept from the start or bolted on once chat/voice need it.
+
+**Sharpened per [ADR-012](adr/ADR-012-ai-permission-inheritance.md) (Approved).** A User-Initiated AI Session's available context is always a subset of the **requesting identity's** authorized Document set — never the Tenant's full corpus, and never wider than ADR-010's hierarchy scopes permit. Distinct from a **processing/service identity**, used for governed background processing (ingestion, OCR, classification, embedding) — a processing identity's authority never itself becomes retrieval authority for an end user ("system authority ≠ user authority").
+
+**Status: Conceptual** — `AIJob`/`OCRJob` models are the closest existing concept, but they model one-shot jobs, not sessions with conversation memory. The distinction matters: a future AI Gateway ADR needs to decide whether "session" is a first-class concept from the start or bolted on once chat/voice need it. ADR-012's identity distinction is a refinement of this still-Conceptual definition, not new implementation.
 
 ### Notification
 A message delivered to a User — including, per [SA-ARCH-000](SA-ARCH-000_Master_Architecture.md) §5, reminders that pass through the ACE layer for context-sensitive timing and phrasing ("Calm Cards") before delivery.
@@ -174,7 +206,7 @@ v1 primary controls: verified Account/email + TrialHistory. Payment instrument i
 
 ## How This Document Should Be Used
 
-- New ADRs and capability write-ups should use these terms consistently — "Document," not "file" or "record." Use **Account** for durable customer identity, **Tenant** for data isolation, **Family** for entitlement/membership, **Entitlement** for product access, **Authorization** / `authorize()` for actions inside a Tenant, **User** for the authenticated actor in a Tenant context. Do not collapse these.
+- New ADRs and capability write-ups should use these terms consistently — "Document," not "file" or "record." Use **Account** for durable customer identity, **Tenant** for data isolation, **Family** for entitlement/membership, **Entitlement** for product access, **Authorization** / `authorize()` for actions inside a Tenant, **User** for the authenticated actor in a Tenant context. Do not collapse these. Per ADR-010: use **Organizational Structure** for administrative shape (Legal Entity/Site/Department/Team), **Workspace** for operational/collaboration scope, and **Restricted Area** for security restriction — these three are distinct concepts and must not be used interchangeably.
 - “Household” / “family member” in product-vision language ([SA-ARCH-013](SA-ARCH-013_Product_Vision_and_Evolution.md)) is audience or future explicit-sharing language. It does **not** mean Family is a shared document Tenant.
 - When a Wave 0/1 ADR (`B-EXT`, `B9-iface`, `B1`, `B3`) is written, it should say explicitly which domain concepts it touches or introduces (e.g., does `B-EXT` introduce Workspace as a real concept, or route industry-edition scoping through Tenant directly?) — this document should be revised alongside that ADR if the answer changes what's written here.
 - This document does not replace the [SA-ARCH-011](SA-ARCH-011_Capability_Map.md) Capability Map — a capability is *something the platform can do*; a domain concept here is *a thing the platform reasons about*. They're related (most capabilities operate on one or more of these concepts) but answer different questions.
@@ -200,3 +232,4 @@ v1 primary controls: verified Account/email + TrialHistory. Payment instrument i
 | 1.0 | Initial domain model, authored as part of Architecture Baseline v1.0. Flagged Workspace as an open modeling question tied to the unresolved `B-EXT` decision, rather than assuming it already exists. |
 | 1.1 | Wave B additive amendment (Founder authorization 2026-08-16), authority **ADR-009**. Tenant restated as isolation boundary (ADR-002 unchanged). Added Account, Family, Entitlement, TrialHistory. User distinguished from Account. Role distinguished from entitlement. Platform-level vs tenant-owned records noted. No implementation. |
 | 1.2 | Founder alignment after Wave B: cite **ADR-009** as **Approved**. No domain-concept rewrite. No implementation. |
+| 1.3 | Synchronization following the Founder-approved ESA ADR-010–013 Architecture Draft Package (2026-08-30), per the Founder-approved Synchronization Impact Audit. Corrected the stale **Workspace** definition (previously conflated with Organizational Structure — "a department, project, site, or branch") and separated it from the new **Organizational Structure** (Legal Entity/Business Unit, Site/Facility/Branch, Department, Team/Function) and **Restricted Area** concepts, per ADR-010. Added hierarchy attachment to **Document**, Scoped Administration to **Role**, operating-mode neutrality to **Connector** (ADR-013), and a new **Registered Intake Source** concept (ADR-011). Sharpened **AI Session** with the requesting-identity/processing-identity distinction (ADR-012). Updated the Domain Chain diagram to show these Conceptual additions (all new nodes explicitly labeled `— Conceptual`; no schema implied). All additions are Status: Conceptual, matching this document's existing convention for Approved-but-unimplemented architecture (the same convention already used for Account/Family/Entitlement). Isolation mechanics (ADR-002), Tenant, User, Role's existing RBAC content, Document's existing storage content, and all Account/Family/Entitlement sections are unchanged. No schema created. No implementation. |

@@ -2,9 +2,10 @@
 
 | Field | Value |
 |---|---|
+| Version | 1.1 |
 | Status | **Approved** (2026-07-30, after one focused implementation-consequences review; see [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md) §5) |
 | Date | 2026-07-30 |
-| Related | ADR-006 (Platform Extension Model), ADR-003 (Storage Strategy — the reference precedent), [SA-ROADMAP-001](../SA-ROADMAP-001_Architecture_Roadmap.md) Wave 0 (`B9-iface`) |
+| Related | ADR-006 (Platform Extension Model), ADR-003 (Storage Strategy — the reference precedent), [SA-ROADMAP-001](../SA-ROADMAP-001_Architecture_Roadmap.md) Wave 0 (`B9-iface`), [ADR-011](ADR-011-device-and-intake-governance.md) (**Approved** — adds the Intake Contract), [ADR-012](ADR-012-ai-permission-inheritance.md) (**Approved**, Rev 1.2 — adds the AI Provider Contract's authorization precondition and the Workflow Contract's Governed Automation/Consequential-Action distinction) |
 | Resolves | *How* something becomes an Extension under ADR-006 — the shared interface shape |
 
 ## Context
@@ -28,13 +29,14 @@ Every Extension declares:
 |---|---|---|
 | **Storage Contract** | Storage | put / get / delete / presigned-URL. Already exists de facto — ADR-003 scoped `storage_service.py` to exactly this shape. This ADR formalizes it as the first (retroactive) Platform Contract. |
 | **Connector Contract** | Connector Engine | authenticate / read / write / subscribe-to-webhook / resolve-conflict. Detailed semantics (conflict resolution rules, sync vs. webhook model) are `B3`'s implementation-level concern, not restated here. |
-| **AI Provider Contract** | AI (AI Gateway) | complete / embed / classify, plus model metadata (context window, supported operations) and a cost-reporting hook so the Gateway can meter usage regardless of provider. |
+| **AI Provider Contract** | AI (AI Gateway) | complete / embed / classify, plus model metadata (context window, supported operations) and a cost-reporting hook so the Gateway can meter usage regardless of provider. **Authorization precondition (added on synchronization with [ADR-012](ADR-012-ai-permission-inheritance.md), Approved):** every operation is preceded by per-document `authorize()` evaluation (ADR-004) as part of ADR-012's mandatory pre-retrieval sequence — retrieval, not just output, is authorization-gated. The Gateway (`B1`, not yet designed) must treat this as a mandatory, non-optional filter. |
 | **OCR Contract** | OCR | submit / poll / result, with a confidence score and a detected-language field (feeds ADR-008). |
+| **Intake Contract** *(added on synchronization with [ADR-011](ADR-011-device-and-intake-governance.md), Approved)* | Intake | authenticate-source / submit-intake / status, plus identity/registration validation and a requested-destination field so Resource Authorization (ADR-004, per ADR-011's authorization-before-processing sequence) can evaluate the intake before acceptance. Covers every Registered Intake Source category (Device, Network-Share Agent, Email-Document Gateway, Unattended Terminal-Service, Other) uniformly. Detailed technology (device protocols, gateway mechanics, credential schemes) remains future implementation-level detail, not restated here — same discipline as the Connector Contract row below. |
 | **Authentication Contract** | Authentication | verify-identity / map-claims-to-user-and-role. For identity providers *beyond* the Core's own username/password + JWT issuance, which stays Core per ADR-006. |
 | **Notification Contract** | Notifications | send / delivery-status, plus per-channel capability flags (rich content? read receipts?) so the ACE layer (SA-ARCH-000 §5) can pick appropriately per channel. |
 | **Search Contract** | Search | index / query — abstracts keyword vs. vector backends so the vector-search strategy decision (`B2`) plugs in here without changing Search's orchestration. |
 | **Voice Contract** | Voice | speech-to-text / text-to-speech / streaming-session lifecycle. |
-| **Workflow Contract** | Workflow | *(added on review)* define-steps / advance-step / request-human-approval / evaluate-automation-rule. Covers approval workflows, automation, the reminder engine, and AI-driven workflow steps uniformly, so any of these can be swapped or extended (e.g., a customer's own approval-engine integration) the same way a storage provider can. |
+| **Workflow Contract** | Workflow | *(added on review)* define-steps / advance-step / request-human-approval / evaluate-automation-rule. Covers approval workflows, automation, the reminder engine, and AI-driven workflow steps uniformly, so any of these can be swapped or extended (e.g., a customer's own approval-engine integration) the same way a storage provider can. **Human authority note (added on synchronization with [ADR-012](ADR-012-ai-permission-inheritance.md) §21, Approved):** `evaluate-automation-rule` is the operation **Governed Automation** (an action explicitly allowed by pre-authorized organizational policy/workflow configuration/scope) executes through, without a per-instance approval prompt. `request-human-approval` is the operation **Consequential/High-Risk Action** (permission changes, contract approvals, destructive actions, and similar) is required to route through. Informational AI (understand/summarize/recommend) executes through neither — it performs no action. |
 
 Each contract versions independently (`Major.Minor`, per [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md) §6) — e.g., the AI Provider Contract can gain a new optional operation without breaking existing OCR Contract implementations, since they're unrelated contracts.
 
@@ -64,6 +66,7 @@ graph TD
         NotificationContract[Notification Contract]
         AuthContract[Authentication Contract]
         OCRContract[OCR Contract]
+        IntakeContract[Intake Contract]
     end
 
     Core --> Contracts
@@ -94,3 +97,10 @@ Reading this: the Core Engine never calls MinIO, Azure Blob, or S3 directly — 
 - The Stage 2 "extension loader" work (see SA-ROADMAP-001 Milestone S2.0) implements the Extension Envelope once; each Platform Contract implementation registers through it.
 - Every capability in [SA-ARCH-011](../SA-ARCH-011_Capability_Map.md) that has a corresponding Platform Contract should note which one, once this ADR is Approved (a follow-up edit to that Locked document, not made preemptively while this ADR is still Draft).
 - `B3` (Connector Engine design) and future AI/OCR/Voice/Search implementation work now have a concrete contract shape to implement against, rather than inventing one ad hoc when each is built.
+
+## Revision History
+
+| Rev | Change |
+|---|---|
+| 1.0 | Initial Approval (2026-07-30), after one focused implementation-consequences review — added the Workflow Contract and the Platform Dependency Diagram. |
+| 1.1 | Synchronization update following the Founder-approved [ADR-011](ADR-011-device-and-intake-governance.md) and [ADR-012](ADR-012-ai-permission-inheritance.md) — per [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md)'s process, this records those ADRs' already-made decisions, it does not introduce new ones. Added a 10th Platform Contract, the **Intake Contract** (ADR-011), and its node in the Platform Dependency Diagram. Added an "Authorization precondition" note to the **AI Provider Contract** row (ADR-012 — mandatory pre-retrieval `authorize()` evaluation). Added a "Human authority note" to the **Workflow Contract** row (ADR-012 §21 — Governed Automation via `evaluate-automation-rule`, Consequential/High-Risk Action via `request-human-approval`). No operation signature changed for any existing contract; no other row touched. |

@@ -2,9 +2,10 @@
 
 | Field | Value |
 |---|---|
+| Version | 1.1 |
 | Status | **Approved** (2026-07-30, after one focused implementation-consequences review; see [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md) §5) |
 | Date | 2026-07-30 |
-| Related | [SA-ARCH-000](../SA-ARCH-000_Master_Architecture.md) §7, [SA-ARCH-011](../SA-ARCH-011_Capability_Map.md), [SA-ARCH-012](../SA-ARCH-012_Domain_Model.md), [SA-AUDIT-002](../SA-AUDIT-002_Enterprise_Architecture_Audit.md) §17, [SA-ROADMAP-001](../SA-ROADMAP-001_Architecture_Roadmap.md) Wave 0 (`B-EXT`) |
+| Related | [SA-ARCH-000](../SA-ARCH-000_Master_Architecture.md) §7, [SA-ARCH-011](../SA-ARCH-011_Capability_Map.md), [SA-ARCH-012](../SA-ARCH-012_Domain_Model.md), [SA-AUDIT-002](../SA-AUDIT-002_Enterprise_Architecture_Audit.md) §17, [SA-ROADMAP-001](../SA-ROADMAP-001_Architecture_Roadmap.md) Wave 0 (`B-EXT`), [ADR-011](ADR-011-device-and-intake-governance.md) (**Approved** — adds the Intake Extension Category) |
 | Resolves | The open question SA-ARCH-000 §7 explicitly deferred: how industry editions extend the shared engine, and where the Core-vs-Extension boundary sits |
 
 ## Context
@@ -23,7 +24,7 @@ Identity, Authentication (session/token issuance, the `authorize()` gate), Autho
 
 ### Extensions (pluggable via Platform Contracts — ADR-007)
 
-AI Providers (OpenAI, Azure OpenAI, Anthropic, local models), OCR Providers (Tesseract, cloud vision APIs), Storage Providers (MinIO, AWS S3, Azure Blob, GCS — already de facto extension-shaped per ADR-003), ERP/CRM/Cloud Connectors (SAP, Odoo, Dynamics, Salesforce, SharePoint, Google Workspace), Voice Providers (Whisper, Azure Speech, Google STT/TTS), Notification Channels (email, SMS, push, Slack), Authentication Identity Providers (SSO/SAML/OAuth sources beyond core username/password), and **Industry Edition Packages** (Legal, Healthcare, Education, Government — bundles of capability-level extensions plus configuration, not separate codebases).
+AI Providers (OpenAI, Azure OpenAI, Anthropic, local models), OCR Providers (Tesseract, cloud vision APIs), Storage Providers (MinIO, AWS S3, Azure Blob, GCS — already de facto extension-shaped per ADR-003), ERP/CRM/Cloud Connectors (SAP, Odoo, Dynamics, Salesforce, SharePoint, Google Workspace), Voice Providers (Whisper, Azure Speech, Google STT/TTS), Notification Channels (email, SMS, push, Slack), Authentication Identity Providers (SSO/SAML/OAuth sources beyond core username/password), **Registered Intake Sources** (Device, Network-Share Agent, Email-Document Gateway, Unattended Terminal-Service, Other — added on synchronization with [ADR-011](ADR-011-device-and-intake-governance.md), Approved), and **Industry Edition Packages** (Legal, Healthcare, Education, Government — bundles of capability-level extensions plus configuration, not separate codebases).
 
 ### Extension Categories (governance taxonomy)
 
@@ -39,6 +40,9 @@ Added on review so "what kind of Extension is this" has a fixed, governed answer
 | Voice | Whisper, Azure Speech | Voice Contract |
 | Workflow | Approval engines, automation rule sets | Workflow Contract |
 | Industry Package | Healthcare, Legal, Education, Government | Multiple — an Industry Package is a bundle spanning several contracts plus configuration, not a single-contract implementation |
+| **Intake** *(added on synchronization with [ADR-011](ADR-011-device-and-intake-governance.md), Approved)* | **Registered Intake Source**: Device, Network-Share Agent, Email-Document Gateway, Unattended Terminal-Service, Other | Intake Contract |
+
+Per ADR-006's existing decision rule, applied identically to this new category: intake **orchestration/authorization/lifecycle** is Core; a specific registered intake source's implementation is the Extension, reachable only through the Intake Contract (ADR-007). No implementation technology, protocol, or credential mechanism is specified here — that remains ADR-011's own technology-neutral scope and future implementation-level detail.
 
 **Noted for future evolution, not acted on now** (per reviewer feedback at approval): if the category list grows substantially, consider assigning stable category identifiers (e.g. `EXT-STORAGE`, `EXT-AI`, `EXT-CONNECTOR`) to help documentation and tooling reference categories unambiguously. Not necessary at the current scale of 8 categories — revisit if/when this list roughly doubles.
 
@@ -54,3 +58,10 @@ Added on review so "what kind of Extension is this" has a fixed, governed answer
 - The Core Engine list above is the enforcement mechanism for [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md) §4's dependency rule: Core modules never import from or special-case an Extension; the reverse is expected.
 - **Done as part of this ADR's Approval** (per SA-ARCH-999's process): [SA-ARCH-011](../SA-ARCH-011_Capability_Map.md) v1.1 now notes, per capability row, whether it's wholly Core, wholly Extension, or split (Core orchestration + swappable Extension implementation).
 - This ADR does not itself specify the extension interface shape — that's ADR-007, which also contains the **Platform Dependency Diagram** (added on review) showing the full Applications → API → Core Engine → Contracts → Extensions → Providers flow this ADR and ADR-007 jointly establish.
+
+## Revision History
+
+| Rev | Change |
+|---|---|
+| 1.0 | Initial Approval (2026-07-30), after one focused implementation-consequences review — added Extension Categories (8 categories) and the "noted for future evolution" note on category identifiers. |
+| 1.1 | Synchronization update following the Founder-approved [ADR-011](ADR-011-device-and-intake-governance.md) (Device & Intake Governance) — per [SA-ARCH-999](../SA-ARCH-999_Architecture_Governance.md)'s process, this records ADR-011's already-made decision, it does not introduce a new one. Added a 9th Extension Category, **Intake** (Registered Intake Source: Device / Network-Share Agent / Email-Document Gateway / Unattended Terminal-Service / Other), with its Platform Contract named as the Intake Contract (formalized in ADR-007). Added Registered Intake Sources to the Extensions list. No change to the Core-vs-Extension decision rule itself, the Core Engine list, or any other category. |
