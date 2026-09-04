@@ -76,6 +76,20 @@ def _document(*, mime: str = "image/png") -> Document:
     )
 
 
+
+def _flush_ready_session() -> MagicMock:
+    """SA-Z7F fix -- MagicMock session with awaitable flush (AsyncMock).
+
+    OCRService.process_job() awaits self._session.flush() on success and
+    failure paths. A plain MagicMock flush is not awaitable and raises
+    TypeError; production AsyncSession.flush is async. Test-only fix.
+    """
+    session = MagicMock()
+    session.flush = AsyncMock()
+    return session
+
+
+
 def _job(document: Document, *, status: JobStatus = JobStatus.queued) -> OCRJob:
     now = datetime.now(UTC)
     return OCRJob(
@@ -129,7 +143,7 @@ async def test_ocr_success_persists_text_and_pages():
     document = _document()
     job = _job(document)
     engine = FakeEngine(_success_result(pages=2))
-    service = OCRService(MagicMock(), FakeStorage(), lambda: engine)
+    service = OCRService(_flush_ready_session(), FakeStorage(), lambda: engine)
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
 
@@ -149,7 +163,7 @@ async def test_ocr_image_and_pdf_mime_supported():
     for mime in ("image/png", "image/jpeg", "application/pdf"):
         document = _document(mime=mime)
         job = _job(document)
-        service = OCRService(MagicMock(), FakeStorage(), lambda: FakeEngine(_success_result()))
+        service = OCRService(_flush_ready_session(), FakeStorage(), lambda: FakeEngine(_success_result()))
         service.get_job = AsyncMock(return_value=job)
         service.get_document = AsyncMock(return_value=document)
         result = await service.process_job(job.id)
@@ -160,7 +174,7 @@ async def test_ocr_image_and_pdf_mime_supported():
 async def test_ocr_unsupported_file():
     document = _document(mime="application/zip")
     job = _job(document)
-    service = OCRService(MagicMock(), FakeStorage(), lambda: FakeEngine(_success_result()))
+    service = OCRService(_flush_ready_session(), FakeStorage(), lambda: FakeEngine(_success_result()))
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
     result = await service.process_job(job.id)
@@ -174,7 +188,7 @@ async def test_ocr_engine_failure():
     document = _document()
     job = _job(document)
     service = OCRService(
-        MagicMock(), FakeStorage(), lambda: FakeEngine(error=OCREngineError("OCR engine failed"))
+        _flush_ready_session(), FakeStorage(), lambda: FakeEngine(error=OCREngineError("OCR engine failed"))
     )
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
@@ -188,7 +202,7 @@ async def test_ocr_empty_result():
     document = _document()
     job = _job(document)
     service = OCRService(
-        MagicMock(), FakeStorage(), lambda: FakeEngine(error=EmptyOCRResultError("empty OCR result"))
+        _flush_ready_session(), FakeStorage(), lambda: FakeEngine(error=EmptyOCRResultError("empty OCR result"))
     )
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
@@ -201,7 +215,7 @@ async def test_ocr_empty_result():
 async def test_ocr_missing_stored_object():
     document = _document()
     job = _job(document)
-    service = OCRService(MagicMock(), FakeStorage(error=RuntimeError("no object")), lambda: FakeEngine(_success_result()))
+    service = OCRService(_flush_ready_session(), FakeStorage(error=RuntimeError("no object")), lambda: FakeEngine(_success_result()))
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
     result = await service.process_job(job.id)
@@ -216,7 +230,7 @@ async def test_ocr_corrupted_file():
     from app.ocr.types import CorruptedOCRInputError
 
     service = OCRService(
-        MagicMock(), FakeStorage(), lambda: FakeEngine(error=CorruptedOCRInputError("bad"))
+        _flush_ready_session(), FakeStorage(), lambda: FakeEngine(error=CorruptedOCRInputError("bad"))
     )
     service.get_job = AsyncMock(return_value=job)
     service.get_document = AsyncMock(return_value=document)
@@ -368,7 +382,7 @@ async def test_unsupported_engine_input_maps():
     document = _document()
     job = _job(document)
     service = OCRService(
-        MagicMock(),
+        _flush_ready_session(),
         FakeStorage(),
         lambda: FakeEngine(error=UnsupportedOCRInputError("nope")),
     )
