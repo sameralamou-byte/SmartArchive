@@ -23,6 +23,7 @@ import {
 import EsaWebsiteLayout from "../pages/dev/esa-website/EsaWebsiteLayout";
 import EsaWebsiteHome from "../pages/dev/esa-website/EsaWebsiteHome";
 import EsaWebsiteHowItWorks from "../pages/dev/esa-website/EsaWebsiteHowItWorks";
+import EsaWebsiteSolutions from "../pages/dev/esa-website/EsaWebsiteSolutions";
 import {
   EsaWebsiteAbout,
   EsaWebsiteIndustries,
@@ -73,6 +74,7 @@ export default function AppRoutes() {
       </Route>
       <Route path="/dev/founder-page-review/esa-website" element={<EsaWebsiteLayout />}>
         <Route index element={<EsaWebsiteHome />} />
+        <Route path="solutions" element={<EsaWebsiteSolutions />} />
         <Route path="industries" element={<EsaWebsiteIndustries />} />
         <Route path="how-it-works" element={<EsaWebsiteHowItWorks />} />
         <Route path="security" element={<EsaWebsiteSecurity />} />

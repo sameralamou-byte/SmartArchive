@@ -39,3 +39,173 @@
 .esa-website-preview .text-esa-mkt-text {
   color: var(--esa-mkt-text);
 }
+
+/* Solutions cinematic hero — one full-bleed scene, copy overlaid (not a split card). */
+.esa-solutions-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  background: var(--esa-mkt-navy);
+}
+
+.esa-solutions-hero__stage {
+  position: relative;
+  min-height: clamp(36.5rem, 58vw, 43rem);
+  overflow: hidden;
+}
+
+.esa-solutions-hero__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--esa-mkt-navy);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 28% 46%;
+}
+
+.esa-solutions-hero__scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 6, 26, 0.1) 0%,
+      transparent 22%
+    ),
+    linear-gradient(180deg, rgba(5, 6, 26, 0.28) 0%, transparent 12%, transparent 82%, rgba(2, 3, 19, 0.18) 100%);
+}
+
+.esa-solutions-hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 7.25rem 1rem 2.5rem;
+}
+
+.esa-solutions-hero__content h1 {
+  text-shadow: 0 1px 18px rgba(5, 6, 26, 0.55);
+}
+
+.esa-solutions-hero__content .text-body-l {
+  text-shadow: 0 1px 12px rgba(5, 6, 26, 0.45);
+}
+
+@media (min-width: 640px) {
+  .esa-solutions-hero__content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.esa-solutions-hero__strip {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(230, 41, 155, 0.22);
+  background: linear-gradient(180deg, rgba(5, 6, 26, 0.42), rgba(2, 3, 19, 0.92));
+}
+
+.esa-solutions-hero__strip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.75rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .esa-solutions-hero__strip-grid {
+    grid-template-columns: 1fr 1fr;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .esa-solutions-hero__strip-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.esa-solutions-hero__strip-item {
+  padding: 0.35rem 1.15rem 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .esa-solutions-hero__strip-item {
+    border-right: 1px solid rgba(230, 41, 155, 0.2);
+  }
+
+  .esa-solutions-hero__strip-item:last-child {
+    border-right: none;
+  }
+}
+
+.esa-solutions-hero__strip-title {
+  position: relative;
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding-bottom: 0.4rem;
+}
+
+.esa-solutions-hero__strip-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1.75rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.esa-solutions-deeper {
+  padding-top: 2.75rem;
+  padding-bottom: 3.25rem;
+}
+
+.esa-solutions-deeper__intro {
+  max-width: 40rem;
+}
+
+.esa-solutions-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .esa-solutions-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .esa-solutions-cards {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .esa-solutions-cards > * {
+    grid-column: span 2;
+  }
+
+  .esa-solutions-cards > *:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .esa-solutions-cards > *:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+.esa-website-preview--solutions .esa-website-footer__inner {
+  padding-top: 3.25rem;
+  padding-bottom: 3.25rem;
+}
