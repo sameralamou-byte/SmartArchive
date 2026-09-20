@@ -20,6 +20,15 @@ import {
   HsaWebsiteHowItWorks,
   HsaWebsiteSecurity,
 } from "../pages/dev/hsa-website/HsaWebsitePages";
+import EsaWebsiteLayout from "../pages/dev/esa-website/EsaWebsiteLayout";
+import EsaWebsiteHome from "../pages/dev/esa-website/EsaWebsiteHome";
+import {
+  EsaWebsiteAbout,
+  EsaWebsiteHowItWorks,
+  EsaWebsiteIndustries,
+  EsaWebsiteResources,
+  EsaWebsiteSecurity,
+} from "../pages/dev/esa-website/EsaWebsitePages";
 import DocumentUnderstanding from "../pages/DocumentUnderstanding";
 import EnterpriseCommandCenter from "../pages/EnterpriseCommandCenter";
 import HomeDashboard from "../pages/HomeDashboard";
@@ -61,6 +70,14 @@ export default function AppRoutes() {
         <Route path="for-home" element={<HsaWebsiteForHome />} />
         <Route path="for-business" element={<HsaWebsiteForBusiness />} />
         <Route path="about" element={<HsaWebsiteAbout />} />
+      </Route>
+      <Route path="/dev/founder-page-review/esa-website" element={<EsaWebsiteLayout />}>
+        <Route index element={<EsaWebsiteHome />} />
+        <Route path="industries" element={<EsaWebsiteIndustries />} />
+        <Route path="how-it-works" element={<EsaWebsiteHowItWorks />} />
+        <Route path="security" element={<EsaWebsiteSecurity />} />
+        <Route path="resources" element={<EsaWebsiteResources />} />
+        <Route path="about" element={<EsaWebsiteAbout />} />
       </Route>
       <Route path="/dev/founder-page-review" element={<FounderPageReview />} />
 

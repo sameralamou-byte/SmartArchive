@@ -1,0 +1,41 @@
+/* Preview-only ESA palette (SA-DESIGN-ESA-EXCEPTION-001). Does not change
+ * global Weave tokens, and is intentionally NOT the same palette as the
+ * --esa-* variables in hsaWebsitePreview.css -- those are the older shared
+ * petrol/dark-teal Weave tokens (reused there under a legacy "esa-" name);
+ * this file defines the actual approved ESA marketing palette (deep
+ * navy/midnight + magenta-neon), scoped separately under --esa-mkt-* to
+ * avoid confusing the two. */
+.esa-website-preview {
+  --surface-page: #05061a;
+  --surface-card: #0b0e2b;
+  --surface-recessed: #10143a;
+  --text-primary: #f5f3fb;
+  --text-secondary: #b9bede;
+  --text-muted: #7d84ab;
+  --text-disabled: #565c80;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #e6299b;
+  --accent-hover: #c81f85;
+  --accent-tint: rgba(230, 41, 155, 0.16);
+  --accent-graphic: #ff4fc0;
+  --on-accent: #ffffff;
+  --accent-2: #4a7dff;
+  --accent-2-hover: #3865e0;
+  --accent-2-tint: rgba(74, 125, 255, 0.16);
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.12);
+  --info: #4a7dff;
+  --info-bg: rgba(74, 125, 255, 0.12);
+  --esa-mkt-navy: #05061a;
+  --esa-mkt-midnight: #020313;
+  --esa-mkt-text: #f5f3fb;
+  --esa-mkt-text-muted: #9aa0c7;
+  --shadow-rgb: 2, 3, 19;
+  min-height: 100vh;
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+
+.esa-website-preview .text-esa-mkt-text {
+  color: var(--esa-mkt-text);
+}
