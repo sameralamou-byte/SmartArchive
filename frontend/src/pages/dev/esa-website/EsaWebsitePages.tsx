@@ -1,9 +1,8 @@
 /**
- * Stub pages -- only Home has an approved reference image and transcribed
- * copy so far (SA-DESIGN-ESA-EXCEPTION-001). These exist only so ESA_NAV
- * doesn't link to a 404; they intentionally say "not yet built" rather than
- * inventing content, per the master doc's honesty rule (never imply future
- * functionality already exists).
+ * Stub pages -- Home and How It Works are real pages. Remaining nav items
+ * exist only so ESA_NAV doesn't link to a 404; they intentionally say
+ * "not yet built" rather than inventing content, per the master doc's
+ * honesty rule (never imply future functionality already exists).
  */
 function EsaWebsiteStub({ title }: { title: string }) {
   return (
@@ -22,10 +21,6 @@ function EsaWebsiteStub({ title }: { title: string }) {
 
 export function EsaWebsiteIndustries() {
   return <EsaWebsiteStub title="Industries" />;
-}
-
-export function EsaWebsiteHowItWorks() {
-  return <EsaWebsiteStub title="How It Works" />;
 }
 
 export function EsaWebsiteSecurity() {

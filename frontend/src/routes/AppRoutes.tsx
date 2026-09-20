@@ -22,9 +22,9 @@ import {
 } from "../pages/dev/hsa-website/HsaWebsitePages";
 import EsaWebsiteLayout from "../pages/dev/esa-website/EsaWebsiteLayout";
 import EsaWebsiteHome from "../pages/dev/esa-website/EsaWebsiteHome";
+import EsaWebsiteHowItWorks from "../pages/dev/esa-website/EsaWebsiteHowItWorks";
 import {
   EsaWebsiteAbout,
-  EsaWebsiteHowItWorks,
   EsaWebsiteIndustries,
   EsaWebsiteResources,
   EsaWebsiteSecurity,
