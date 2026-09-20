@@ -9,6 +9,12 @@ export const HSA_PAGE1_ASSETS = {
   connect: "/assets/page1/page1_connect_weave.png",
 } as const;
 
+// Approved 2026-09-20, SA-DESIGN-HSA-SECURITY-REF-001 -- first real
+// reference this page has ever had (previously zero photography existed).
+export const HSA_SECURITY_ASSETS = {
+  hero: "/assets/hsa-security/hsa_security_hero.webp",
+} as const;
+
 export const HSA_NAV = [
   { to: HSA_WEBSITE_BASE, label: "Home", end: true },
   { to: `${HSA_WEBSITE_BASE}/how-it-works`, label: "How it works", end: false },
