@@ -13,3 +13,7 @@ build/
 .DS_Store
 minio-data/
 postgres-data/
+
+# local temp / build artifacts — not work product
+_tmp-*.png
+*.tsbuildinfo
