@@ -317,7 +317,8 @@
 }
 
 /* Restrained top scrim so nav stays readable over the photo — not a solid navbar. */
-.hsa-website-preview--how .hsa-website-header {
+.hsa-website-preview--how .hsa-website-header,
+.hsa-website-preview--features .hsa-website-header {
   background: linear-gradient(
     180deg,
     rgba(8, 13, 40, 0.5) 0%,
@@ -332,11 +333,21 @@
   background: var(--hsa-stage);
 }
 
-.hsa-how-page__photo {
+.hsa-how-page__photo,
+.hsa-features-page__photo {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.hsa-features-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--hsa-stage);
+  /* Clear the overlay header so Get Started does not cover the baked top-right caption. */
+  padding-top: 5.75rem;
+  overflow: visible;
 }
 
 .hsa-stub {

@@ -7,10 +7,6 @@ export function HsaWebsiteStub({ title }: { title: string }) {
   );
 }
 
-export function HsaWebsiteFeatures() {
-  return <HsaWebsiteStub title="Features" />;
-}
-
 export function HsaWebsiteLife() {
   return <HsaWebsiteStub title="Life (Use Cases)" />;
 }

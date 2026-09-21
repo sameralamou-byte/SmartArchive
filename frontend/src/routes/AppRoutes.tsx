@@ -14,9 +14,9 @@ import FounderPageReview from "../pages/dev/FounderPageReview";
 import HsaWebsiteLayout from "../pages/dev/hsa-website/HsaWebsiteLayout";
 import HsaWebsiteHome from "../pages/dev/hsa-website/HsaWebsiteHome";
 import HsaWebsiteHowItWorks from "../pages/dev/hsa-website/HsaWebsiteHowItWorks";
+import HsaWebsiteFeatures from "../pages/dev/hsa-website/HsaWebsiteFeatures";
 import {
   HsaWebsiteAbout,
-  HsaWebsiteFeatures,
   HsaWebsiteLife,
   HsaWebsitePricing,
   HsaWebsitePrivacyAndControl,
