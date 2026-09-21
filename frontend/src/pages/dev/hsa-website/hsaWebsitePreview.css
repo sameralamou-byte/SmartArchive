@@ -344,7 +344,8 @@
 .hsa-features-page {
   position: relative;
   isolation: isolate;
-  background: var(--hsa-stage);
+  /* Deep navy to match artwork / Home-HIW veil — not the warmer plum stage. */
+  background: var(--hsa-veil);
   /* Clear the overlay header so Get Started does not cover the baked top-right caption. */
   padding-top: 5.75rem;
   overflow: visible;

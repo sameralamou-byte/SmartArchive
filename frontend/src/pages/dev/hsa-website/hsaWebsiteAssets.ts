@@ -17,7 +17,7 @@ export const HSA_HOW_IT_WORKS_ASSETS = {
 
 /** One continuous Features landscape — labels, captions, and thumbnails stay in the artwork. */
 export const HSA_FEATURES_ASSETS = {
-  scene: "/assets/hsa/hsa_features.webp?v=1",
+  scene: "/assets/hsa/hsa_features.webp?v=4",
 } as const;
 
 export const HSA_NAV = [
