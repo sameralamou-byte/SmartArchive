@@ -23,12 +23,14 @@ Nav (shared header, 7 items; Home, How It Works, Features, and Life (Use Cases) 
 
 Workshops & Trades uses Founder HTML, not the garbled reference pixels: headline “Tools, people, projects — and paperwork.” Body: “Supplies, equipment records, inspection documents, supplier paperwork and job records — HSA helps keep your operation organized and on track.”
 
+Freeze commit on `origin` and `github` `main`: `1dc48da` (`feat(hsa-website): checkpoint approved Life visual; freeze HSA Life (Use Cases).`). A later local refine2 (production paint-out of leftover baked captions at crop edges + Small Business chalkboard left-edge shift so “Good People / Great Coffee” is fully visible) is **not** in this SHA, **not** on remotes, and **not** frozen.
+
 ## 3. Protected list (cross-product)
 
 **Protected approved visual directions (do not redesign without Founder):**
 
 - **ESA:** Home, Solutions, Industries, Security, Resources, About. ESA How It Works is not in this freeze.
-- **HSA:** Home, How It Works, Features, Life (Use Cases). Unbuilt HSA marketing pages are not frozen.
+- **HSA:** Home (`0b8d612`), How It Works (`a564d43`), Features (`be3b63a`), Life (Use Cases) (`1dc48da`). Unbuilt HSA marketing pages (Privacy & Control, Pricing, About) are not frozen.
 
 ## 4. Governance
 

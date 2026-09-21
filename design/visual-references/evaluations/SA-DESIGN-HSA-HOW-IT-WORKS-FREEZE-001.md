@@ -26,7 +26,7 @@ Nav (shared header, 7 items; Home, How It Works, Features, and Life (Use Cases) 
 **Protected approved visual directions (do not redesign without Founder):**
 
 - **ESA:** Home, Solutions, Industries, Security, Resources, About. ESA How It Works is not in this freeze.
-- **HSA:** Home, How It Works, Features, Life (Use Cases). Unbuilt HSA marketing pages are not frozen.
+- **HSA:** Home (`0b8d612`), How It Works (`a564d43`), Features (`be3b63a`), Life (Use Cases) (`1dc48da`). Unbuilt HSA marketing pages (Privacy & Control, Pricing, About) are not frozen.
 
 ## 4. Governance
 
