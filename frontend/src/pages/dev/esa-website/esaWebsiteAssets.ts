@@ -74,6 +74,11 @@ export const ESA_SECURITY_ASSETS = {
   hero: "/assets/esa/esa_security_hero.webp?v=3",
 } as const;
 
+export const ESA_RESOURCES_ASSETS = {
+  hero: "/assets/esa/esa_resources_hero.webp?v=1",
+  featured: "/assets/esa/esa_resources_featured.webp?v=1",
+} as const;
+
 /** Layer stills are independent ESA-family images — not crops of a mockup. */
 export const ESA_SECURITY_LAYERS = [
   {

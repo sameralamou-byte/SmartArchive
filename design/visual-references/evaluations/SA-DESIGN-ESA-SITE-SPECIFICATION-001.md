@@ -69,10 +69,10 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 | Industries | **Founder-approved visual checkpoint** (dev preview) | Use Cases (§9): Manufacturing, Government, Healthcare, Education, etc. |
 | How It Works | Built as a draft; **not** a frozen visual | The ESA Core Journey (§8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit |
 | Security | **Founder-approved visual checkpoint** (dev preview) | Security + Compliance combined (§8) |
-| Resources | Stub only | Not named in the master doc's ESA content plan at all — genuinely new, needs its own scoping (case studies? docs? blog?) |
+| Resources | **Founder-approved visual checkpoint** (dev preview) | Not named in the master doc's ESA content plan at all — now Founder-approved as a marketing Resources page |
 | About | Stub only | Not ESA-specific in the master doc — likely shared company/about content, needs a decision on whether it's ESA-specific or one shared About page for both products |
 
-**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security. How It Works, Resources, and About are not in this freeze. Remaining Founder-listed pages: Resources, About.
+**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security, Resources. How It Works and About are not in this freeze. Remaining Founder-listed page: About.
 
 **Not in the nav, but named in the master doc's content plan and worth a decision:** Pricing (§9 lists "Enterprise Pricing Sphere"/"Enterprise Pricing Bridge" as concepts). The approved reference image's CTA section says "Contact Sales" / "Request a Demo" rather than showing pricing directly — plausible that ESA is deliberately sales-led rather than self-serve-priced, but that's an assumption, not a confirmed decision. Flagging rather than guessing.
 
@@ -113,11 +113,12 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 
 **Purpose:** the page an enterprise buyer's security/compliance team actually reads before approving a vendor. Highest bar for honesty in the whole site — §43's "no invented certifications, no misleading accuracy claims" is not optional here.
 **Should cover:** Security architecture, Compliance posture, auditability, governance controls (master doc §8's "Compliance" + "Security" content areas, and §43 generally).
-**Checkpoint:** Founder approved and froze the current Security visual direction (middle lighting: brighter than the original crushed-dark photography, darker than the over-bright pass) after a full-page desktop review (hero, Security at Every Layer, More Security. More Possibilities, footer). Route `/dev/founder-page-review/esa-website/security`. Implementation is in `EsaWebsiteSecurity.tsx` (cinematic hero + independent layer stills). Do not redesign without Founder. Hero rebuild against `ESA-SECURITY-*-approved.webp` is not required for this freeze. Remaining Founder-listed pages after this freeze: Resources, About. How It Works stays a draft and is not frozen.
+**Checkpoint:** Founder approved and froze the current Security visual direction (middle lighting: brighter than the original crushed-dark photography, darker than the over-bright pass) after a full-page desktop review (hero, Security at Every Layer, More Security. More Possibilities, footer). Route `/dev/founder-page-review/esa-website/security`. Implementation is in `EsaWebsiteSecurity.tsx` (cinematic hero + independent layer stills). Do not redesign without Founder. Hero rebuild against `ESA-SECURITY-*-approved.webp` is not required for this freeze. How It Works stays a draft and is not frozen.
 
-### 4.6 Resources — NOT BUILT, NOT SCOPED
+### 4.6 Resources — FOUNDER-APPROVED VISUAL CHECKPOINT (dev preview)
 
-Not named anywhere in the master doc's ESA content plan. Before building anything here, decide what it actually is (documentation hub? case studies? blog? whitepapers?) — this is a scoping gap, not an implementation gap.
+**Purpose:** a marketing hub for insights, guides, customer stories, product/technical material, and news.
+**Checkpoint:** Founder approved and froze the current Resources visual direction after a full-page desktop review. Route `/dev/founder-page-review/esa-website/resources`. Implementation is in `EsaWebsiteResources.tsx` (cinematic approved-hero overlay, Find What You Need icon cards, Featured Resource, Your Resource Advantage). Do not redesign without Founder. Remaining Founder-listed page: About.
 
 ### 4.7 About — NOT BUILT, NOT SCOPED
 

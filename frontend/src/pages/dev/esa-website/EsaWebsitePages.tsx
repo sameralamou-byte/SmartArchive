@@ -19,10 +19,6 @@ function EsaWebsiteStub({ title }: { title: string }) {
   );
 }
 
-export function EsaWebsiteResources() {
-  return <EsaWebsiteStub title="Resources" />;
-}
-
 export function EsaWebsiteAbout() {
   return <EsaWebsiteStub title="About" />;
 }
