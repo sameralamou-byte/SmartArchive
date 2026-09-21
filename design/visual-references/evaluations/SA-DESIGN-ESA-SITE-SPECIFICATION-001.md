@@ -68,11 +68,11 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 | Solutions | **Founder-approved visual checkpoint** (dev preview) | Knowledge Search, Document Intelligence, Workflow Command Center |
 | Industries | **Founder-approved visual checkpoint** (dev preview) | Use Cases (§9): Manufacturing, Government, Healthcare, Education, etc. |
 | How It Works | Built as a draft; **not** a frozen visual | The ESA Core Journey (§8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit |
-| Security | Built as a fallback draft; **not** a frozen visual. Hero rebuild waits on `02-esa/ESA-SECURITY-2026-09-21-v1-approved.webp` | Security + Compliance combined (§8) |
+| Security | **Founder-approved visual checkpoint** (dev preview) | Security + Compliance combined (§8) |
 | Resources | Stub only | Not named in the master doc's ESA content plan at all — genuinely new, needs its own scoping (case studies? docs? blog?) |
 | About | Stub only | Not ESA-specific in the master doc — likely shared company/about content, needs a decision on whether it's ESA-specific or one shared About page for both products |
 
-**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries. Security, How It Works, Resources, and About are not in this freeze.
+**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security. How It Works, Resources, and About are not in this freeze.
 
 **Not in the nav, but named in the master doc's content plan and worth a decision:** Pricing (§9 lists "Enterprise Pricing Sphere"/"Enterprise Pricing Bridge" as concepts). The approved reference image's CTA section says "Contact Sales" / "Request a Demo" rather than showing pricing directly — plausible that ESA is deliberately sales-led rather than self-serve-priced, but that's an assumption, not a confirmed decision. Flagging rather than guessing.
 
@@ -109,11 +109,11 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 **Should cover the ESA Core Journey** (master doc §8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit. Each step should get a real explanation of what happens and why a human is still in control at the review/decision points (§20's attributable-decision rule is the actual content here, not just a background rule).
 **Needs before implementation:** reference imagery per step (or a single system diagram); confirmation this is a scroll-through narrative page (matching the HSA `HowItWorks` pattern's existing shape) versus something more interactive.
 
-### 4.5 Security — BUILT (fallback draft, not frozen)
+### 4.5 Security — FOUNDER-APPROVED VISUAL CHECKPOINT (dev preview)
 
 **Purpose:** the page an enterprise buyer's security/compliance team actually reads before approving a vendor. Highest bar for honesty in the whole site — §43's "no invented certifications, no misleading accuracy claims" is not optional here.
 **Should cover:** Security architecture, Compliance posture, auditability, governance controls (master doc §8's "Compliance" + "Security" content areas, and §43 generally).
-**Needs before implementation:** real content from whoever actually owns SmartArchive's security/compliance posture — this page cannot be written from a reference image alone, unlike Home. Do not draft placeholder security claims; leave it a stub until real content exists.
+**Checkpoint:** Founder approved and froze the current Security visual direction after a full-page desktop review (hero, Security at Every Layer, More Security. More Possibilities, footer). Route `/dev/founder-page-review/esa-website/security`. Implementation is in `EsaWebsiteSecurity.tsx` (cinematic hero + independent layer stills). Do not redesign without Founder. Hero rebuild against `ESA-SECURITY-*-approved.webp` is not required for this freeze.
 
 ### 4.6 Resources — NOT BUILT, NOT SCOPED
 
