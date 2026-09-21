@@ -318,7 +318,8 @@
 
 /* Restrained top scrim so nav stays readable over the photo — not a solid navbar. */
 .hsa-website-preview--how .hsa-website-header,
-.hsa-website-preview--features .hsa-website-header {
+.hsa-website-preview--features .hsa-website-header,
+.hsa-website-preview--life .hsa-website-header {
   background: linear-gradient(
     180deg,
     rgba(8, 13, 40, 0.5) 0%,
@@ -334,7 +335,8 @@
 }
 
 .hsa-how-page__photo,
-.hsa-features-page__photo {
+.hsa-features-page__photo,
+.hsa-life-page__photo {
   display: block;
   width: 100%;
   height: auto;
@@ -349,6 +351,171 @@
   /* Clear the overlay header so Get Started does not cover the baked top-right caption. */
   padding-top: 5.75rem;
   overflow: visible;
+}
+
+.hsa-life-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--hsa-veil);
+  padding-top: 5.75rem;
+  overflow: visible;
+}
+
+.hsa-life-page__stage {
+  position: relative;
+}
+
+.hsa-life-page__copy {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--hsa-ink);
+}
+
+.hsa-life-open,
+.hsa-life-ch__text,
+.hsa-life-close,
+.hsa-life-tag {
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 13, 40, 0.94) 0%,
+    rgba(8, 13, 40, 0.82) 72%,
+    rgba(8, 13, 40, 0) 100%
+  );
+}
+
+.hsa-life-tag {
+  margin: 0;
+  font-family: var(--hsa-font-script);
+  font-size: clamp(1.05rem, 1.45vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(230, 220, 255, 0.9);
+  text-align: right;
+  background: linear-gradient(
+    270deg,
+    rgba(8, 13, 40, 0.94) 0%,
+    rgba(8, 13, 40, 0.78) 70%,
+    rgba(8, 13, 40, 0) 100%
+  );
+}
+
+.hsa-life-open {
+  top: 5.1%;
+  left: 2.1%;
+  width: 36%;
+  padding: 0.35rem 0.85rem 0.55rem 0.15rem;
+}
+
+.hsa-life-open h1,
+.hsa-life-ch h2,
+.hsa-life-close h2 {
+  margin: 0;
+  font-family: var(--hsa-font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.hsa-life-open h1 {
+  font-size: clamp(1.55rem, 2.35vw, 2.15rem);
+}
+
+.hsa-life-open h1::after,
+.hsa-life-ch h2::after,
+.hsa-life-close h2::after {
+  content: "";
+  display: block;
+  width: 4.4rem;
+  height: 0.16rem;
+  margin-top: 0.42rem;
+  border-radius: 99px;
+  background: var(--hsa-gradient);
+}
+
+.hsa-life-open p,
+.hsa-life-ch__body,
+.hsa-life-close p {
+  margin: 0.55rem 0 0;
+  max-width: 28rem;
+  font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+  line-height: 1.45;
+  color: rgba(230, 226, 244, 0.86);
+}
+
+.hsa-life-tag--open {
+  top: 6.2%;
+  right: 2.2%;
+  width: 20%;
+  padding: 0.25rem 0.1rem 0.35rem 0.7rem;
+}
+
+.hsa-life-ch__text {
+  left: 2.1%;
+  width: 32.5%;
+  padding: 0.2rem 0.7rem 0.4rem 0.12rem;
+}
+
+.hsa-life-ch h2 {
+  font-size: clamp(1.15rem, 1.7vw, 1.55rem);
+}
+
+.hsa-life-ch__headline {
+  margin: 0.4rem 0 0;
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgba(246, 243, 251, 0.94);
+}
+
+.hsa-life-ch .hsa-life-tag {
+  right: 2.1%;
+  width: 18.5%;
+  padding: 0.2rem 0.08rem 0.3rem 0.65rem;
+}
+
+.hsa-life-ch--home-family .hsa-life-ch__text { top: 13.6%; }
+.hsa-life-ch--home-family .hsa-life-tag { top: 16.4%; }
+.hsa-life-ch--freelancers .hsa-life-ch__text { top: 24.3%; }
+.hsa-life-ch--freelancers .hsa-life-tag { top: 26.6%; }
+.hsa-life-ch--small-business .hsa-life-ch__text { top: 34.7%; }
+.hsa-life-ch--small-business .hsa-life-tag { top: 37%; }
+.hsa-life-ch--workshops .hsa-life-ch__text { top: 45.1%; }
+.hsa-life-ch--workshops .hsa-life-tag { top: 47.4%; }
+.hsa-life-ch--schools .hsa-life-ch__text { top: 55.9%; }
+.hsa-life-ch--schools .hsa-life-tag { top: 58.6%; }
+.hsa-life-ch--clubs .hsa-life-ch__text { top: 67%; }
+.hsa-life-ch--clubs .hsa-life-tag { top: 69.2%; }
+
+.hsa-life-close {
+  top: 79.6%;
+  left: 22%;
+  width: 56%;
+  padding: 0.45rem 1rem 0.6rem;
+  text-align: center;
+  background: radial-gradient(ellipse at center, rgba(8, 13, 40, 0.92) 0%, rgba(8, 13, 40, 0.7) 70%, rgba(8, 13, 40, 0) 100%);
+}
+
+.hsa-life-close h2 {
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+}
+
+.hsa-life-close h2::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hsa-life-close p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hsa-life-tag--close {
+  top: 83.6%;
+  right: 1.8%;
+  width: 19%;
+  padding: 0.45rem 0.15rem 0.55rem 0.75rem;
 }
 
 .hsa-stub {

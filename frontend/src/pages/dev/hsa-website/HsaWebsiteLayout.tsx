@@ -9,13 +9,14 @@ function isHsaOverlayPage(pathname: string) {
   return (
     pathname === HSA_WEBSITE_BASE ||
     pathname === `${HSA_WEBSITE_BASE}/` ||
-    /\/hsa-website\/(how-it-works|features)\/?$/.test(pathname)
+    /\/hsa-website\/(how-it-works|features|life)\/?$/.test(pathname)
   );
 }
 
 function overlaySceneClass(pathname: string) {
   if (/\/hsa-website\/how-it-works\/?$/.test(pathname)) return "hsa-website-preview hsa-website-preview--how";
   if (/\/hsa-website\/features\/?$/.test(pathname)) return "hsa-website-preview hsa-website-preview--features";
+  if (/\/hsa-website\/life\/?$/.test(pathname)) return "hsa-website-preview hsa-website-preview--life";
   return "hsa-website-preview";
 }
 

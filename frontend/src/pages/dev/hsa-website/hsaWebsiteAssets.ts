@@ -20,6 +20,11 @@ export const HSA_FEATURES_ASSETS = {
   scene: "/assets/hsa/hsa_features.webp?v=4",
 } as const;
 
+/** Life backdrop only — chapter copy is real HTML, not pixels. */
+export const HSA_LIFE_ASSETS = {
+  scene: "/assets/hsa/hsa_life.webp?v=3",
+} as const;
+
 export const HSA_NAV = [
   { to: HSA_WEBSITE_BASE, label: "Home", end: true },
   { to: `${HSA_WEBSITE_BASE}/how-it-works`, label: "How It Works", end: false },

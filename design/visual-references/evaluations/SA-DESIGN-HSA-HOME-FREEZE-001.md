@@ -11,7 +11,7 @@
 
 Founder approved and froze the current HSA Home marketing preview as the approved visual direction. Do not redesign, regenerate the approved hero, or change Home copy/layout without Founder.
 
-This freeze is **HSA Home only**. How It Works and Features are now frozen separately (`SA-DESIGN-HSA-HOW-IT-WORKS-FREEZE-001`, `SA-DESIGN-HSA-FEATURES-FREEZE-001`). It does not freeze unbuilt HSA marketing pages (Life (Use Cases), Privacy & Control, Pricing, About — stubs only). It does not reopen `SA-DESIGN-HSA08-FREEZE-001` (in-product Weave language) and does not touch ESA.
+This freeze is **HSA Home only**. How It Works, Features, and Life are now frozen separately (`SA-DESIGN-HSA-HOW-IT-WORKS-FREEZE-001`, `SA-DESIGN-HSA-FEATURES-FREEZE-001`, `SA-DESIGN-HSA-LIFE-FREEZE-001`). It does not freeze unbuilt HSA marketing pages (Privacy & Control, Pricing, About — stubs only). It does not reopen `SA-DESIGN-HSA08-FREEZE-001` (in-product Weave language) and does not touch ESA.
 
 ## 2. Checkpoint
 
@@ -28,7 +28,7 @@ Founder-accepted Home body (through footer): mosaic “One SmartArchive. Many Pa
 **Protected approved visual directions (do not redesign without Founder):**
 
 - **ESA:** Home, Solutions, Industries, Security, Resources, About. ESA How It Works is not in this freeze.
-- **HSA:** Home, How It Works, Features. Unbuilt HSA marketing pages are not frozen.
+- **HSA:** Home, How It Works, Features, Life (Use Cases). Unbuilt HSA marketing pages are not frozen.
 
 ## 4. Governance
 

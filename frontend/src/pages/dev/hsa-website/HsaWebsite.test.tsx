@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import AppRoutes from "../../../routes/AppRoutes";
 import { render, screen, within } from "../../../test/test-utils";
-import { HSA_FEATURES_ASSETS, HSA_HOME_ASSETS, HSA_HOW_IT_WORKS_ASSETS } from "./hsaWebsiteAssets";
+import { HSA_FEATURES_ASSETS, HSA_HOME_ASSETS, HSA_HOW_IT_WORKS_ASSETS, HSA_LIFE_ASSETS } from "./hsaWebsiteAssets";
 
 function renderSite(path: string) {
   return render(
@@ -95,9 +95,33 @@ describe("HSA Home marketing preview (development only)", () => {
     expect(screen.queryByRole("heading", { name: "Features" })).not.toBeInTheDocument();
   });
 
-  it("stubs unspecified marketing pages without inventing content", () => {
+  it("renders Life as one continuous backdrop with HTML chapter copy", () => {
     renderSite("/dev/founder-page-review/hsa-website/life");
-    expect(screen.getByRole("heading", { name: "Life (Use Cases)" })).toBeInTheDocument();
+    const nav = screen.getByRole("navigation", { name: "Human SmartArchive" });
+    expect(within(nav).getByRole("link", { name: "Life (Use Cases)" })).toHaveAttribute("aria-current", "page");
+    expect(within(nav).getByRole("link", { name: "Life (Use Cases)" })).toHaveAttribute(
+      "href",
+      "/dev/founder-page-review/hsa-website/life",
+    );
+    expect(screen.getByRole("img", { name: /continuous Life journey/i })).toHaveAttribute(
+      "src",
+      HSA_LIFE_ASSETS.scene,
+    );
+    expect(screen.getByRole("heading", { name: /Different lives/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Home & Family" })).toBeInTheDocument();
+    expect(screen.getByText("Tools, people, projects — and paperwork.")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Supplies, equipment records, inspection documents, supplier paperwork and job records — HSA helps keep your operation organized and on track.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Clubs & Small Organizations" })).toBeInTheDocument();
+    expect(screen.queryByText("This page is not specified yet.")).not.toBeInTheDocument();
+  });
+
+  it("stubs unspecified marketing pages without inventing content", () => {
+    renderSite("/dev/founder-page-review/hsa-website/privacy-and-control");
+    expect(screen.getByRole("heading", { name: "Privacy & Control" })).toBeInTheDocument();
     expect(screen.getByText("This page is not specified yet.")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Human SmartArchive" })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "HSA footer" })).toBeInTheDocument();

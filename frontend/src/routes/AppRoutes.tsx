@@ -15,9 +15,9 @@ import HsaWebsiteLayout from "../pages/dev/hsa-website/HsaWebsiteLayout";
 import HsaWebsiteHome from "../pages/dev/hsa-website/HsaWebsiteHome";
 import HsaWebsiteHowItWorks from "../pages/dev/hsa-website/HsaWebsiteHowItWorks";
 import HsaWebsiteFeatures from "../pages/dev/hsa-website/HsaWebsiteFeatures";
+import HsaWebsiteLife from "../pages/dev/hsa-website/HsaWebsiteLife";
 import {
   HsaWebsiteAbout,
-  HsaWebsiteLife,
   HsaWebsitePricing,
   HsaWebsitePrivacyAndControl,
 } from "../pages/dev/hsa-website/HsaWebsitePages";

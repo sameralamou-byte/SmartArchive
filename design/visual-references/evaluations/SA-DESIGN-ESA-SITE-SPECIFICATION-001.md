@@ -72,7 +72,7 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 | Resources | **Founder-approved visual checkpoint** (dev preview) | Not named in the master doc's ESA content plan at all — now Founder-approved as a marketing Resources page |
 | About | **Founder-approved visual checkpoint** (dev preview) | ESA-specific About page (Our Story, Mission & Values, People, Trust, close CTA) |
 
-**Protected approved visual directions (do not redesign without Founder):** ESA Home, Solutions, Industries, Security, Resources, About; **HSA Home, How It Works, Features**. ESA How It Works is not in this freeze. Unbuilt HSA marketing pages are not frozen.
+**Protected approved visual directions (do not redesign without Founder):** ESA Home, Solutions, Industries, Security, Resources, About; **HSA Home, How It Works, Features, Life (Use Cases)**. ESA How It Works is not in this freeze. Unbuilt HSA marketing pages are not frozen.
 
 **Not in the nav, but named in the master doc's content plan and worth a decision:** Pricing (§9 lists "Enterprise Pricing Sphere"/"Enterprise Pricing Bridge" as concepts). The approved reference image's CTA section says "Contact Sales" / "Request a Demo" rather than showing pricing directly — plausible that ESA is deliberately sales-led rather than self-serve-priced, but that's an assumption, not a confirmed decision. Flagging rather than guessing.
 
