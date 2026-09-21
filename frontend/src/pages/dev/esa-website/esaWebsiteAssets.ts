@@ -79,6 +79,12 @@ export const ESA_RESOURCES_ASSETS = {
   featured: "/assets/esa/esa_resources_featured.webp?v=1",
 } as const;
 
+export const ESA_ABOUT_ASSETS = {
+  hero: "/assets/esa/esa_about_hero.webp?v=3",
+  team: "/assets/esa/esa_about_team.webp?v=2",
+  wave: "/assets/esa/esa_about_wave.svg?v=1",
+} as const;
+
 /** Layer stills are independent ESA-family images — not crops of a mockup. */
 export const ESA_SECURITY_LAYERS = [
   {

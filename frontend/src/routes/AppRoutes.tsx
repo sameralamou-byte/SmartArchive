@@ -27,7 +27,7 @@ import EsaWebsiteSolutions from "../pages/dev/esa-website/EsaWebsiteSolutions";
 import EsaWebsiteIndustries from "../pages/dev/esa-website/EsaWebsiteIndustries";
 import EsaWebsiteSecurity from "../pages/dev/esa-website/EsaWebsiteSecurity";
 import EsaWebsiteResources from "../pages/dev/esa-website/EsaWebsiteResources";
-import { EsaWebsiteAbout } from "../pages/dev/esa-website/EsaWebsitePages";
+import EsaWebsiteAbout from "../pages/dev/esa-website/EsaWebsiteAbout";
 import DocumentUnderstanding from "../pages/DocumentUnderstanding";
 import EnterpriseCommandCenter from "../pages/EnterpriseCommandCenter";
 import HomeDashboard from "../pages/HomeDashboard";

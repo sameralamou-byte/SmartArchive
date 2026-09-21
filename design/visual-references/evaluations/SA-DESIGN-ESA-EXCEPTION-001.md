@@ -48,4 +48,4 @@ A second reference image for the "A Smarter Tomorrow for a Bigger World" confere
 
 This exception is scoped to ESA visual/marketing imagery only. It does not reopen HSA's frozen direction, does not authorize a new company-wide palette, and does not change the master doc's non-visual rules (confidence, source/grounding, honesty, accessibility) for either product. Any future person or agent who wants to extend this exception further should get that from the Founder directly rather than assuming precedent from this document.
 
-**Protected approved visual directions (Founder; do not redesign without Founder):** ESA Home, Solutions, Industries, Security, Resources. How It Works and About are not in this freeze. Remaining Founder-listed page: About.
+**Protected approved visual directions (Founder; do not redesign without Founder):** ESA Home, Solutions, Industries, Security, Resources, About. How It Works is not in this freeze.

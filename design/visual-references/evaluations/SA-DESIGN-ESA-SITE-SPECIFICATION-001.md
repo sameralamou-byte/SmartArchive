@@ -70,9 +70,9 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 | How It Works | Built as a draft; **not** a frozen visual | The ESA Core Journey (§8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit |
 | Security | **Founder-approved visual checkpoint** (dev preview) | Security + Compliance combined (§8) |
 | Resources | **Founder-approved visual checkpoint** (dev preview) | Not named in the master doc's ESA content plan at all — now Founder-approved as a marketing Resources page |
-| About | Stub only | Not ESA-specific in the master doc — likely shared company/about content, needs a decision on whether it's ESA-specific or one shared About page for both products |
+| About | **Founder-approved visual checkpoint** (dev preview) | ESA-specific About page (Our Story, Mission & Values, People, Trust, close CTA) |
 
-**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security, Resources. How It Works and About are not in this freeze. Remaining Founder-listed page: About.
+**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security, Resources, About. How It Works is not in this freeze.
 
 **Not in the nav, but named in the master doc's content plan and worth a decision:** Pricing (§9 lists "Enterprise Pricing Sphere"/"Enterprise Pricing Bridge" as concepts). The approved reference image's CTA section says "Contact Sales" / "Request a Demo" rather than showing pricing directly — plausible that ESA is deliberately sales-led rather than self-serve-priced, but that's an assumption, not a confirmed decision. Flagging rather than guessing.
 
@@ -118,11 +118,12 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 ### 4.6 Resources — FOUNDER-APPROVED VISUAL CHECKPOINT (dev preview)
 
 **Purpose:** a marketing hub for insights, guides, customer stories, product/technical material, and news.
-**Checkpoint:** Founder approved and froze the current Resources visual direction after a full-page desktop review. Route `/dev/founder-page-review/esa-website/resources`. Implementation is in `EsaWebsiteResources.tsx` (cinematic approved-hero overlay, Find What You Need icon cards, Featured Resource, Your Resource Advantage). Do not redesign without Founder. Remaining Founder-listed page: About.
+**Checkpoint:** Founder approved and froze the current Resources visual direction after a full-page desktop review. Route `/dev/founder-page-review/esa-website/resources`. Implementation is in `EsaWebsiteResources.tsx` (cinematic approved-hero overlay, Find What You Need icon cards, Featured Resource, Your Resource Advantage). Do not redesign without Founder.
 
-### 4.7 About — NOT BUILT, NOT SCOPED
+### 4.7 About — FOUNDER-APPROVED VISUAL CHECKPOINT (dev preview)
 
-Not ESA-specific in the master doc. Decide whether this is one shared company About page (linked from both HSA and ESA nav) or an ESA-specific one before building it twice by accident.
+**Purpose:** company/mission page for ESA — who we are, what we believe, how people work, trust, and a close CTA.
+**Checkpoint:** Founder approved and froze the current About visual direction after a full-page desktop review. Route `/dev/founder-page-review/esa-website/about`. Implementation is in `EsaWebsiteAbout.tsx` (cinematic approved-hero overlay, Our Story, Mission & Values, People, Trust, close CTA). Do not redesign without Founder. How It Works stays a draft and is not frozen.
 
 ---
 
@@ -144,5 +145,5 @@ Any material change to the ESA exception itself (Section 2.2, or reopening the h
 2. **Earth/closing-section final image** — told to keep unchanged from the original 3-image set the Founder shared, but that exact file was never separately saved/confirmed either. Also a placeholder in the current build.
 3. **Pricing page/section presence** — the master doc's content plan names it; the approved reference's CTA section doesn't show it directly. Needs a Founder decision, not an assumption.
 4. **Industries list** — which verticals actually matter is a go-to-market decision, not a design one.
-5. **Resources and About scope** — genuinely unscoped, see §4.6–4.7.
+5. **About scope** — resolved: ESA-specific About page is Founder-approved and frozen (see §4.7).
 6. **Pre-existing, unrelated frontend build blocker:** `bg-surface-page` Tailwind class fails to resolve in `src/index.css`, reproduced on both the existing HSA page and the new ESA page after a full Vite cache clear/restart — blocks visual QA of the *entire* frontend right now, not ESA-specific. Needs its own fix before any ESA page (or HSA page) can be checked in a real browser.
