@@ -1,27 +1,21 @@
-export const HSA_WEBSITE_BASE = "/dev/founder-page-review/website";
+export const HSA_WEBSITE_BASE = "/dev/founder-page-review/hsa-website";
 
-export const HSA_PAGE1_ASSETS = {
-  hero: "/assets/page1/page1_hero_human_document.png",
-  forYourLife: "/assets/page1/page1_for_your_life_document_ecosystem.png",
-  understand: "/assets/page1/page1_understand_hands_document.png",
-  remember: "/assets/page1/page1_remember_phone_deadline.png",
-  automate: "/assets/page1/page1_automate_invoice_workflow.png",
-  connect: "/assets/page1/page1_connect_weave.png",
-} as const;
-
-// Approved 2026-09-20, SA-DESIGN-HSA-SECURITY-REF-001 -- first real
-// reference this page has ever had (previously zero photography existed).
-export const HSA_SECURITY_ASSETS = {
-  hero: "/assets/hsa-security/hsa_security_hero.webp",
+/** Production scene — baked header/left copy cropped out. Family, five cards, books, wall note stay in the artwork. */
+export const HSA_HOME_ASSETS = {
+  hero: "/assets/hsa/hsa_home_hero.webp?v=3",
+  mosaic: "/assets/hsa/hsa_life_mosaic.webp?v=1",
+  understand: "/assets/hsa/hsa_home_understand.webp?v=1",
+  documents: "/assets/hsa/hsa_home_documents.webp?v=2",
+  attention: "/assets/hsa/hsa_home_attention.webp?v=1",
+  privacy: "/assets/hsa/hsa_home_privacy.webp?v=1",
 } as const;
 
 export const HSA_NAV = [
   { to: HSA_WEBSITE_BASE, label: "Home", end: true },
-  { to: `${HSA_WEBSITE_BASE}/how-it-works`, label: "How it works", end: false },
-  { to: `${HSA_WEBSITE_BASE}/security`, label: "Security & Privacy", end: false },
-  { to: `${HSA_WEBSITE_BASE}/for-home`, label: "For Home", end: false },
-  { to: `${HSA_WEBSITE_BASE}/for-business`, label: "For Business", end: false },
-  { to: `${HSA_WEBSITE_BASE}/about`, label: "About us", end: false },
+  { to: `${HSA_WEBSITE_BASE}/how-it-works`, label: "How It Works", end: false },
+  { to: `${HSA_WEBSITE_BASE}/features`, label: "Features", end: false },
+  { to: `${HSA_WEBSITE_BASE}/life`, label: "Life (Use Cases)", end: false },
+  { to: `${HSA_WEBSITE_BASE}/privacy-and-control`, label: "Privacy & Control", end: false },
+  { to: `${HSA_WEBSITE_BASE}/pricing`, label: "Pricing", end: false },
+  { to: `${HSA_WEBSITE_BASE}/about`, label: "About", end: false },
 ] as const;
-
-export const DEMO_LABEL = "Illustrative example · Demo data";

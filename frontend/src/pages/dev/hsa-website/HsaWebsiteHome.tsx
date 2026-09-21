@@ -1,195 +1,240 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { Button, Icon } from "../../../components";
-import { DEMO_LABEL, HSA_PAGE1_ASSETS, HSA_WEBSITE_BASE } from "./hsaWebsiteAssets";
+import { HSA_HOME_ASSETS, HSA_WEBSITE_BASE } from "./hsaWebsiteAssets";
 
-function PhotoPlaceholder({ title, intended }: { title: string; intended: string }) {
-  return (
-    <div className="flex min-h-[240px] flex-col justify-center rounded-lg border-2 border-dashed border-accent-2/70 bg-accent-2-tint/40 px-5 py-6">
-      <p className="text-overline font-bold uppercase tracking-wide text-accent-2">Photography placeholder</p>
-      <p className="mt-2 font-display text-heading-2 font-bold text-[color:var(--esa-surface)]">{title}</p>
-      <p className="mt-2 max-w-xl text-body-m text-text-secondary">{intended}</p>
-      <p className="mt-3 text-caption text-text-muted">No approved standalone photograph for this slot yet. No image was generated.</p>
-    </div>
-  );
-}
+const TRUST = [
+  {
+    label: "Your data stays yours",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <rect x="6" y="11" width="12" height="10" rx="2" />
+        <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+      </svg>
+    ),
+  },
+  {
+    label: "Built for real life",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <circle cx="9" cy="8" r="2.6" />
+        <path d="M4 19c.3-2.8 2.4-4.6 5-4.6s4.7 1.8 5 4.6" />
+        <circle cx="16.5" cy="9.2" r="2.1" />
+        <path d="M14.8 19c.3-2 1.7-3.4 3.7-3.6" />
+      </svg>
+    ),
+  },
+  {
+    label: "Private. Secure. Trusted.",
+    icon: (
+      <svg viewBox="0 0 24 24" aria-hidden>
+        <path d="M12 3c4 1.5 7 1.5 7 1.5v6.5c0 5-3 8-7 9.5-4-1.5-7-4.5-7-9.5V4.5S8 4.5 12 3Z" />
+      </svg>
+    ),
+  },
+] as const;
+
+const WORLD_PARTS = [
+  "Home & Family",
+  "Freelancers",
+  "Small Businesses & Shops",
+  "Workshops & Trades",
+  "Schools & Education",
+  "Clubs & Small Organizations",
+] as const;
+
+const HOW_STEPS = ["Capture", "Understand", "Organize", "Connect", "Remind", "Act"] as const;
+
+const PAPER_TYPES = [
+  "Letters",
+  "Bills",
+  "Bank papers",
+  "Insurance",
+  "School papers",
+  "Residence",
+  "Licences",
+  "Reminders",
+] as const;
 
 export default function HsaWebsiteHome() {
-  const navigate = useNavigate();
-
   return (
     <main>
-      <section className="relative overflow-hidden bg-[color:var(--surface-card)]">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 lg:grid-cols-[minmax(17rem,0.42fr)_minmax(0,1fr)]">
-          <div className="flex flex-col justify-center px-4 py-10 sm:px-6 lg:py-16">
-            <p className="text-overline font-bold uppercase tracking-[0.14em] text-accent-2">For your life</p>
-            <h1 className="mt-3 font-display text-display-xl font-bold leading-[1.05] text-[color:var(--esa-surface)]">
-              Your life.
-              <br />
-              <span className="text-accent-2">Organized.</span>
-            </h1>
-            <p className="mt-4 max-w-sm text-body-l text-text-secondary">
-              Documents that belong to a real situation — understood, remembered, and kept in context.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button type="button" variant="primary" onClick={() => navigate("/register")}>
-                Start for free
-              </Button>
-              <Button type="button" variant="secondary" onClick={() => navigate(`${HSA_WEBSITE_BASE}/how-it-works`)}>
-                How it works
-              </Button>
+      <section className="hsa-home-hero" aria-label="Human SmartArchive">
+        <div className="hsa-home-hero__stage">
+          <img
+            className="hsa-home-hero__photo"
+            src={HSA_HOME_ASSETS.hero}
+            alt="A family at a kitchen table reviewing papers together. Translucent Home, Family, Finances, Health, and Memories cards, a stack of labeled books, and a handwritten Good People Brighter Days note stay in the artwork."
+          />
+          <div className="hsa-home-hero__veil" aria-hidden />
+          <div className="hsa-home-hero__content">
+            <div className="hsa-home-hero__copy">
+              <p className="hsa-home-hero__eyebrow">Your world, organized</p>
+              <h1 className="hsa-home-hero__title">
+                Everything That Matters.
+                <br />
+                <span className="hsa-home-hero__accent">Finally in One Place.</span>
+              </h1>
+              <p className="hsa-home-hero__body">
+                HSA brings together the documents and information behind your life and work — and helps you stay ahead of
+                what needs your attention.
+              </p>
+              <div className="hsa-home-hero__actions">
+                <Link className="hsa-btn hsa-btn--primary" to="/register">
+                  Get Started →
+                </Link>
+                <Link className="hsa-btn hsa-btn--ghost" to={`${HSA_WEBSITE_BASE}/how-it-works`}>
+                  See How It Works
+                </Link>
+              </div>
+              <ul className="hsa-home-hero__trust">
+                {TRUST.map((item) => (
+                  <li key={item.label}>
+                    {item.icon}
+                    {item.label}
+                  </li>
+                ))}
+              </ul>
+              <p className="hsa-home-hero__aside">
+                Less paperwork.
+                <br />
+                More life.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[520px]">
-            <img
-              src={HSA_PAGE1_ASSETS.hero}
-              alt="A person reading an important document at a desk"
-              className="h-full w-full object-cover"
-              style={{ objectPosition: "center 28%" }}
-            />
-            <aside className="absolute bottom-4 right-3 z-10 w-64 max-w-[88%] rounded-lg border border-accent-2/80 bg-[color:var(--esa-midnight)]/92 p-3 text-[color:var(--esa-text)] shadow-3 sm:bottom-6 sm:right-5">
-              <p className="flex items-center gap-2 text-overline font-bold uppercase tracking-wide text-accent-2">
-                <Icon name="spark" size={16} className="text-accent-2" />
-                SmartArchive
-              </p>
-              <ul className="mt-2 space-y-1.5 text-caption">
-                <li>Understood</li>
-                <li>Deadline detected</li>
-                <li>Action suggested</li>
-              </ul>
-              <p className="mt-3 border-t border-white/15 pt-2 text-overline text-[color:var(--esa-text-muted)]">{DEMO_LABEL}</p>
-            </aside>
+      <section className="hsa-band hsa-world" aria-labelledby="hsa-world-heading">
+        <div className="hsa-band__intro">
+          <p className="hsa-kicker">Who HSA is for</p>
+          <h2 id="hsa-world-heading" className="hsa-heading">
+            One SmartArchive. <span className="hsa-home-hero__accent">Many Parts of Your World.</span>
+          </h2>
+          <p className="hsa-lead">
+            For everyday life and small work, including home and family.
+          </p>
+        </div>
+        <figure className="hsa-world__frame">
+          <img
+            className="hsa-world__photo"
+            src={HSA_HOME_ASSETS.mosaic}
+            alt="A continuous scene across home and family, freelance work, a small shop, a workshop, a classroom, and a community gathering, connected by a quiet thread of light."
+          />
+          <ol className="hsa-world__labels">
+            {WORLD_PARTS.map((part) => (
+              <li key={part}>{part}</li>
+            ))}
+          </ol>
+        </figure>
+      </section>
+
+      <section className="hsa-band hsa-how" aria-labelledby="hsa-how-heading">
+        <div className="hsa-split">
+          <img
+            className="hsa-split__photo"
+            src={HSA_HOME_ASSETS.understand}
+            alt="A person reading an important letter at a warm home table."
+          />
+          <div className="hsa-split__copy">
+            <p className="hsa-kicker">How HSA works</p>
+            <h2 id="hsa-how-heading" className="hsa-heading">
+              A real document. Then you decide.
+            </h2>
+            <p className="hsa-lead">
+              Documents that belong to a real situation — understood, remembered, and kept in context.
+            </p>
+            <ol className="hsa-steps">
+              {HOW_STEPS.map((step, index) => (
+                <li key={step}>
+                  <span className="hsa-steps__n">{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{step}</strong>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
-      <section id="for-your-life" className="scroll-mt-24 border-t border-border bg-[color:var(--surface-page)] py-14">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="text-overline font-bold uppercase tracking-wide text-accent-2">For your life</p>
-          <h2 className="mt-2 max-w-2xl font-display text-heading-1 font-bold text-[color:var(--esa-surface)]">
-            The papers that show up in life — and in small work.
+      <section className="hsa-band hsa-papers" aria-labelledby="hsa-papers-heading">
+        <div className="hsa-band__intro">
+          <p className="hsa-kicker">What HSA understands</p>
+          <h2 id="hsa-papers-heading" className="hsa-heading">
+            The papers behind your life and work.
           </h2>
-          <p className="mt-3 max-w-2xl text-body-l text-text-secondary">
-            Letters, bills, bank papers, insurance, school administration, residence, licences, reminders. Household is
-            one of the situations. It is not the whole product.
-          </p>
-          <figure className="mt-8 overflow-hidden rounded-lg border border-border bg-[color:var(--surface-card)] shadow-2">
-            <img
-              src={HSA_PAGE1_ASSETS.forYourLife}
-              alt="Document types from letters and bills to school papers, licences, and reminders"
-              className="h-auto w-full"
-            />
-          </figure>
+          <p className="hsa-lead">Kept with the situation they belong to — not a pile, and not a dashboard.</p>
         </div>
-      </section>
-
-      <section id="understand" className="scroll-mt-24 bg-[color:var(--surface-card)] py-10 sm:py-12">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Link to={`${HSA_WEBSITE_BASE}/how-it-works`} className="block no-underline">
-            <img
-              src={HSA_PAGE1_ASSETS.understand}
-              alt="Understand: hands holding a letter. We explain what it means in plain language."
-              className="h-auto w-full rounded-lg"
-            />
-          </Link>
-        </div>
-      </section>
-
-      <section id="remember" className="scroll-mt-24 bg-[color:var(--surface-page)] py-10 sm:py-12">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Link to={`${HSA_WEBSITE_BASE}/how-it-works`} className="block no-underline">
-            <img
-              src={HSA_PAGE1_ASSETS.remember}
-              alt="Remember: a phone reminder for an electricity bill deadline."
-              className="h-auto w-full rounded-lg"
-            />
-          </Link>
-        </div>
-      </section>
-
-      <section id="automate" className="scroll-mt-24 bg-[color:var(--surface-card)] py-10 sm:py-12">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="mb-5 max-w-2xl text-body-m text-text-secondary">
-            Small offices, freelancers, and independent work stay in Home. Classify, extract, organize, archive — without
-            enterprise departments or ERP.
-          </p>
-          <Link to={`${HSA_WEBSITE_BASE}/how-it-works`} className="block no-underline">
-            <img
-              src={HSA_PAGE1_ASSETS.automate}
-              alt="Automate: a laptop workflow classifying, extracting, organizing, and archiving a document."
-              className="h-auto w-full rounded-lg"
-            />
-          </Link>
-        </div>
-      </section>
-
-      <section id="connect" data-header-theme="dark" className="scroll-mt-24 bg-[color:var(--esa-midnight)] py-10 sm:py-12">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Link to={`${HSA_WEBSITE_BASE}/how-it-works`} className="block no-underline">
-            <img
-              src={HSA_PAGE1_ASSETS.connect}
-              alt="Connect: Weave shows how your documents relate."
-              className="h-auto w-full rounded-lg"
-            />
-          </Link>
-          <p className="mt-4 text-caption text-[color:var(--esa-text-muted)]">
-            Related documents · source in view · {DEMO_LABEL}
-          </p>
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-[color:var(--surface-page)] py-14">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="text-overline font-bold uppercase tracking-wide text-accent-2">Who it is for</p>
-          <h2 className="mt-2 font-display text-heading-1 font-bold text-[color:var(--esa-surface)]">
-            Home is personal life, household, and small work.
-          </h2>
-          <p className="mt-3 max-w-2xl text-body-l text-text-secondary">
-            SmartArchive Home is not only a family product. Family is one use case.
-          </p>
-          <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              "Individuals / personal life",
-              "Households and families",
-              "Small personal projects",
-              "Freelancers",
-              "Small / simple offices",
-              "Local stores and markets",
-              "Workshops",
-              "Simple school administration",
-            ].map((item) => (
-              <li key={item} className="rounded-lg border border-border bg-[color:var(--surface-card)] px-4 py-3 text-body-m">
-                {item}
-              </li>
+        <figure className="hsa-papers__frame">
+          <img
+            className="hsa-papers__photo"
+            src={HSA_HOME_ASSETS.documents}
+            alt="Everyday documents on a wooden table: letters, bills, insurance, bank papers, and reminders."
+          />
+          <ul className="hsa-papers__types">
+            {PAPER_TYPES.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
+        </figure>
+      </section>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <figure className="overflow-hidden rounded-lg border border-border bg-[color:var(--surface-card)]">
-              <img
-                src={HSA_PAGE1_ASSETS.automate}
-                alt="Approved Automate still used here as small-office / independent work"
-                className="h-56 w-full object-cover object-left"
-              />
-              <figcaption className="px-4 py-3 text-caption text-text-muted">
-                Approved Automate still — small office and independent work, not enterprise.
-              </figcaption>
-            </figure>
-            <PhotoPlaceholder
-              title="Local store or workshop"
-              intended="Intended photograph: a local shop or workshop desk with supplier invoices, receipts, and warranties in a warm, real working environment. SmartArchive intelligence stays secondary — a quiet overlay such as deadline detected or related documents. Not a family scene. Not ESA departments."
-            />
+      <section className="hsa-band hsa-attention" aria-labelledby="hsa-attention-heading">
+        <div className="hsa-split hsa-split--reverse">
+          <img
+            className="hsa-split__photo"
+            src={HSA_HOME_ASSETS.attention}
+            alt="A household bill beside a phone reminder in a warm kitchen."
+          />
+          <div className="hsa-split__copy">
+            <p className="hsa-kicker">Attention</p>
+            <h2 id="hsa-attention-heading" className="hsa-heading">
+              Stay ahead of what needs you.
+            </h2>
+            <p className="hsa-lead">
+              HSA helps you remember deadlines and the next useful step — quietly, beside the original document. You
+              still decide.
+            </p>
           </div>
+        </div>
+      </section>
 
-          <p className="mt-8 max-w-2xl text-body-m text-text-secondary">
-            When the work needs departments, enterprise teams, complex permissions, ERP or CRM, or organizational
-            governance, that belongs to{" "}
-            <Link className="font-bold text-accent" to={`${HSA_WEBSITE_BASE}/for-business`}>
-              For Business
-            </Link>
-            .
-          </p>
+      <section className="hsa-band hsa-privacy" aria-labelledby="hsa-privacy-heading">
+        <div className="hsa-split">
+          <img
+            className="hsa-split__photo"
+            src={HSA_HOME_ASSETS.privacy}
+            alt="A person at home keeping a personal folder of documents private."
+          />
+          <div className="hsa-split__copy">
+            <p className="hsa-kicker">Privacy &amp; control</p>
+            <h2 id="hsa-privacy-heading" className="hsa-heading">
+              Your information stays yours.
+            </h2>
+            <p className="hsa-lead">You decide what to store, what to share, and what to keep private.</p>
+            <ul className="hsa-privacy__points">
+              <li>Protected</li>
+              <li>Under your control</li>
+              <li>Access only by you</li>
+            </ul>
+            <p className="hsa-caption">
+              These describe intent, not a specific technical mechanism or certification.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="hsa-cta" aria-labelledby="hsa-cta-heading">
+        <p className="hsa-kicker">Get started</p>
+        <h2 id="hsa-cta-heading" className="hsa-heading">
+          Everything that matters. <span className="hsa-home-hero__accent">Finally in one place.</span>
+        </h2>
+        <p className="hsa-lead">Bring the documents behind your life and work together — and stay ahead of what needs your attention.</p>
+        <div className="hsa-home-hero__actions">
+          <Link className="hsa-btn hsa-btn--primary" to="/register">
+            Get Started →
+          </Link>
+          <Link className="hsa-btn hsa-btn--ghost" to={`${HSA_WEBSITE_BASE}/how-it-works`}>
+            See How It Works
+          </Link>
         </div>
       </section>
     </main>

@@ -15,10 +15,11 @@ import HsaWebsiteLayout from "../pages/dev/hsa-website/HsaWebsiteLayout";
 import HsaWebsiteHome from "../pages/dev/hsa-website/HsaWebsiteHome";
 import {
   HsaWebsiteAbout,
-  HsaWebsiteForBusiness,
-  HsaWebsiteForHome,
+  HsaWebsiteFeatures,
   HsaWebsiteHowItWorks,
-  HsaWebsiteSecurity,
+  HsaWebsiteLife,
+  HsaWebsitePricing,
+  HsaWebsitePrivacyAndControl,
 } from "../pages/dev/hsa-website/HsaWebsitePages";
 import EsaWebsiteLayout from "../pages/dev/esa-website/EsaWebsiteLayout";
 import EsaWebsiteHome from "../pages/dev/esa-website/EsaWebsiteHome";
@@ -62,12 +63,21 @@ export default function AppRoutes() {
       <Route path="/dev/home-dashboard" element={<HomeDashboard />} />
       <Route path="/dev/enterprise-command-center" element={<EnterpriseCommandCenter />} />
       <Route path="/dev/hsa-understanding" element={<DocumentUnderstanding />} />
-      <Route path="/dev/founder-page-review/website" element={<HsaWebsiteLayout />}>
+      <Route
+        path="/dev/founder-page-review/website"
+        element={<Navigate to="/dev/founder-page-review/hsa-website" replace />}
+      />
+      <Route
+        path="/dev/founder-page-review/website/*"
+        element={<Navigate to="/dev/founder-page-review/hsa-website" replace />}
+      />
+      <Route path="/dev/founder-page-review/hsa-website" element={<HsaWebsiteLayout />}>
         <Route index element={<HsaWebsiteHome />} />
         <Route path="how-it-works" element={<HsaWebsiteHowItWorks />} />
-        <Route path="security" element={<HsaWebsiteSecurity />} />
-        <Route path="for-home" element={<HsaWebsiteForHome />} />
-        <Route path="for-business" element={<HsaWebsiteForBusiness />} />
+        <Route path="features" element={<HsaWebsiteFeatures />} />
+        <Route path="life" element={<HsaWebsiteLife />} />
+        <Route path="privacy-and-control" element={<HsaWebsitePrivacyAndControl />} />
+        <Route path="pricing" element={<HsaWebsitePricing />} />
         <Route path="about" element={<HsaWebsiteAbout />} />
       </Route>
       <Route path="/dev/founder-page-review/esa-website" element={<EsaWebsiteLayout />}>

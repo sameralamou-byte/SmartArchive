@@ -148,7 +148,7 @@ export default function FounderPageReview() {
             </p>
             <a
               className="rounded-pill bg-accent-2 px-4 py-2 text-body-m font-bold text-[color:var(--esa-surface)] no-underline"
-              href="/dev/founder-page-review/website"
+              href="/dev/founder-page-review/hsa-website"
             >
               Open connected HSA website preview
             </a>

@@ -118,14 +118,14 @@ describe("AppRoutes", () => {
     expect(screen.getByText("Dev review — not production")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Open connected HSA website preview" })).toHaveAttribute(
       "href",
-      "/dev/founder-page-review/website",
+      "/dev/founder-page-review/hsa-website",
     );
   });
 
   it("exposes the connected HSA website preview only on a development route", async () => {
-    renderRoute("/dev/founder-page-review/website");
-    expect(await screen.findByRole("heading", { name: /Your life/ })).toBeInTheDocument();
-    expect(screen.getByText("Organized.")).toBeInTheDocument();
+    renderRoute("/dev/founder-page-review/hsa-website");
+    expect(await screen.findByRole("heading", { name: /Everything That Matters/ })).toBeInTheDocument();
+    expect(screen.getByText("Finally in One Place.")).toBeInTheDocument();
   });
 
   it("does not wire public Page 2 or Page 3 into production routes", () => {
