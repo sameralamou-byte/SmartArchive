@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import AppRoutes from "../../../routes/AppRoutes";
 import { render, screen, within } from "../../../test/test-utils";
-import { HSA_HOME_ASSETS } from "./hsaWebsiteAssets";
+import { HSA_HOME_ASSETS, HSA_HOW_IT_WORKS_ASSETS } from "./hsaWebsiteAssets";
 
 function renderSite(path: string) {
   return render(
@@ -60,9 +60,27 @@ describe("HSA Home marketing preview (development only)", () => {
     expect(screen.queryByText("Contact Sales")).not.toBeInTheDocument();
   });
 
-  it("stubs unspecified marketing pages without inventing content", () => {
+  it("renders How It Works as one continuous uncropped scene", () => {
     renderSite("/dev/founder-page-review/hsa-website/how-it-works");
-    expect(screen.getByRole("heading", { name: "How It Works" })).toBeInTheDocument();
+    const nav = screen.getByRole("navigation", { name: "Human SmartArchive" });
+    expect(within(nav).getByRole("link", { name: "How It Works" })).toHaveAttribute("aria-current", "page");
+    expect(within(nav).getByRole("link", { name: "How It Works" })).toHaveAttribute(
+      "href",
+      "/dev/founder-page-review/hsa-website/how-it-works",
+    );
+    expect(screen.getByRole("img", { name: /continuous How It Works scene/i })).toHaveAttribute(
+      "src",
+      HSA_HOW_IT_WORKS_ASSETS.scene,
+    );
+    expect(screen.queryByText("This page is not specified yet.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Life moves forward. HSA keeps up.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Organized today. More possibilities tomorrow.")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "How It Works" })).not.toBeInTheDocument();
+  });
+
+  it("stubs unspecified marketing pages without inventing content", () => {
+    renderSite("/dev/founder-page-review/hsa-website/features");
+    expect(screen.getByRole("heading", { name: "Features" })).toBeInTheDocument();
     expect(screen.getByText("This page is not specified yet.")).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Human SmartArchive" })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "HSA footer" })).toBeInTheDocument();

@@ -13,10 +13,10 @@ import ComponentShowcase from "../pages/ComponentShowcase";
 import FounderPageReview from "../pages/dev/FounderPageReview";
 import HsaWebsiteLayout from "../pages/dev/hsa-website/HsaWebsiteLayout";
 import HsaWebsiteHome from "../pages/dev/hsa-website/HsaWebsiteHome";
+import HsaWebsiteHowItWorks from "../pages/dev/hsa-website/HsaWebsiteHowItWorks";
 import {
   HsaWebsiteAbout,
   HsaWebsiteFeatures,
-  HsaWebsiteHowItWorks,
   HsaWebsiteLife,
   HsaWebsitePricing,
   HsaWebsitePrivacyAndControl,

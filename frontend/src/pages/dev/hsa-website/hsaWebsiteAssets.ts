@@ -10,6 +10,11 @@ export const HSA_HOME_ASSETS = {
   privacy: "/assets/hsa/hsa_home_privacy.webp?v=1",
 } as const;
 
+/** One continuous How It Works scene — captions, thread, and icon row stay in the artwork. */
+export const HSA_HOW_IT_WORKS_ASSETS = {
+  scene: "/assets/hsa/hsa_how_it_works.webp?v=2",
+} as const;
+
 export const HSA_NAV = [
   { to: HSA_WEBSITE_BASE, label: "Home", end: true },
   { to: `${HSA_WEBSITE_BASE}/how-it-works`, label: "How It Works", end: false },

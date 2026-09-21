@@ -5,16 +5,21 @@ import { HsaWebsiteHeader } from "./HsaWebsiteHeader";
 import { HSA_WEBSITE_BASE } from "./hsaWebsiteAssets";
 import "./hsaWebsitePreview.css";
 
-function isHsaHome(pathname: string) {
-  return pathname === HSA_WEBSITE_BASE || pathname === `${HSA_WEBSITE_BASE}/`;
+function isHsaOverlayPage(pathname: string) {
+  return (
+    pathname === HSA_WEBSITE_BASE ||
+    pathname === `${HSA_WEBSITE_BASE}/` ||
+    /\/hsa-website\/how-it-works\/?$/.test(pathname)
+  );
 }
 
 export default function HsaWebsiteLayout() {
   const location = useLocation();
-  const overlay = isHsaHome(location.pathname);
+  const overlay = isHsaOverlayPage(location.pathname);
+  const howItWorks = /\/hsa-website\/how-it-works\/?$/.test(location.pathname);
 
   return (
-    <div className="hsa-website-preview">
+    <div className={howItWorks ? "hsa-website-preview hsa-website-preview--how" : "hsa-website-preview"}>
       <div className="hsa-website-preview__stage">
         <HsaWebsiteHeader overlay={overlay} />
         <Outlet />
