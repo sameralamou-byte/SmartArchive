@@ -368,11 +368,23 @@
   min-height: 0;
 }
 
+.esa-security-hero {
+  background: #0a0d28;
+}
+
 .esa-security-hero__photo {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.esa-security-hero .esa-solutions-hero__content h1 {
+  text-shadow: 0 1px 14px rgba(10, 13, 40, 0.28);
+}
+
+.esa-security-hero .esa-solutions-hero__content .text-body-l {
+  text-shadow: 0 1px 10px rgba(10, 13, 40, 0.22);
 }
 
 .esa-security-hero .esa-solutions-hero__content {
@@ -394,7 +406,7 @@
 }
 
 .esa-security-layers {
-  background: var(--esa-mkt-navy);
+  background: #0c122e;
   padding: 2.25rem 1.5rem 2.5rem;
 }
 
@@ -452,8 +464,8 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: 0.9rem;
-  background: var(--esa-mkt-midnight);
-  border: 1px solid rgba(74, 125, 255, 0.28);
+  background: #0d1230;
+  border: 1px solid rgba(74, 125, 255, 0.34);
 }
 
 .esa-security-layer-card__photo {
@@ -487,7 +499,7 @@
 }
 
 .esa-security-advantage {
-  background: var(--esa-mkt-midnight);
+  background: #0a0e26;
   padding: 2.15rem 1.5rem 2.4rem;
   border-top: 1px solid rgba(230, 41, 155, 0.2);
 }

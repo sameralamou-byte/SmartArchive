@@ -71,7 +71,7 @@ export const ESA_INDUSTRY_CARDS = [
 ] as const;
 
 export const ESA_SECURITY_ASSETS = {
-  hero: "/assets/esa/esa_security_hero.webp?v=1",
+  hero: "/assets/esa/esa_security_hero.webp?v=3",
 } as const;
 
 /** Layer stills are independent ESA-family images — not crops of a mockup. */
@@ -80,7 +80,7 @@ export const ESA_SECURITY_LAYERS = [
     id: "data-protection",
     title: "Data Protection",
     icon: "shield" as const,
-    src: "/assets/esa/esa_security_layer_data.webp",
+    src: "/assets/esa/esa_security_layer_data.webp?v=3",
     alt: "Data center racks with cool industrial lighting.",
     body: "Encryption at rest and in transit.",
   },
@@ -88,7 +88,7 @@ export const ESA_SECURITY_LAYERS = [
     id: "access-identity",
     title: "Access & Identity",
     icon: "eye" as const,
-    src: "/assets/esa/esa_security_layer_access.webp",
+    src: "/assets/esa/esa_security_layer_access.webp?v=3",
     alt: "Access-control gates in a dark enterprise corridor.",
     body: "Access control and identity management.",
   },
@@ -96,7 +96,7 @@ export const ESA_SECURITY_LAYERS = [
     id: "threat-detection",
     title: "Threat Detection",
     icon: "scan" as const,
-    src: "/assets/esa/esa_security_layer_threat.webp",
+    src: "/assets/esa/esa_security_layer_threat.webp?v=3",
     alt: "Operations wall of monitors with abstract network maps.",
     body: "Continuous monitoring for threats.",
   },
@@ -104,7 +104,7 @@ export const ESA_SECURITY_LAYERS = [
     id: "compliance",
     title: "Compliance",
     icon: "document" as const,
-    src: "/assets/esa/esa_security_layer_compliance.webp",
+    src: "/assets/esa/esa_security_layer_compliance.webp?v=3",
     alt: "Governed records and document fragments in a dark archive hall.",
     body: "Data governance and an attributable record.",
   },
@@ -112,7 +112,7 @@ export const ESA_SECURITY_LAYERS = [
     id: "secure-ai",
     title: "Secure AI",
     icon: "spark" as const,
-    src: "/assets/esa/esa_security_layer_ai.webp",
+    src: "/assets/esa/esa_security_layer_ai.webp?v=3",
     alt: "Ambient network of light threads through dark architecture. No AI face.",
     body: "Responsible use, with a named human still deciding.",
   },
