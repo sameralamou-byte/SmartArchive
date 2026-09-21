@@ -211,35 +211,35 @@
 }
 
 /* Solutions: full cinematic frame — not cover-cropped, not a navy column. */
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__stage {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__stage {
   min-height: 0;
   aspect-ratio: 1672 / 686;
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__scene {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__scene {
   background-size: 100% 100%;
   background-position: center top;
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__scene::after {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__scene::after {
   background:
     linear-gradient(180deg, rgba(5, 6, 26, 0.48) 0%, transparent 14%),
     linear-gradient(90deg, rgba(5, 6, 26, 0.16) 0%, transparent 28%);
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__content {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__content {
   padding-top: 5.35rem;
   padding-bottom: 1.35rem;
   justify-content: flex-start;
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__copy {
   width: min(24rem, 28vw);
   margin-left: clamp(1.5rem, 3.8vw, 3.25rem);
   position: relative;
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy::after {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__copy::after {
   content: "";
   position: absolute;
   left: 0;
@@ -251,7 +251,7 @@
   z-index: 0;
 }
 
-.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy > * {
+.esa-solutions-hero:not(.esa-industries-hero):not(.esa-security-hero) .esa-solutions-hero__copy > * {
   position: relative;
   z-index: 1;
 }
@@ -361,4 +361,200 @@
 .esa-industries-hero .esa-solutions-hero__strip-item {
   padding-top: 0.1rem;
   padding-bottom: 0.15rem;
+}
+
+/* Security hero: same overlay pattern as Industries — photo sets height. */
+.esa-security-hero .esa-solutions-hero__stage {
+  min-height: 0;
+}
+
+.esa-security-hero__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.esa-security-hero .esa-solutions-hero__content {
+  position: absolute;
+  inset: 0;
+  padding-top: 5.25rem;
+  padding-bottom: 1.25rem;
+  justify-content: flex-start;
+}
+
+.esa-security-hero__copy {
+  width: min(36rem, 44vw);
+  margin-left: clamp(1.25rem, 3.2vw, 3rem);
+  overflow: visible;
+}
+
+.esa-security-hero__copy .text-body-l {
+  max-width: 24rem;
+}
+
+.esa-security-layers {
+  background: var(--esa-mkt-navy);
+  padding: 2.25rem 1.5rem 2.5rem;
+}
+
+.esa-security-layers__intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 2.5rem;
+  max-width: 86rem;
+  margin: 0 auto 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .esa-security-layers__intro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: end;
+  }
+}
+
+.esa-security-layers__more {
+  display: inline-block;
+  margin-top: 0.85rem;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.esa-security-layers__more:hover {
+  color: var(--accent-hover);
+}
+
+.esa-security-layers__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .esa-security-layers__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .esa-security-layers__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.esa-security-layer-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: var(--esa-mkt-midnight);
+  border: 1px solid rgba(74, 125, 255, 0.28);
+}
+
+.esa-security-layer-card__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.esa-security-layer-card__body {
+  padding: 0.95rem 1rem 1.1rem;
+}
+
+.esa-security-layer-card__title {
+  position: relative;
+  margin: 0.7rem 0 0;
+  color: var(--esa-mkt-text);
+  font-size: 1.05rem;
+  line-height: 1.25;
+  padding-bottom: 0.45rem;
+}
+
+.esa-security-layer-card__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.esa-security-advantage {
+  background: var(--esa-mkt-midnight);
+  padding: 2.15rem 1.5rem 2.4rem;
+  border-top: 1px solid rgba(230, 41, 155, 0.2);
+}
+
+.esa-security-advantage > .text-overline,
+.esa-security-advantage > h2,
+.esa-security-advantage__lead {
+  max-width: 86rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.esa-security-advantage__lead {
+  max-width: 40rem;
+}
+
+.esa-security-advantage__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 86rem;
+  margin: 1.5rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .esa-security-advantage__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .esa-security-advantage__row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.esa-security-advantage__item {
+  padding: 0.35rem 1.15rem 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .esa-security-advantage__item {
+    border-right: 1px solid rgba(230, 41, 155, 0.2);
+  }
+
+  .esa-security-advantage__item:last-child {
+    border-right: none;
+  }
+}
+
+.esa-security-advantage__title {
+  position: relative;
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  color: var(--esa-mkt-text);
+  font-size: 1.05rem;
+  padding-bottom: 0.4rem;
+}
+
+.esa-security-advantage__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1.75rem;
+  height: 2px;
+  background: var(--accent);
 }

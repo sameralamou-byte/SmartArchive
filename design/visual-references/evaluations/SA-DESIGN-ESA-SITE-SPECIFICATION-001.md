@@ -64,13 +64,15 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 
 | Nav item | Status | Maps to (master doc §8/§31 ESA content areas) |
 |---|---|---|
-| Home (implicit, logo-linked) | Built 2026-09-20, draft copy | — |
-| Solutions | Stub only | Knowledge Search, Document Intelligence, Workflow Command Center |
-| Industries | Stub only | Use Cases (§9): Manufacturing, Government, Healthcare, Education, etc. — echoes the old restoration package's industry-vertical thinking, not yet re-validated under the exception |
-| How It Works | Stub only | The ESA Core Journey (§8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit |
-| Security | Stub only | Security + Compliance combined (§8) |
+| Home (implicit, logo-linked) | **Founder-approved visual direction** (dev preview) | — |
+| Solutions | **Founder-approved visual checkpoint** (dev preview) | Knowledge Search, Document Intelligence, Workflow Command Center |
+| Industries | **Founder-approved visual checkpoint** (dev preview) | Use Cases (§9): Manufacturing, Government, Healthcare, Education, etc. |
+| How It Works | Built as a draft; **not** a frozen visual | The ESA Core Journey (§8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit |
+| Security | **Founder-approved visual checkpoint** (dev preview, 2026-09-21) | Security + Compliance combined (§8) |
 | Resources | Stub only | Not named in the master doc's ESA content plan at all — genuinely new, needs its own scoping (case studies? docs? blog?) |
 | About | Stub only | Not ESA-specific in the master doc — likely shared company/about content, needs a decision on whether it's ESA-specific or one shared About page for both products |
+
+**Protected approved visual directions (do not redesign without Founder):** Home, Solutions, Industries, Security. How It Works / Resources / About are not in this freeze.
 
 **Not in the nav, but named in the master doc's content plan and worth a decision:** Pricing (§9 lists "Enterprise Pricing Sphere"/"Enterprise Pricing Bridge" as concepts). The approved reference image's CTA section says "Contact Sales" / "Request a Demo" rather than showing pricing directly — plausible that ESA is deliberately sales-led rather than self-serve-priced, but that's an assumption, not a confirmed decision. Flagging rather than guessing.
 
@@ -89,25 +91,25 @@ Nav, as shown in the Founder-approved reference: **Solutions · Industries · Ho
 
 **Open before this can be called done:** the two pending image slots (§6 below); copy review (currently transcribed from the reference image, not locked copywriting); accessibility/RTL pass; real component-level QA (blocked today by the pre-existing, unrelated Tailwind build failure noted in the 2026-09-20 commit, see §6).
 
-### 4.2 Solutions — NOT BUILT
+### 4.2 Solutions — FOUNDER-APPROVED VISUAL CHECKPOINT
 
 **Purpose (from master doc content areas):** make the case for the three core ESA capabilities as one coherent story, not three separate product pitches.
 **Should cover:** Knowledge Search (search across enterprise knowledge, useful answers not just filenames), Document Intelligence (classification/extraction/analysis/contracts/deadlines/risk/relationships), Workflow Command Center (operational workflows, approvals, automation, human review).
 **Needs before implementation:** its own reference image(s) in the approved visual language; real (not invented) examples of what "document intelligence" produces for an enterprise document — same "no fake data" discipline as everywhere else.
 
-### 4.3 Industries — NOT BUILT
+### 4.3 Industries — FOUNDER-APPROVED VISUAL CHECKPOINT
 
 **Purpose:** let a visitor from a specific vertical see themselves in the product.
 **Candidate verticals** (from the old, now-superseded restoration package's own evidence map, re-usable as a starting list, not as approved content): Manufacturing, SME, Enterprise/Large Org, Government, Education, Professional Services, Security-sensitive sectors.
 **Needs before implementation:** a decision on which verticals actually matter for the Founder's real go-to-market, not just which ones look good in a mockup — this is a business decision, not a design one, and shouldn't be guessed at.
 
-### 4.4 How It Works — NOT BUILT
+### 4.4 How It Works — BUILT (draft, not frozen)
 
 **Purpose:** walk a skeptical buyer through the actual mechanism, building the trust HSA's home page builds through document-first storytelling — ESA's version should do it through the operational journey instead.
 **Should cover the ESA Core Journey** (master doc §8): Search → Understand → Intelligence → Confidence → Human Review → Workflow → Governance → Audit. Each step should get a real explanation of what happens and why a human is still in control at the review/decision points (§20's attributable-decision rule is the actual content here, not just a background rule).
 **Needs before implementation:** reference imagery per step (or a single system diagram); confirmation this is a scroll-through narrative page (matching the HSA `HowItWorks` pattern's existing shape) versus something more interactive.
 
-### 4.5 Security — NOT BUILT
+### 4.5 Security — FOUNDER-APPROVED VISUAL CHECKPOINT
 
 **Purpose:** the page an enterprise buyer's security/compliance team actually reads before approving a vendor. Highest bar for honesty in the whole site — §43's "no invented certifications, no misleading accuracy claims" is not optional here.
 **Should cover:** Security architecture, Compliance posture, auditability, governance controls (master doc §8's "Compliance" + "Security" content areas, and §43 generally).

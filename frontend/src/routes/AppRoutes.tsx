@@ -25,10 +25,10 @@ import EsaWebsiteHome from "../pages/dev/esa-website/EsaWebsiteHome";
 import EsaWebsiteHowItWorks from "../pages/dev/esa-website/EsaWebsiteHowItWorks";
 import EsaWebsiteSolutions from "../pages/dev/esa-website/EsaWebsiteSolutions";
 import EsaWebsiteIndustries from "../pages/dev/esa-website/EsaWebsiteIndustries";
+import EsaWebsiteSecurity from "../pages/dev/esa-website/EsaWebsiteSecurity";
 import {
   EsaWebsiteAbout,
   EsaWebsiteResources,
-  EsaWebsiteSecurity,
 } from "../pages/dev/esa-website/EsaWebsitePages";
 import DocumentUnderstanding from "../pages/DocumentUnderstanding";
 import EnterpriseCommandCenter from "../pages/EnterpriseCommandCenter";
