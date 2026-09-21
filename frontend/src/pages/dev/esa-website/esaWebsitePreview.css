@@ -209,3 +209,156 @@
   padding-top: 3.25rem;
   padding-bottom: 3.25rem;
 }
+
+/* Solutions: full cinematic frame — not cover-cropped, not a navy column. */
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__stage {
+  min-height: 0;
+  aspect-ratio: 1672 / 686;
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__scene {
+  background-size: 100% 100%;
+  background-position: center top;
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__scene::after {
+  background:
+    linear-gradient(180deg, rgba(5, 6, 26, 0.48) 0%, transparent 14%),
+    linear-gradient(90deg, rgba(5, 6, 26, 0.16) 0%, transparent 28%);
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__content {
+  padding-top: 5.35rem;
+  padding-bottom: 1.35rem;
+  justify-content: flex-start;
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy {
+  width: min(24rem, 28vw);
+  margin-left: clamp(1.5rem, 3.8vw, 3.25rem);
+  position: relative;
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 85%;
+  top: 72%;
+  height: 5.5rem;
+  background: linear-gradient(180deg, rgba(5, 6, 26, 0.05), rgba(5, 6, 26, 0.62) 45%, rgba(5, 6, 26, 0.12));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.esa-solutions-hero:not(.esa-industries-hero) .esa-solutions-hero__copy > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Industries hero: the photo sets height (real aspect). Overlay copy sits
+ * on the left of that same frame — never cover-crop, never a squeezed card. */
+.esa-industries-hero .esa-solutions-hero__stage {
+  min-height: 0;
+}
+
+.esa-industries-hero__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.esa-industries-hero .esa-solutions-hero__content {
+  position: absolute;
+  inset: 0;
+  padding-top: 5.25rem;
+  padding-bottom: 1.25rem;
+  justify-content: flex-start;
+}
+
+.esa-industries-hero__copy {
+  width: min(28rem, 32vw);
+  margin-left: clamp(1.25rem, 3.2vw, 3rem);
+}
+
+.esa-industries-hero__copy .text-body-l {
+  max-width: 22.5rem;
+}
+
+/* 9-industry photo grid — photo on top, navy title below. 3×3 at desktop. */
+.esa-industries-grid {
+  position: relative;
+  z-index: 2;
+  background: var(--esa-mkt-navy);
+  padding: 0.85rem 1.5rem 0.75rem;
+}
+
+.esa-industries-grid__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .esa-industries-grid__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem 0.85rem;
+  }
+}
+
+.esa-industries-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 0.9rem;
+  background: var(--esa-mkt-midnight);
+  border: 1px solid rgba(74, 125, 255, 0.32);
+}
+
+.esa-industries-card__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+  background: var(--esa-mkt-midnight);
+}
+
+.esa-industries-card__title {
+  position: relative;
+  margin: 0;
+  padding: 0.78rem 0.95rem 0.85rem;
+  color: var(--esa-mkt-text);
+  font-size: 1rem;
+  line-height: 1.25;
+  background: var(--esa-mkt-navy);
+}
+
+.esa-industries-card__title::after {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  margin-top: 0.45rem;
+  background: var(--accent);
+}
+
+.esa-industries-hero .esa-solutions-hero__strip-grid {
+  padding-top: 0.95rem;
+  padding-bottom: 0.9rem;
+}
+
+.esa-industries-hero .esa-solutions-hero__strip-title {
+  margin-top: 0.4rem;
+}
+
+.esa-industries-hero .esa-solutions-hero__strip-item {
+  padding-top: 0.1rem;
+  padding-bottom: 0.15rem;
+}

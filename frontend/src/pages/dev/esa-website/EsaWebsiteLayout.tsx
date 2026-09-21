@@ -55,7 +55,7 @@ export function EsaWebsiteHeader({
 export default function EsaWebsiteLayout() {
   const navigate = useNavigate();
   const location = useLocation();
-  const overlayHero = /\/esa-website\/solutions\/?$/.test(location.pathname);
+  const overlayHero = /\/esa-website\/(solutions|industries)\/?$/.test(location.pathname);
 
   return (
     <div className={overlayHero ? "esa-website-preview esa-website-preview--solutions" : "esa-website-preview"}>

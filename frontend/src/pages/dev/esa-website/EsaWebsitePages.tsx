@@ -1,8 +1,8 @@
 /**
- * Stub pages -- Home, Solutions, and How It Works are real pages. Remaining
- * nav items exist only so ESA_NAV doesn't link to a 404; they intentionally
- * say "not yet built" rather than inventing content, per the master doc's
- * honesty rule (never imply future functionality already exists).
+ * Stub pages -- Home, Solutions, How It Works, and Industries are real pages.
+ * Remaining nav items exist only so ESA_NAV doesn't link to a 404; they
+ * intentionally say "not yet built" rather than inventing content, per the
+ * master doc's honesty rule (never imply future functionality already exists).
  */
 function EsaWebsiteStub({ title }: { title: string }) {
   return (
@@ -17,10 +17,6 @@ function EsaWebsiteStub({ title }: { title: string }) {
       </section>
     </main>
   );
-}
-
-export function EsaWebsiteIndustries() {
-  return <EsaWebsiteStub title="Industries" />;
 }
 
 export function EsaWebsiteSecurity() {
