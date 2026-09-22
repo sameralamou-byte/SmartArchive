@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { resendVerification } from "../api/auth";
 import { Alert, Button, Input } from "../components";
 import { useLocale } from "../providers/LocaleProvider";
+import { HsaAuthLayout } from "./HsaAuthLayout";
 
 export default function CheckEmail() {
   const { t } = useLocale();
@@ -27,8 +28,7 @@ export default function CheckEmail() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-page px-4">
-      <div className="w-full max-w-sm rounded-lg border border-border bg-surface-card p-8 shadow-1">
+    <HsaAuthLayout>
         <h1 className="mb-4 font-display text-heading-1 font-bold text-text-primary">
           {t("app.verify.checkTitle")}
         </h1>
@@ -63,7 +63,6 @@ export default function CheckEmail() {
             {t("app.verify.alreadyConfirmed")}
           </Link>
         </p>
-      </div>
-    </div>
+    </HsaAuthLayout>
   );
 }
