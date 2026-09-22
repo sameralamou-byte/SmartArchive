@@ -24,6 +24,14 @@ from app.repositories.user_repository import UserRepository
 from app.schemas.auth import ChangePasswordRequest, LoginRequest, RegisterRequest, ResetPasswordRequest
 from app.security.email_verification import generate_raw_token, hash_token
 from app.security.jwt import TokenType, create_token, hash_password, verify_password
+from app.security.password_policy import require_password_policy
+from app.services.auth_exceptions import (
+    AuthenticationError,
+    PasswordPolicyError,
+    PasswordResetInvalidError,
+    RefreshReuseError,
+    VerifyEmailError,
+)
 
 logger = logging.getLogger("smartarchive.auth")
 
@@ -34,31 +42,17 @@ PERSISTENT_SESSION_TTL = timedelta(days=7)
 VERIFY_INVALID_DETAIL = "This confirmation link is invalid or has expired."
 RESET_INVALID_DETAIL = "This reset link is invalid or has expired."
 PASSWORD_CONFIRM_DETAIL = "Passwords do not match."
-PASSWORD_MIN_DETAIL = "Password must be at least 8 characters."
 PASSWORD_REUSE_DETAIL = "New password must be different from the current password."
 GENERIC_CREDENTIALS = "Invalid credentials"
 
-
-class AuthenticationError(Exception):
-    pass
-
-
-class VerifyEmailError(Exception):
-    pass
-
-
-class PasswordResetInvalidError(Exception):
-    pass
-
-
-class PasswordPolicyError(Exception):
-    def __init__(self, detail: str) -> None:
-        self.detail = detail
-        super().__init__(detail)
-
-
-class RefreshReuseError(Exception):
-    pass
+__all__ = [
+    "AuthService",
+    "AuthenticationError",
+    "PasswordPolicyError",
+    "PasswordResetInvalidError",
+    "RefreshReuseError",
+    "VerifyEmailError",
+]
 
 
 class AuthService:
@@ -67,6 +61,7 @@ class AuthService:
         self.users = UserRepository(session)
 
     async def register(self, data: RegisterRequest, accept_language: str | None = None) -> User:
+        require_password_policy(data.password)
         existing_account = await self.session.execute(select(Account).where(Account.email == data.email))
         if existing_account.scalar_one_or_none() is not None:
             raise AuthenticationError("A user with this email already exists")
@@ -89,6 +84,8 @@ class AuthService:
             is_superuser=True,  # admin of this Personal Tenant only
         )
         await self.users.create(user)
+        if settings.allows_dev_email_auto_verify():
+            self._auto_verify_for_local_dev(account)
         raw_token = await self._replace_unconsumed_token(account.id)
         await self.session.commit()
         self._send_verification_email(str(data.email), raw_token, accept_language)
@@ -205,8 +202,7 @@ class AuthService:
 
         if data.password != data.password_confirm:
             raise PasswordPolicyError(PASSWORD_CONFIRM_DETAIL)
-        if len(data.password) < 8:
-            raise PasswordPolicyError(PASSWORD_MIN_DETAIL)
+        require_password_policy(data.password)
         if verify_password(data.password, user.hashed_password):
             raise PasswordPolicyError(PASSWORD_REUSE_DETAIL)
 
@@ -229,8 +225,7 @@ class AuthService:
             raise AuthenticationError(GENERIC_CREDENTIALS)
         if data.new_password != data.new_password_confirm:
             raise PasswordPolicyError(PASSWORD_CONFIRM_DETAIL)
-        if len(data.new_password) < 8:
-            raise PasswordPolicyError(PASSWORD_MIN_DETAIL)
+        require_password_policy(data.new_password)
         if verify_password(data.new_password, user.hashed_password):
             raise PasswordPolicyError(PASSWORD_REUSE_DETAIL)
 
@@ -366,6 +361,12 @@ class AuthService:
             .where(AccountSession.account_id == account_id, AccountSession.revoked_at.is_(None))
             .values(revoked_at=now)
         )
+
+    def _auto_verify_for_local_dev(self, account: Account) -> None:
+        """Fail-closed: production-shaped settings never skip mailbox proof."""
+        if not settings.allows_dev_email_auto_verify():
+            return
+        account.email_verified_at = datetime.now(UTC)
 
     def _send_verification_email(self, to: str, raw_token: str, accept_language: str | None) -> None:
         verify_url = f"{settings.public_app_origin.rstrip('/')}/verify-email?token={raw_token}"

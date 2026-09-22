@@ -5,6 +5,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.config import settings
 from app.core.database import get_db
 from app.core.exceptions import EmailNotVerifiedError
 from app.core.tenancy import set_tenant_context
@@ -27,6 +28,9 @@ async def get_current_user(
 
     if payload.get("type") != TokenType.access.value:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Not an access token")
+    issuer = payload.get("iss")
+    if issuer is not None and issuer != settings.jwt_hsa_issuer:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid or expired token")
 
     user_id = uuid.UUID(payload["sub"])
     organization_id = payload["org_id"]

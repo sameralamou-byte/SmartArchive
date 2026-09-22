@@ -6,6 +6,7 @@ import { getApiErrorMessage, isEmailNotVerified, isRateLimited, isUnauthorized }
 import { Alert, Button, Checkbox, Input, PasswordInput } from "../components";
 import { useLocale } from "../providers/LocaleProvider";
 import { useAuthStore } from "../store/authStore";
+import { HsaAuthLayout } from "./HsaAuthLayout";
 
 export default function Login() {
   const { t } = useLocale();
@@ -62,12 +63,11 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-page px-4">
-      <div className="w-full max-w-sm rounded-lg border border-border bg-surface-card p-8 shadow-1">
-        <h1 className="mb-6 font-display text-heading-1 font-bold text-text-primary">
-          {t("app.login.title")}
-        </h1>
-        <form className="space-y-4" onSubmit={onSubmit}>
+    <HsaAuthLayout>
+      <h1 className="mb-6 font-display text-heading-1 font-bold text-text-primary">
+        {t("app.login.title")}
+      </h1>
+      <form className="space-y-4" onSubmit={onSubmit}>
           {error && <Alert tone={unverified ? "warning" : "critical"}>{error}</Alert>}
           {resendNotice && <Alert tone="success">{resendNotice}</Alert>}
           <div>
@@ -133,7 +133,6 @@ export default function Login() {
             {t("app.login.registerLink")}
           </Link>
         </p>
-      </div>
-    </div>
+    </HsaAuthLayout>
   );
 }

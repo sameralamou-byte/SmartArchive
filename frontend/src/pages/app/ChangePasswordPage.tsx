@@ -1,9 +1,11 @@
 import { type FormEvent, type ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { unmetPasswordRules } from "../../auth/passwordPolicy";
 import { changePassword, logoutAccount } from "../../api/auth";
 import { getApiErrorMessage, isRateLimited, isUnauthorized } from "../../api/errors";
 import { Alert, Button, Container, PasswordInput } from "../../components";
+import { PasswordRules } from "../../components/PasswordRules";
 import { useLocale } from "../../providers/LocaleProvider";
 import { useAuthStore } from "../../store/authStore";
 
@@ -33,6 +35,10 @@ export default function ChangePasswordPage() {
     setError(null);
     if (newPassword !== newPasswordConfirm) {
       setError(t("app.changePassword.mismatch"));
+      return;
+    }
+    if (unmetPasswordRules(newPassword).length > 0) {
+      setError(t("app.register.requirementsNotMet"));
       return;
     }
     setSubmitting(true);
@@ -84,6 +90,7 @@ export default function ChangePasswordPage() {
             value={newPassword}
             onChange={(event) => setNewPassword(event.target.value)}
           />
+          <PasswordRules password={newPassword} />
         </div>
         <div>
           <RequiredFieldLabel htmlFor="change-confirm">{t("app.changePassword.confirm")}</RequiredFieldLabel>

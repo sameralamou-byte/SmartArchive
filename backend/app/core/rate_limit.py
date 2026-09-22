@@ -32,7 +32,7 @@ FORGOT_PATH = "/api/v1/auth/forgot-password"
 RESEND_ACCEPTED_DETAIL = "If this email can be confirmed, a new message is on its way."
 FORGOT_ACCEPTED_DETAIL = "If this email can be reset, a message is on its way."
 RESEND_EMAIL_LIMIT = (3, 15 * 60)
-RESEND_IP_LIMIT = (5, 60)
+RESEND_IP_LIMIT = (3, 60)
 FORGOT_EMAIL_LIMIT = (3, 15 * 60)
 FORGOT_IP_LIMIT = (5, 60)
 

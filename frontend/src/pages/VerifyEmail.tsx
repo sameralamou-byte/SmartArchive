@@ -4,6 +4,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { verifyEmail } from "../api/auth";
 import { Alert, Button } from "../components";
 import { useLocale } from "../providers/LocaleProvider";
+import { HsaAuthLayout } from "./HsaAuthLayout";
 
 type Status = "working" | "success" | "failure";
 
@@ -34,8 +35,7 @@ export default function VerifyEmail() {
   }, [navigate, token]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-page px-4">
-      <div className="w-full max-w-sm rounded-lg border border-border bg-surface-card p-8 shadow-1">
+    <HsaAuthLayout>
         {status === "working" && <p className="text-body-m text-text-muted">{t("app.loading")}</p>}
         {status === "success" && (
           <>
@@ -62,7 +62,6 @@ export default function VerifyEmail() {
             </p>
           </>
         )}
-      </div>
-    </div>
+    </HsaAuthLayout>
   );
 }

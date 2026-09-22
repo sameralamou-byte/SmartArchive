@@ -41,6 +41,7 @@ def create_token(
         "org_id": str(organization_id),
         "account_id": str(account_id),
         "type": token_type.value,
+        "iss": settings.jwt_hsa_issuer,
         "iat": now,
         "exp": expire,
     }

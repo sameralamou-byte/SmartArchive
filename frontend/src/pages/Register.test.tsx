@@ -122,8 +122,8 @@ describe("Register", () => {
     await user.type(screen.getByLabelText(/^Full name/), "Alex");
     await user.type(screen.getByLabelText(/^Email/), "alex@example.com");
     await user.type(screen.getByLabelText(/^Confirm email/), "alex@example.com");
-    await user.type(screen.getByLabelText(/^Password/), "a-strong-password-123");
-    await user.type(screen.getByLabelText(/^Confirm password/), "a-strong-password-123");
+    await user.type(screen.getByLabelText(/^Password/), "A-strong-password-123");
+    await user.type(screen.getByLabelText(/^Confirm password/), "A-strong-password-123");
     await user.type(screen.getByLabelText(/^Archive name/), "Alex archive");
     await user.click(screen.getByRole("button", { name: "Create account" }));
     await waitFor(() => {
@@ -132,7 +132,7 @@ describe("Register", () => {
     expect(authApi.login).not.toHaveBeenCalled();
     expect(authApi.registerAccount).toHaveBeenCalledWith({
       email: "alex@example.com",
-      password: "a-strong-password-123",
+      password: "A-strong-password-123",
       full_name: "Alex",
       organization_name: "Alex archive",
     });

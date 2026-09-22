@@ -106,6 +106,16 @@ describe("LocaleProvider", () => {
     await act(async () => {
       await user.click(screen.getByText("to-ar"));
     });
-    expect(window.localStorage.getItem("smartarchive.locale")).toBe("ar");
+    expect(window.localStorage.getItem("hsa.language")).toBe("ar");
+  });
+
+  it("reads a legacy smartarchive.locale value when hsa.language is unset", () => {
+    window.localStorage.setItem("smartarchive.locale", "de");
+    render(
+      <LocaleProvider>
+        <Probe />
+      </LocaleProvider>,
+    );
+    expect(screen.getByTestId("locale")).toHaveTextContent("de");
   });
 });

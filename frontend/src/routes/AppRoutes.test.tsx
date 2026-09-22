@@ -100,7 +100,7 @@ describe("AppRoutes", () => {
       email_verified: true,
     });
     renderRoute("/app/account");
-    expect(await screen.findByText("alex@example.com")).toBeInTheDocument();
+    expect(await screen.findAllByText("alex@example.com")).toHaveLength(2);
     expect(screen.queryByText("organization_id")).not.toBeInTheDocument();
     expect(screen.queryByText("account_id")).not.toBeInTheDocument();
     expect(screen.queryByText("org_id")).not.toBeInTheDocument();

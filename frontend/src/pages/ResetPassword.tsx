@@ -1,10 +1,13 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
+import { unmetPasswordRules } from "../auth/passwordPolicy";
 import { resetPassword } from "../api/auth";
 import { getApiErrorMessage, isRateLimited } from "../api/errors";
 import { Alert, Button, PasswordInput } from "../components";
+import { PasswordRules } from "../components/PasswordRules";
 import { useLocale } from "../providers/LocaleProvider";
+import { HsaAuthLayout } from "./HsaAuthLayout";
 
 function RequiredFieldLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
@@ -39,6 +42,10 @@ export default function ResetPassword() {
       setError(t("app.reset.mismatch"));
       return;
     }
+    if (unmetPasswordRules(password).length > 0) {
+      setError(t("app.register.requirementsNotMet"));
+      return;
+    }
     if (!token) {
       setError(t("app.reset.invalid"));
       return;
@@ -57,8 +64,7 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-page px-4">
-      <div className="w-full max-w-sm rounded-lg border border-border bg-surface-card p-8 shadow-1">
+    <HsaAuthLayout>
         <h1 className="mb-6 font-display text-heading-1 font-bold text-text-primary">
           {t("app.reset.title")}
         </h1>
@@ -84,6 +90,7 @@ export default function ResetPassword() {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
+              <PasswordRules password={password} />
             </div>
             <div>
               <RequiredFieldLabel htmlFor="reset-password-confirm">
@@ -102,7 +109,6 @@ export default function ResetPassword() {
             </Button>
           </form>
         )}
-      </div>
-    </div>
+    </HsaAuthLayout>
   );
 }

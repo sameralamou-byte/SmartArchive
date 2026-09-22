@@ -58,8 +58,8 @@ describe("ChangePasswordPage 401 handling", () => {
     expect(await screen.findByRole("heading", { name: "Change password" })).toBeInTheDocument();
 
     await user.type(screen.getByLabelText(/Current password/), "wrong-password-123");
-    await user.type(screen.getByLabelText(/^New password/), "a-new-password-456");
-    await user.type(screen.getByLabelText(/Confirm new password/), "a-new-password-456");
+    await user.type(screen.getByLabelText(/^New password/), "A-new-password-456");
+    await user.type(screen.getByLabelText(/Confirm new password/), "A-new-password-456");
     await user.click(screen.getByRole("button", { name: "Update password" }));
 
     await waitFor(() => {

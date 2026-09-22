@@ -12,6 +12,8 @@ class Settings(BaseSettings):
 
     environment: str = "development"
     log_level: str = "INFO"
+    debug: bool = False
+    dev_auto_verify_email: bool = False
 
     # Postgres
     postgres_user: str = "smartarchive"
@@ -31,11 +33,14 @@ class Settings(BaseSettings):
     minio_bucket: str = "smartarchive-documents"
     minio_use_ssl: bool = False
 
-    # JWT
+    # JWT — HSA uses jwt_secret_key; ESA uses a dedicated secret and issuer.
     jwt_secret_key: str = "change_me_in_production"
     jwt_algorithm: str = "HS256"
     jwt_access_token_expire_minutes: int = 15
     jwt_refresh_token_expire_days: int = 7
+    jwt_hsa_issuer: str = "smartarchive-hsa"
+    jwt_esa_issuer: str = "smartarchive-esa"
+    jwt_esa_secret_key: str = "change_esa_jwt_in_production"
 
     # CORS -- Milestone 1.5: explicit allowlist instead of "*".
     # Comma-separated in the env var, e.g. "http://localhost:5173,https://app.smartarchive.io"
@@ -43,11 +48,15 @@ class Settings(BaseSettings):
 
     # SA-AUTH-001 email verification (EMAIL_DELIVERY_MODE: log | smtp | memory)
     public_app_origin: str = "http://localhost:5174"
+    esa_public_app_origin: str = "http://localhost:5174"
     email_from: str = "smartarchive@localhost"
     email_delivery_mode: str = "log"
     email_verification_secret: str = "change_email_verification_secret"
     password_reset_secret: str = "change_password_reset_secret"
     session_refresh_secret: str = "change_session_refresh_secret"
+    esa_email_verification_secret: str = "change_esa_email_verification_secret"
+    esa_password_reset_secret: str = "change_esa_password_reset_secret"
+    esa_session_refresh_secret: str = "change_esa_session_refresh_secret"
     smtp_host: str = "localhost"
     smtp_port: int = 587
     smtp_user: str = ""
@@ -61,6 +70,17 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_allowed_origins.split(",") if origin.strip()]
+
+    def allows_dev_email_auto_verify(self) -> bool:
+        """Fail-closed local bypass. All three must be true; production-shaped settings never pass."""
+        env = self.environment.lower()
+        mailer = self.email_delivery_mode.lower()
+        return (
+            self.dev_auto_verify_email
+            and env in {"development", "dev", "local"}
+            and self.debug is True
+            and mailer in {"memory", "log"}
+        )
 
 
     @property

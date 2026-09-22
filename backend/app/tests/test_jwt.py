@@ -15,4 +15,5 @@ def test_jwt_includes_account_id_and_keeps_org_id():
     assert payload["org_id"] == str(org_id)
     assert payload["account_id"] == str(account_id)
     assert payload["type"] == TokenType.access.value
+    assert payload["iss"] == "smartarchive-hsa"
     assert "email_verified" not in payload

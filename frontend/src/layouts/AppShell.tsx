@@ -86,9 +86,12 @@ export default function AppShell() {
               aria-haspopup="menu"
               aria-label={t("app.header.accountMenu")}
               onClick={() => setMenuOpen((open) => !open)}
-              className="rounded-sm px-2 py-1 text-body-m font-bold text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="rounded-sm px-2 py-1 text-end text-body-m font-bold text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              {user?.full_name}
+              <span className="block leading-tight">{user?.full_name}</span>
+              {user?.email ? (
+                <span className="block text-caption font-normal text-text-muted">{user.email}</span>
+              ) : null}
             </button>
             {menuOpen && (
               <div

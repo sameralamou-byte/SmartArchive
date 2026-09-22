@@ -1,0 +1,71 @@
+/* HSA auth shell — warm Home identity. Not ESA navy / A-arrow / marketing tokens. */
+.hsa-auth {
+  --hsa-auth-cream: #f3ebe0;
+  --hsa-auth-card: #faf6ef;
+  --hsa-auth-ink: #123b3a;
+  --hsa-auth-muted: #5c6a62;
+  --hsa-auth-gold: #c98d3e;
+  --hsa-auth-border: #e4d5c3;
+  min-height: 100vh;
+  background:
+    linear-gradient(165deg, rgba(76, 122, 216, 0.22) 0%, rgba(123, 106, 212, 0.16) 42%, rgba(243, 235, 224, 0.96) 78%),
+    #f3ebe0;
+  color: var(--hsa-auth-ink);
+}
+
+.hsa-auth__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+}
+
+.hsa-auth__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.hsa-auth__mark {
+  width: 2.6rem;
+  height: 0.85rem;
+}
+
+.hsa-auth__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-body-l);
+}
+
+.hsa-auth__name-smart {
+  color: var(--hsa-auth-ink);
+}
+
+.hsa-auth__name-archive {
+  color: var(--hsa-auth-gold);
+}
+
+.hsa-auth__stage {
+  display: flex;
+  min-height: calc(100vh - 4.5rem);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1rem 3rem;
+}
+
+.hsa-auth__card {
+  width: 100%;
+  max-width: 24rem;
+  border: 1px solid var(--hsa-auth-border);
+  border-radius: 1.1rem;
+  background: var(--hsa-auth-card);
+  box-shadow: 0 18px 40px rgba(18, 59, 58, 0.08);
+  padding: 2rem;
+}
+
+.hsa-auth__card h1 {
+  color: var(--hsa-auth-ink);
+}

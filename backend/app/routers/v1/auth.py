@@ -59,6 +59,8 @@ async def register(
         user = await service.register(data, request.headers.get("accept-language"))
     except AuthenticationError as exc:
         raise HTTPException(status.HTTP_409_CONFLICT, str(exc)) from exc
+    except PasswordPolicyError as exc:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, exc.detail) from exc
     return to_user_read(user=user, email_verified=False)
 
 

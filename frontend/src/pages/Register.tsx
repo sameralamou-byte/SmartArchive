@@ -3,8 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { registerAccount } from "../api/auth";
 import { getApiErrorMessage, isConflict, isRateLimited } from "../api/errors";
+import { unmetPasswordRules } from "../auth/passwordPolicy";
 import { Alert, Button, Input, PasswordInput } from "../components";
+import { PasswordRules } from "../components/PasswordRules";
 import { useLocale } from "../providers/LocaleProvider";
+import { HsaAuthLayout } from "./HsaAuthLayout";
 
 function RequiredFieldLabel({ htmlFor, children }: { htmlFor: string; children: ReactNode }) {
   return (
@@ -40,6 +43,10 @@ export default function Register() {
       setError(t("app.register.passwordMismatch"));
       return;
     }
+    if (unmetPasswordRules(password).length > 0) {
+      setError(t("app.register.requirementsNotMet"));
+      return;
+    }
     setSubmitting(true);
     try {
       await registerAccount({
@@ -63,8 +70,7 @@ export default function Register() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface-page px-4">
-      <div className="w-full max-w-sm rounded-lg border border-border bg-surface-card p-8 shadow-1">
+    <HsaAuthLayout>
         <h1 className="mb-6 font-display text-heading-1 font-bold text-text-primary">
           {t("app.register.title")}
         </h1>
@@ -113,6 +119,7 @@ export default function Register() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
+            <PasswordRules password={password} />
           </div>
           <div>
             <RequiredFieldLabel htmlFor="register-password-confirm">
@@ -147,7 +154,6 @@ export default function Register() {
             {t("app.register.loginLink")}
           </Link>
         </p>
-      </div>
-    </div>
+    </HsaAuthLayout>
   );
 }
